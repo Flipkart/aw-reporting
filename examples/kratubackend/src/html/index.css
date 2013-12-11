@@ -1,0 +1,21 @@
+table {
+	font: 12px/24px Verdana, Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 900px;
+	}
+
+td {
+	font: 12px/24px Verdana, Arial, Helvetica, sans-serif;
+	border: 0px solid #CCC;
+	padding: 0 0.5em;
+	}
+
+td+td {
+	border-left: 0px solid #CCC;
+	text-align: left;
+	}
+	
+	
+.blank_row {
+ 	height: 20px;
+}

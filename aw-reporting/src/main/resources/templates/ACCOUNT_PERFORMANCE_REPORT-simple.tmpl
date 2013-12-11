@@ -1,0 +1,78 @@
+<html>
+<head>
+	<title>{{title}}</title>
+	  <style type="text/css">
+	@page { 
+	size: 18in 10in;
+	padding: 1em;
+	}
+	th { padding: 5px; text-align: center; background-color: blue;
+color:white; }
+	tr {background-color: #99CCFF;}
+  /* Next two lines will work with CSS3, but isn't supported for PDF generation here */
+	tr:nth-child(even) {background-color: #77CCFF;}
+	tr:nth-child(odd) {background-color: #99CCFF;}
+  /* Remove the background-color here to get alternating shades in HTML from above */
+	td {padding: 5px; text-align: center;}
+	p {margin-top: 1.5em; margin-bottom: 1.5em;}
+	</style>
+</head>
+<body>
+	<p />
+
+		<IMG SRC="FILE:google.jpg" width="200px"></IMG>
+		<div id="logo" class="media"
+		  data-src="google.jpg"
+		  style="width: 300px;" />
+		<CENTER>
+		<H1 style="font-size: 250%; font-weight: 700; text-align: center;">
+			{{title}}
+		</H1>
+		</CENTER>
+<p />
+	<table border="1" style="border-collapse:collapse; padding: 2px;">
+		<thead>
+		<tr>
+			<th>Account Name</th>
+			<th>AccountId</th>
+			<th>PrimaryCustomerName</th>
+			<th>ExternalCustomerId</th>
+			<th>Campaign Name</th>
+			<th>CampaignId</th>
+			<th>Status</th>
+			<th>Impressions</th>
+			<th>Clicks</th>
+			<th>AvgCPC</th>
+			<th>AvgCPM</th>
+			<th>AvgPos</th>
+			<th>ConvRate1</th>
+			<th>ConvRateM</th>
+		</tr>
+		</thead>
+		<tbody>
+			{{#rows}}
+			<tr>
+				<td>{{AccountDescriptiveName}}</td>
+				<td style="text-align: right;">{{AccountId}}</td>
+				<td>{{PrimaryCustomerName}}</td>
+				<td style="text-align: right;">{{externalCustomerId}}</td>
+				<td>{{campaignName}}</td>
+				<td style="text-align: right;">{{campaignId}}</td>
+				<td>{{status}}</td>
+				<td style="text-align: right;">{{impressions}}</td>
+				<td style="text-align: right;">{{clicks}}</td>
+				<td style="text-align: right;">{{avgCpc}}</td>
+				<td style="text-align: right;">{{avgCpm}}</td>
+				<td style="text-align: right;">{{avgPosition}}</td>
+				<td style="text-align: right;">{{conversionRate1}}</td>
+				<td style="text-align: right;">{{conversionRateMany}}</td>
+				</tr>
+			{{/rows}}
+		</tbody>
+	</table>
+</body>
+</html>
+
+		
+
+

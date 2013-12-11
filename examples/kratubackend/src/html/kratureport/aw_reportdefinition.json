@@ -1,0 +1,76 @@
+{
+	"name":"AdWords Account Optimizations",
+	"signalDefinitionUrl":"http://google.github.io/kratu/examples/adwordshealthcheck/aw_signaldefinition.js",
+		"summaryRows":[
+	  {
+			"location":"bottom",
+			"type"    :"sum",
+			"replaceColumns": {
+				"accountName"                                       : {"string":"Sum"},
+				"externalCustomerId"                                			: {"string":""},
+				"accountActive"                                     : {"calculate":"numEntities"},
+				"sumBudget"                                         : {"string":""},
+				"budgetUtilization"                                 : {"string":""},
+				"averageQualityScore"                               : {"string":""},
+				"lostImpressionsDueToBudgetSearch"                  : {"string":""},
+				"lostImpressionsDueToBidAdRankSearch"               : {"string":""},
+				"lostImpressionsDueToBudgetDisplay"                 : {"string":""},
+				"lostImpressionsDueToBidAdRankDisplay"              : {"string":""},
+				"averageCTRSearch"                                  : {"string":""},
+				"averageCTRDisplay"                                 : {"string":""},
+				"callExtensionEnabled"                              : {"string":""},
+				"locationExtensionEnabled"                          : {"string":""},
+				"socialExtensionEnabled"                            : {"string":""},
+				"siteLinksEnabled"                                  : {"string":""},
+				"averageNumberOfKeywordsPerAdGroup"                 : {"string":""},
+				"percentageOfActiveKeywordsWithPoorQualityScore"    : {"string":""},
+				"percentageOfActiveKeywordsWithAverageQualityScore" : {"string":""},
+				"percentageOfActiveKeywordsWithGoodQualityScore"    : {"string":""},
+				"averageKeywordPosition"                            : {"string":""},
+				"numberOfDisapprovedAds"                            : {"string":""},
+				"percentageOfActiveBroadMatchingKeywords"           : {"string":""},
+				"percentageOfActiveExactMatchingKeywords"           : {"string":""},
+				"percentageOfActivePhraseMatchingKeywords"          : {"string":""},
+				"percentageOfActiveNegativeKeywords"                : {"string":""}
+			}
+		},
+		{
+			"location":"top",
+			"type"    :"average",
+			"replaceColumns": {
+				"accountName"        : {"calculate":"averageScore", "string":"Average Scores"},
+				"externalCustomerId" : {"calculate":"averageScore"},
+				"accountActive"      : {"string":""}
+			}
+		}
+	],
+	"signals":[
+		{"key":"accountName"},
+		{"key":"externalCustomerId"},
+		{"key":"accountActive"},
+		{"key":"sumBudget"},
+		{"key":"spend"},
+		{"key":"budgetUtilization"},
+		{"key":"weightedAverageQualityScore"},
+		{"key":"lostImpressionsDueToBudgetSearch"},
+		{"key":"lostImpressionsDueToBidAdRankSearch"},
+		{"key":"lostImpressionsDueToBudgetDisplay"},
+		{"key":"lostImpressionsDueToBidAdRankDisplay"},
+		{"key":"averageCTRSearch"},
+		{"key":"averageCTRDisplay"},
+		{"key":"callExtensionEnabled"},
+		{"key":"locationExtensionEnabled"},
+		{"key":"socialExtensionEnabled"},
+		{"key":"siteLinksEnabled"},
+		{"key":"averageNumberOfKeywordsPerAdGroup"},
+		{"key":"percentageOfActiveKeywordsWithPoorQualityScore"},
+		{"key":"percentageOfActiveKeywordsWithAverageQualityScore"},
+		{"key":"percentageOfActiveKeywordsWithGoodQualityScore"},
+		{"key":"weightedAverageKeywordPosition"},
+		{"key":"numberOfDisapprovedAds"},
+		{"key":"percentageOfActiveBroadMatchingKeywords"},
+		{"key":"percentageOfActiveExactMatchingKeywords"},
+		{"key":"percentageOfActivePhraseMatchingKeywords"},
+		{"key":"percentageOfActiveNegativeKeywords"}
+	]
+}
