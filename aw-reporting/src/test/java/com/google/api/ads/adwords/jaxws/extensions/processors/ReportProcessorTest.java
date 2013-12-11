@@ -97,7 +97,7 @@ public class ReportProcessorTest {
     appCtx = new ClassPathXmlApplicationContext("classpath:aw-report-test-beans.xml");
 
     reportProcessor =
-        new ReportProcessor("1", "token", "companyName", "clientId", "clientSecret", null);
+        new ReportProcessor("1", "token", "companyName", "clientId", "clientSecret", 10, 2);
 
     MockitoAnnotations.initMocks(this);
 
@@ -134,10 +134,10 @@ public class ReportProcessorTest {
         Mockito.<AdWordsSession.Builder>anyObject(), Mockito.<ReportDefinition>anyObject(),
         Mockito.<Set<Long>>anyObject());
 
-    verify(mockedReportEntitiesPersister, times(80))
+    verify(mockedReportEntitiesPersister, times(250))
         .persistReportEntities(reportEntitiesCaptor.capture());
 
-    assertEquals(80, reportEntitiesCaptor.getAllValues().size());
+    assertEquals(250, reportEntitiesCaptor.getAllValues().size());
     for (List<? extends Report> reportEntities : reportEntitiesCaptor.getAllValues()) {
       for (Report report : reportEntities) {
         assertNotNull(report.get_id());

@@ -55,7 +55,7 @@ public class MediaReplacedElementFactory implements ReplacedElementFactory {
       InputStream input = null;
       try {
         input =
-            new FileInputStream("src/main/resources/templates/" + element.getAttribute("data-src"));
+            new FileInputStream(element.getAttribute("data-src"));
         final byte[] bytes = IOUtils.toByteArray(input);
         final Image image = Image.getInstance(bytes);
         final FSImage fsImage = new ITextFSImage(image);
