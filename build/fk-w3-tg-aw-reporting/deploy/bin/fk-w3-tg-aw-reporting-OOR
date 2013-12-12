@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+# This is Put in Rotation script for fk-w3-tg-aw-reporting service
+
+HC_PORT=25451
+ADMIN_PORT=25454
+
+while iptables -t nat -D PREROUTING -p tcp --dport $HC_PORT -j REDIRECT --to-port $ADMIN_PORT
+do
+echo "Removed an IP tables rule. fk-w3-tg-aw-reporting service is out of rotation";
+done;
+
