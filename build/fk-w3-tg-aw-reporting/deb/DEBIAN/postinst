@@ -55,10 +55,8 @@ if [ "$1" == "configure" ] ; then
         $PAC_USER
     fi
 
-    chmod 755 /var/lib/$PAC
     chmod 755 /etc/init.d/$PAC
     chmod 755 /usr/share/$PAC/bin/$PAC
-    chown -R $PAC_UID:$PAC_GID /var/lib/$PAC
     chown -R $PAC_UID:$PAC_GID /usr/share/$PAC
     chown -R $PAC_UID:$PAC_GID /etc/init.d/$PAC
     mkdir -p /var/log/flipkart/w3/$PAC
