@@ -57,6 +57,10 @@ The bigger the number, the bigger the memory usage, but also might give an impro
 
 >aw.report.processor.rows.size=1000
 
+Fill in the following number to set the number of threads for the CSV processing and DB insertion.
+
+>aw.report.processor.threads=4
+
 Fill in the following with your database connection.
 
 >aw.report.model.db.sql.url=jdbc:mysql://localhost:3306/AWReports?rewriteBatchedStatements=true
