@@ -1,0 +1,82 @@
+#!/bin/bash -ex
+
+PAC=_PACKAGE_
+PAC_UID=3026
+PAC_GID=3000
+PAC_GROUP="fk-w3"
+PAC_USER=_PACKAGE_
+
+AW_REPORTING_CONF_DIR=/etc/fk-w3-tg-aw-reporting
+AW_REPORTING_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report.properties
+
+HOST_NAME=$(hostname -f)
+
+function getConfig  {
+    config_key="$1"
+    config_url="http://pf-config-publish.nm.flipkart.com/cfgsvc/v1/configuration/${PAC}/-/${HOST_NAME}/0/${config_key}?raw=true"
+    curl -sf $config_url
+}
+
+function updateConfigFile {
+        config_key="$1"
+        config_file="$2"
+        owner="$3"
+        perms="$4"
+
+        DATA=$(getConfig $config_key)
+        if [ -n "$DATA" ]; then
+
+                mkdir -p $(dirname "$config_file")
+                echo "$DATA" |fromdos >"$config_file"
+
+                if [ -n "$owner" ]; then
+                        chown "$owner" "$config_file"
+                fi
+
+                if [ -n "$perms" ]; then
+                        chmod "$perms" "$config_file"
+                fi
+        fi
+}
+
+updateConfigFile aw-report-properties $AW_REPORTING_CONF_FILE root 644
+
+if [ "$1" == "configure" ] ; then
+    # Create a lot of symlinks 
+
+    #creating user if it doesnt exist
+    if ! getent group fk-w3 > /dev/null; then
+    	groupadd -g "$PAC_GID" fk-w3
+    fi
+
+    if ! getent passwd $PAC_UID > /dev/null; then
+        adduser --system --uid $PAC_UID --home /usr/share/$PAC --no-create-home \
+        --ingroup fk-w3 --disabled-password --shell /bin/false \
+        $PAC_USER
+    fi
+
+    chmod 755 /var/lib/$PAC
+    chmod 755 /etc/init.d/$PAC
+    chmod 755 /usr/share/$PAC/bin/$PAC
+    chmod 755 /usr/share/$PAC/bin/$PAC-OOR
+    chmod 755 /usr/share/$PAC/bin/$PAC-PIR
+    chown -R $PAC_UID:$PAC_GID /var/lib/$PAC
+    chown -R $PAC_UID:$PAC_GID /usr/share/$PAC
+    chown -R $PAC_UID:$PAC_GID /etc/init.d/$PAC
+    mkdir -p /var/log/flipkart/w3/$PAC
+    chown -R $PAC_UID:$PAC_GID /var/log/flipkart/w3/$PAC
+    chmod -R 777 /var/log/flipkart/w3/$PAC
+    chown -Rf root:root /etc/cron.d/$PAC
+    touch /etc/cron.d/$PAC
+    /etc/init.d/cron restart
+    if [ -x "/etc/init.d/$PAC" ]; then
+     /etc/init.d/$PAC start || true
+    fi
+fi
+
+
+echo "Echoing to see if the control is coming till this point.."
+#creating sym link for munin file
+#ln -s -f /usr/share/munin/plugins/jmx_tbd /etc/munin/plugins/fk-w3-tg-aw-reporting_25453_MultigraphAll
+
+exit 0

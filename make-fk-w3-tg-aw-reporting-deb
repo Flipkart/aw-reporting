@@ -1,0 +1,81 @@
+#! /bin/bash -e
+
+echo "Starting build"
+
+function die() {
+    echo "ERROR: $1" >&2
+    echo "Aborting." >&2
+    exit 1
+}
+
+[ -n "$LOCAL_DIR" ]	|| die "No base dir specified."
+[ -n "$TARGET" ]	|| die "No target environment (eng, sb, nm etc.) specified."
+[ -n "$PACKAGE" ]	|| die "No package name specified."
+[ -d "$LOCAL_DIR" ]	|| die "Base dir '$LOCAL_DIR' does not exist."
+
+export PAC_UID=3026
+export PAC_GID=3000
+export PAC_GROUP="fk-w3"
+export PAC_USER="fk-w3-tg-aw-reporting"
+
+replacePlaceHolders() {
+    file="$1"
+    sed -i -e "s/_PACKAGE_/$PACKAGE/g" $file
+    sed -i -e "s/_UID_/$PAC_UID/g" $file
+    sed -i -e "s/_GID_/$PAC_GID/g" $file
+    sed -i -e "s/_GROUP_/$PAC_GROUP/g" $file
+    sed -i -e "s/_USER_/$PAC_USER/g" $file
+}
+
+
+# Create base dir for debian packaging
+AW_REPORTING_DIR="$LOCAL_DIR/aw-reporting"
+KRATU_DIR="$LOCAL_DIR/examples/kratubackend"
+BUILD_DIR="$LOCAL_DIR/build/$PACKAGE"
+DEPLOY_DIR="$BUILD_DIR/deploy"
+DEB_DIR="$LOCAL_DIR/deb"
+
+mkdir -p "$DEB_DIR"
+mkdir -p "$DEB_DIR"/usr/share/$PACKAGE/lib
+mkdir -p "$DEB_DIR"/usr/share/$PACKAGE/bin
+mkdir -p "$DEB_DIR"/var/log/flipkart/w3/$PACKAGE
+mkdir -p "$DEB_DIR"/etc/init.d
+mkdir -p "$DEB_DIR"/etc/cron.d
+mkdir -p "$DEB_DIR"/etc/$PACKAGE
+mkdir -p "$DEB_DIR"/etc/$PACKAGE/conf
+
+# build service
+cd "$LOCAL_DIR"
+
+# add maven options
+MVN_CMD=${MVN_CMD:-/usr/share/fk-ops-maven2/bin/mvn}
+
+${MVN_CMD} clean install -DskipTests 
+[ $? -ne 0 ] && die "Build failure"
+
+cd "$KRATU_DIR"
+
+${MVN_CMD} clean install -DskipTests 
+[ $? -ne 0 ] && die "Build failure"
+
+# setup
+cp -r "$AW_REPORTING_DIR"/target/aw-reporting-full.jar "$DEB_DIR"/usr/share/$PACKAGE/lib/aw-reporting.jar
+cp -r "$KRATU_DIR"/target/kratubackend-full.jar "$DEB_DIR"/usr/share/$PACKAGE/lib/kratubackend.jar
+cp -r "$BUILD_DIR"/deb/DEBIAN "$DEB_DIR"
+cp -r "$DEPLOY_DIR"/bin/* "$DEB_DIR"/usr/share/$PACKAGE/bin/
+cp -r "$DEPLOY_DIR"/init.d/* "$DEB_DIR"/etc/init.d/
+cp -r "$DEPLOY_DIR"/cron.d/* "$DEB_DIR"/etc/cron.d/
+cp -r "$DEPLOY_DIR"/conf/* "$DEB_DIR"/etc/$PACKAGE/conf/
+
+chmod -R 755 "$DEB_DIR/DEBIAN"
+chmod -R 777 "$DEB_DIR/etc/$PACKAGE/conf"
+
+#replacing constants
+replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/${PACKAGE}"
+replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/${PACKAGE}-OOR"
+replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/${PACKAGE}-PIR"
+replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/${PACKAGE}"
+replacePlaceHolders "${DEB_DIR}/etc/init.d/${PACKAGE}"
+replacePlaceHolders "${DEB_DIR}/DEBIAN/prerm"
+replacePlaceHolders "${DEB_DIR}/DEBIAN/postinst"
+replacePlaceHolders "${DEB_DIR}/DEBIAN/control"
