@@ -18,7 +18,7 @@
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DESC="Sindbad, Search Engine Marketing Adwords Reporting Framework"
+DESC="Search Engine Marketing Adwords Reporting Framework"
 NAME=_PACKAGE_
 DAEMON=/usr/share/$NAME/bin/fk-w3-tg-aw-reporting
 DAEMON_ARGS="-c _USER_:_GROUP_"

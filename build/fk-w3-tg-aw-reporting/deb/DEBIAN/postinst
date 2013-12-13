@@ -6,7 +6,7 @@ PAC_GID=3000
 PAC_GROUP="fk-w3"
 PAC_USER=_PACKAGE_
 
-AW_REPORTING_CONF_DIR=/etc/fk-w3-tg-aw-reporting
+AW_REPORTING_CONF_DIR=/etc/fk-w3-tg-aw-reporting/conf
 AW_REPORTING_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report.properties
 
 HOST_NAME=$(hostname -f)
