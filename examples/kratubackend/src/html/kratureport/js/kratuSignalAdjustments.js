@@ -22,6 +22,7 @@
  * @param {Kratu} kratu class instance.
  */
 function KratuSignalAdjustments(kratu) {
+  'use strict';
   this.kratu = kratu;
   this.signalControls_ = [
     'lMax',
@@ -41,6 +42,7 @@ function KratuSignalAdjustments(kratu) {
  */
 KratuSignalAdjustments.prototype.displayAdjustments = function(
     signal, onChangeCallback) {
+  'use strict';
   var adjustments = this;
 
   var container = document.createElement('div');
@@ -135,6 +137,7 @@ KratuSignalAdjustments.prototype.displayAdjustments = function(
  * @private
  */
 KratuSignalAdjustments.prototype.updateMeasures_ = function(signal) {
+  'use strict';
   if (signal.lMin !== null) {
     this.sliderObjects['lMax'].slider.max =
         parseInt(this.sliderObjects['lMin'].slider.value, 10) -
@@ -204,6 +207,7 @@ KratuSignalAdjustments.prototype.updateMeasures_ = function(signal) {
  * @private
  */
 KratuSignalAdjustments.prototype.createSliderObject_ = function(args) {
+  'use strict';
   var min = args.signal.range.min;
   var max = args.signal.range.max;
   var step = args.signal.range.step;

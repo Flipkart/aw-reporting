@@ -22,6 +22,7 @@
  * @param {Object=} opt_options object to controll loader behavior.
  */
 function KratuJsonProvider(opt_options) {
+  'use strict';
   this.forceReload = opt_options && !!opt_options.forceReload ? true : false;
 }
 
@@ -33,6 +34,7 @@ function KratuJsonProvider(opt_options) {
  * @param {Function=} opt_onError (optional) error handler.
  */
 KratuJsonProvider.prototype.load = function(url, onSuccess, opt_onError) {
+  'use strict';
   var xhr = new XMLHttpRequest();
 
   if (this.forceReload) {
