@@ -31,7 +31,6 @@
  * @param {Kratu} kratu class instance.
  */
 function KratuSignalDefinitions(kratu) {
-  'use strict';
   var signals = this;
   signals.kratu = kratu;
 

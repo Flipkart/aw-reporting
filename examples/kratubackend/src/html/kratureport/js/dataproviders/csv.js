@@ -22,7 +22,6 @@
  * @param {Object=} opt_options object to controll parser behavior.
  */
 function KratuCSVProvider(opt_options) {
-  'use strict';
   this.forceReload = opt_options && !!opt_options.forceReload ? true : false;
 }
 
@@ -34,7 +33,6 @@ function KratuCSVProvider(opt_options) {
  * @param {Function=} opt_onError (optional) error handler.
 */
 KratuCSVProvider.prototype.load = function(url, onSuccess, opt_onError) {
-  'use strict';
   var kratuCSVProvider = this;
   var xhr = new XMLHttpRequest();
 
