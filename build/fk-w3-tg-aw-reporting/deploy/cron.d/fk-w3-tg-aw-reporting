@@ -1,3 +1,4 @@
 MAILTO='tg-sem@flipkart.com'
 
+0 0 0/4 * * /usr/share/fk-w3-tg-aw-reporting/bin/fetchReports.sh
 
