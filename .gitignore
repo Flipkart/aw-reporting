@@ -1,4 +1,7 @@
 *.log
+*.iml
+*.ipr
+*.iws
 
 aw-report-model/target/*
 
@@ -6,12 +9,20 @@ aw-report-model/.classpath
 
 aw-report-model/.project
 
+aw-report-model/.iml
+
+aw-report-model/.ipr
+
 
 aw-reporting/target/*
 
 aw-reporting/.classpath
 
 aw-reporting/.project
+
+aw-reporting/.iml
+
+aw-reporting/.ipr
 
 
 examples/kratubackend/target/*

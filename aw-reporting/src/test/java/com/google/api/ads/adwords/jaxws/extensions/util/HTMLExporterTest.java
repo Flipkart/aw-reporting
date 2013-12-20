@@ -74,11 +74,11 @@ public class HTMLExporterTest {
     reportPHFI.setAccountDescriptiveName("Test Account Name");
     reportPHFI.setAccountId(idNumber);
     reportPHFI.setCampaignId(idNumber);
-    reportPHFI.setCampaignName("Test Campaign Name");
+    //reportPHFI.setCampaignName("Test Campaign Name");
     reportPHFI.setFeedId(idNumber);
     reportPHFI.setFeedItemId(idNumber);
     reportPHFI.setAdGroupId(idNumber);
-    reportPHFI.setAdGroupName("Test AdGroup Name");
+    //reportPHFI.setAdGroupName("Test AdGroup Name");
     reportPHFI.setAdId(idNumber);
     reportPHFI.setAvgCpc(new BigDecimal(2.00));
     reportPHFI.setAvgCpm(new BigDecimal(1.00));

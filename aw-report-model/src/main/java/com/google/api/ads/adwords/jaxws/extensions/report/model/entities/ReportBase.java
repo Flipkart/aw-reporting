@@ -114,6 +114,42 @@ public abstract class ReportBase extends Report {
 	@CsvField(value = "Network (with search partners)", reportField = "AdNetworkType2")
 	protected String adNetworkPartners;
 
+	@Column(name = "CONVERSIONSMANYPERCLICK")
+	@CsvField(value = "Conv. (many-per-click)", reportField = "ConversionsManyPerClick")
+	protected Long conversionsManyPerClick;
+
+	@Column(name = "VALUE_PER_CONVERSION_1")
+	@CsvField(value = "Value / conv. (1-per-click)", reportField = "ValuePerConv")
+	protected BigDecimal valuePerConversion1;
+
+	@Column(name = "VALUE_PER_CONVERSION_MANY")
+	@CsvField(value = "Value / conv. (many-per-click)", reportField = "ValuePerConvManyPerClick")
+	protected BigDecimal valuePerConversionMany;
+
+	@Column(name = "CONVERSION_VALUE")
+	@CsvField(value = "Total conv. value", reportField = "ConversionValue")
+	protected Long conversionValue;
+
+	@Column(name = "CONVERSION_RATE_1")
+	@CsvField(value = "Conv. rate (1-per-click)", reportField = "ConversionRate")
+	protected BigDecimal conversionRate1;
+
+	@Column(name = "CONVERSION_RATE_MANY")
+	@CsvField(value = "Conv. rate (many-per-click)", reportField = "ConversionRateManyPerClick")
+	protected BigDecimal conversionRateMany;
+
+	@Column(name = "COST_PER_CONVERSION_1")
+	@CsvField(value = "Cost / conv. (1-per-click)", reportField = "CostPerConversion")
+	protected BigDecimal costPerConversion1;
+
+	@Column(name = "COST_PER_CONVERSION_MANY")
+	@CsvField(value = "Cost / conv. (many-per-click)", reportField = "CostPerConversionManyPerClick")
+	protected BigDecimal costPerConversionMany;
+
+	@Column(name = "VIEWTHROUGHCONVERSIONS")
+	@CsvField(value = "View-through conv.", reportField = "ViewThroughConversions")
+	protected Long viewThroughConversions;
+
 	private static final Map<String, DateRangeHandler> dateRangeHandlers = Maps
 			.newHashMap();
 
@@ -457,235 +493,97 @@ public abstract class ReportBase extends Report {
 		this.dateEnd = dateEnd;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((_id == null) ? 0 : _id.hashCode());
-		result = prime
-				* result
-				+ ((accountDescriptiveName == null) ? 0
-						: accountDescriptiveName.hashCode());
-		result = prime * result
-				+ ((accountId == null) ? 0 : accountId.hashCode());
-		result = prime * result
-				+ ((adNetwork == null) ? 0 : adNetwork.hashCode());
-		result = prime
-				* result
-				+ ((adNetworkPartners == null) ? 0 : adNetworkPartners
-						.hashCode());
-		result = prime * result + ((avgCpc == null) ? 0 : avgCpc.hashCode());
-		result = prime * result + ((avgCpm == null) ? 0 : avgCpm.hashCode());
-		result = prime * result
-				+ ((avgPosition == null) ? 0 : avgPosition.hashCode());
-		result = prime * result
-				+ ((clickType == null) ? 0 : clickType.hashCode());
-		result = prime * result + ((clicks == null) ? 0 : clicks.hashCode());
-		result = prime * result
-				+ ((conversions == null) ? 0 : conversions.hashCode());
-		result = prime * result + ((cost == null) ? 0 : cost.hashCode());
-		result = prime * result + ((ctr == null) ? 0 : ctr.hashCode());
-		result = prime * result
-				+ ((currencyCode == null) ? 0 : currencyCode.hashCode());
-		result = prime * result + ((dateEnd == null) ? 0 : dateEnd.hashCode());
-		result = prime * result
-				+ ((dateRangeType == null) ? 0 : dateRangeType.hashCode());
-		result = prime * result
-				+ ((dateStart == null) ? 0 : dateStart.hashCode());
-		result = prime * result + ((day == null) ? 0 : day.hashCode());
-		result = prime * result + ((device == null) ? 0 : device.hashCode());
-		result = prime * result
-				+ ((impressions == null) ? 0 : impressions.hashCode());
-		result = prime * result + ((month == null) ? 0 : month.hashCode());
-		result = prime * result
-				+ ((partnerId == null) ? 0 : partnerId.hashCode());
-		result = prime * result
-				+ ((timestamp == null) ? 0 : timestamp.hashCode());
-		result = prime * result
-				+ ((topAccountId == null) ? 0 : topAccountId.hashCode());
-		return result;
+	public Long getConversionValue() {
+		return conversionValue;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		ReportBase other = (ReportBase) obj;
-		if (_id == null) {
-			if (other._id != null) {
-				return false;
-			}
-		} else if (!_id.equals(other._id)) {
-			return false;
-		}
-		if (accountDescriptiveName == null) {
-			if (other.accountDescriptiveName != null) {
-				return false;
-			}
-		} else if (!accountDescriptiveName.equals(other.accountDescriptiveName)) {
-			return false;
-		}
-		if (accountId == null) {
-			if (other.accountId != null) {
-				return false;
-			}
-		} else if (!accountId.equals(other.accountId)) {
-			return false;
-		}
-		if (adNetwork == null) {
-			if (other.adNetwork != null) {
-				return false;
-			}
-		} else if (!adNetwork.equals(other.adNetwork)) {
-			return false;
-		}
-		if (adNetworkPartners == null) {
-			if (other.adNetworkPartners != null) {
-				return false;
-			}
-		} else if (!adNetworkPartners.equals(other.adNetworkPartners)) {
-			return false;
-		}
-		if (avgCpc == null) {
-			if (other.avgCpc != null) {
-				return false;
-			}
-		} else if (!avgCpc.equals(other.avgCpc)) {
-			return false;
-		}
-		if (avgCpm == null) {
-			if (other.avgCpm != null) {
-				return false;
-			}
-		} else if (!avgCpm.equals(other.avgCpm)) {
-			return false;
-		}
-		if (avgPosition == null) {
-			if (other.avgPosition != null) {
-				return false;
-			}
-		} else if (!avgPosition.equals(other.avgPosition)) {
-			return false;
-		}
-		if (clickType == null) {
-			if (other.clickType != null) {
-				return false;
-			}
-		} else if (!clickType.equals(other.clickType)) {
-			return false;
-		}
-		if (clicks == null) {
-			if (other.clicks != null) {
-				return false;
-			}
-		} else if (!clicks.equals(other.clicks)) {
-			return false;
-		}
-		if (conversions == null) {
-			if (other.conversions != null) {
-				return false;
-			}
-		} else if (!conversions.equals(other.conversions)) {
-			return false;
-		}
-		if (cost == null) {
-			if (other.cost != null) {
-				return false;
-			}
-		} else if (!cost.equals(other.cost)) {
-			return false;
-		}
-		if (ctr == null) {
-			if (other.ctr != null) {
-				return false;
-			}
-		} else if (!ctr.equals(other.ctr)) {
-			return false;
-		}
-		if (currencyCode == null) {
-			if (other.currencyCode != null) {
-				return false;
-			}
-		} else if (!currencyCode.equals(other.currencyCode)) {
-			return false;
-		}
-		if (dateEnd == null) {
-			if (other.dateEnd != null) {
-				return false;
-			}
-		} else if (!dateEnd.equals(other.dateEnd)) {
-			return false;
-		}
-		if (dateRangeType == null) {
-			if (other.dateRangeType != null) {
-				return false;
-			}
-		} else if (!dateRangeType.equals(other.dateRangeType)) {
-			return false;
-		}
-		if (dateStart == null) {
-			if (other.dateStart != null) {
-				return false;
-			}
-		} else if (!dateStart.equals(other.dateStart)) {
-			return false;
-		}
-		if (day == null) {
-			if (other.day != null) {
-				return false;
-			}
-		} else if (!day.equals(other.day)) {
-			return false;
-		}
-		if (device == null) {
-			if (other.device != null) {
-				return false;
-			}
-		} else if (!device.equals(other.device)) {
-			return false;
-		}
-		if (impressions == null) {
-			if (other.impressions != null) {
-				return false;
-			}
-		} else if (!impressions.equals(other.impressions)) {
-			return false;
-		}
-		if (month == null) {
-			if (other.month != null) {
-				return false;
-			}
-		} else if (!month.equals(other.month)) {
-			return false;
-		}
-		if (partnerId == null) {
-			if (other.partnerId != null) {
-				return false;
-			}
-		} else if (!partnerId.equals(other.partnerId)) {
-			return false;
-		}
-		if (timestamp == null) {
-			if (other.timestamp != null) {
-				return false;
-			}
-		} else if (!timestamp.equals(other.timestamp)) {
-			return false;
-		}
-		if (topAccountId == null) {
-			if (other.topAccountId != null) {
-				return false;
-			}
-		} else if (!topAccountId.equals(other.topAccountId)) {
-			return false;
-		}
-		return true;
+	public void setConversionValue(Long conversionValue) {
+		this.conversionValue = conversionValue;
+	}
+
+	public String getCostPerConversion1() {
+		return costPerConversion1.toString();
+	}
+
+	public void setCostPerConversion1(BigDecimal costPerConversion1) {
+		this.costPerConversion1 = costPerConversion1;
+	}
+
+	public void setCostPerConversion1(String costPerConversion1) {
+		this.costPerConversion1 = BigDecimalUtil
+				.parseFromNumberString(costPerConversion1);
+	}
+
+	public String getCostPerConversionMany() {
+		return costPerConversionMany.toString();
+	}
+
+	public void setCostPerConversionMany(BigDecimal costPerConversionMany) {
+		this.costPerConversionMany = costPerConversionMany;
+	}
+
+	public void setCostPerConversionMany(String costPerConversionMany) {
+		this.costPerConversionMany = BigDecimalUtil
+				.parseFromNumberString(costPerConversionMany);
+	}
+
+	public String getValuePerConversion1() {
+		return BigDecimalUtil.formatAsReadable(valuePerConversion1);
+	}
+
+	public void setValuePerConversion1(BigDecimal valuePerConversion1) {
+		this.valuePerConversion1 = valuePerConversion1;
+	}
+
+	public void setValuePerConversion1(String valuePerConversion1) {
+		this.valuePerConversion1 = BigDecimalUtil
+				.parseFromNumberString(valuePerConversion1);
+	}
+
+	public String getValuePerConversionMany() {
+		return BigDecimalUtil.formatAsReadable(valuePerConversionMany);
+	}
+
+	public void setValuePerConversionMany(BigDecimal valuePerConversionMany) {
+		this.valuePerConversionMany = valuePerConversionMany;
+	}
+
+	public void setValuePerConversionMany(String valuePerConversionMany) {
+		this.valuePerConversionMany = BigDecimalUtil
+				.parseFromNumberString(valuePerConversionMany);
+	}
+
+	public String getConversionRate1() {
+		return BigDecimalUtil.formatAsReadable(conversionRate1);
+	}
+
+	public String getConversionRateMany() {
+		return BigDecimalUtil.formatAsReadable(conversionRateMany);
+	}
+
+	public void setConversionRateMany(BigDecimal conversionRateMany) {
+		this.conversionRateMany = conversionRateMany;
+	}
+
+	public void setConversionRateMany(String conversionRateMany) {
+		this.conversionRateMany = BigDecimalUtil
+				.parseFromNumberString(conversionRateMany);
+	}
+
+	public void setConversionRate1(BigDecimal conversionRate1) {
+		this.conversionRate1 = conversionRate1;
+	}
+
+	public void setConversionRate1(String conversionRate1) {
+		this.conversionRate1 = BigDecimalUtil
+				.parseFromNumberString(conversionRate1);
+	}
+
+	public Long getConversionsManyPerClick() {
+		return conversionsManyPerClick;
+	}
+
+	public void setConversionsManyPerClick(Long conversionsManyPerClick) {
+		this.conversionsManyPerClick = conversionsManyPerClick;
 	}
 }
