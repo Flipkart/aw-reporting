@@ -219,6 +219,28 @@ public class KratuMain {
     OptionBuilder.withDescription("ReportDefinitionDateRangeType");
     OptionBuilder.isRequired(false);
     options.addOption(OptionBuilder.create("dateRange"));
+    
+    OptionBuilder.withArgName("accountIdsFile");
+    OptionBuilder.hasArg(true);
+    OptionBuilder.withDescription(
+        "Consider ONLY the account IDs specified on the file to run the report");
+    OptionBuilder.isRequired(false);
+    options.addOption(OptionBuilder.create("accountIdsFile"));
+
+    OptionBuilder.withArgName("verbose");
+    OptionBuilder.hasArg(false);
+    OptionBuilder.withDescription("The application will print all the tracing on the console");
+    OptionBuilder.isRequired(false);
+    options.addOption(OptionBuilder.create("verbose"));
+
+    OptionBuilder.withArgName("debug");
+    OptionBuilder.hasArg(false);
+    OptionBuilder.withDescription("Will display all the debug information. "
+        + "If the option 'verbose' is activated, "
+        + "all the information will be displayed on the console as well");
+    OptionBuilder.isRequired(false);
+    options.addOption(OptionBuilder.create("debug"));
+
     return options;
   }
 
