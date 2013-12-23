@@ -25,6 +25,10 @@ public class ReportPlaceholderFeedItem extends ReportBase {
 	@CsvField(value = "Campaign ID", reportField = "CampaignId")
 	private Long campaignId;
 
+	@Column(name = "STATUS", length = 32)
+	@CsvField(value = "Feed item status", reportField = "Status")
+	private String status;
+
 	@Column(name = "ADGROUP_ID")
 	@CsvField(value = "Ad group ID", reportField = "AdGroupId")
 	private Long adGroupId;
@@ -115,6 +119,14 @@ public class ReportPlaceholderFeedItem extends ReportBase {
 
 	public void setCampaignId(Long campaignId) {
 		this.campaignId = campaignId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Long getAdGroupId() {
