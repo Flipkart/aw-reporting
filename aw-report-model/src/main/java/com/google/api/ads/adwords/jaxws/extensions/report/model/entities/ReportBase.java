@@ -54,14 +54,6 @@ public abstract class ReportBase extends Report {
 	@CsvField(value = "Day", reportField = "Date")
 	protected Date day;
 
-	@Column(name = "MONTH")
-	@CsvField(value = "Month", reportField = "Month")
-	protected Date month;
-
-	@Column(name = "ACCOUNT_DESCRIPTIVE_NAME", length = 255)
-	@CsvField(value = "Account", reportField = "AccountDescriptiveName")
-	protected String accountDescriptiveName;
-
 	@Column(name = "COST")
 	@CsvField(value = "Cost", reportField = "Cost")
 	protected BigDecimal cost;
@@ -94,10 +86,6 @@ public abstract class ReportBase extends Report {
 	@CsvField(value = "Avg. position", reportField = "AveragePosition")
 	protected BigDecimal avgPosition;
 
-	@Column(name = "CURRENCY_CODE", length = 6)
-	@CsvField(value = "Currency", reportField = "AccountCurrencyCode")
-	protected String currencyCode;
-
 	@Column(name = "DEVICE", length = 64)
 	@CsvField(value = "Device", reportField = "Device")
 	protected String device;
@@ -118,33 +106,9 @@ public abstract class ReportBase extends Report {
 	@CsvField(value = "Conv. (many-per-click)", reportField = "ConversionsManyPerClick")
 	protected Long conversionsManyPerClick;
 
-	@Column(name = "VALUE_PER_CONVERSION_1")
-	@CsvField(value = "Value / conv. (1-per-click)", reportField = "ValuePerConv")
-	protected BigDecimal valuePerConversion1;
-
-	@Column(name = "VALUE_PER_CONVERSION_MANY")
-	@CsvField(value = "Value / conv. (many-per-click)", reportField = "ValuePerConvManyPerClick")
-	protected BigDecimal valuePerConversionMany;
-
 	@Column(name = "CONVERSION_VALUE")
 	@CsvField(value = "Total conv. value", reportField = "ConversionValue")
-	protected Long conversionValue;
-
-	@Column(name = "CONVERSION_RATE_1")
-	@CsvField(value = "Conv. rate (1-per-click)", reportField = "ConversionRate")
-	protected BigDecimal conversionRate1;
-
-	@Column(name = "CONVERSION_RATE_MANY")
-	@CsvField(value = "Conv. rate (many-per-click)", reportField = "ConversionRateManyPerClick")
-	protected BigDecimal conversionRateMany;
-
-	@Column(name = "COST_PER_CONVERSION_1")
-	@CsvField(value = "Cost / conv. (1-per-click)", reportField = "CostPerConversion")
-	protected BigDecimal costPerConversion1;
-
-	@Column(name = "COST_PER_CONVERSION_MANY")
-	@CsvField(value = "Cost / conv. (many-per-click)", reportField = "CostPerConversionManyPerClick")
-	protected BigDecimal costPerConversionMany;
+	protected BigDecimal conversionValue;
 
 	@Column(name = "VIEWTHROUGHCONVERSIONS")
 	@CsvField(value = "View-through conv.", reportField = "ViewThroughConversions")
@@ -196,15 +160,11 @@ public abstract class ReportBase extends Report {
 		if (this.getDay() != null) {
 			return "-" + this.getDay();
 		}
-		if (this.getMonth() != null) {
-			return "-" + DateUtil.formatYearMonth(this.getMonthDateTime());
-		}
 		if (this.getDateRangeType() != null) {
 
 			DateRangeHandler handler = dateRangeHandlers.get(this
 					.getDateRangeType());
 			if (handler != null) {
-				this.setMonth(handler.retrieveMonth(DateTime.now()));
 				this.setDateStart(DateUtil.formatYearMonthDay(handler
 						.retrieveDateStart(DateTime.now())));
 				this.setDateEnd(DateUtil.formatYearMonthDay(handler
@@ -272,30 +232,6 @@ public abstract class ReportBase extends Report {
 		}
 	}
 
-	public String getMonth() {
-		if (month != null) {
-			return DateUtil.formatYearMonthDay(month);
-		} else {
-			return null;
-		}
-	}
-
-	public DateTime getMonthDateTime() {
-		return new DateTime(month);
-	}
-
-	public void setMonth(DateTime month) {
-		this.month = new DateTime(month).toDate();
-	}
-
-	public void setMonth(String month) {
-		try {
-			this.month = DateUtil.parseDateTime(month).toDate();
-		} catch (IllegalArgumentException e) {
-			this.month = null;
-		}
-	}
-
 	@Override
 	public String getDateRangeType() {
 		return dateRangeType;
@@ -324,14 +260,6 @@ public abstract class ReportBase extends Report {
 
 	public void setAvgPosition(BigDecimal avgPosition) {
 		this.avgPosition = avgPosition;
-	}
-
-	public String getAccountDescriptiveName() {
-		return accountDescriptiveName;
-	}
-
-	public void setAccountDescriptiveName(String accountDescriptiveName) {
-		this.accountDescriptiveName = accountDescriptiveName;
 	}
 
 	public String getCost() {
@@ -423,14 +351,6 @@ public abstract class ReportBase extends Report {
 		this.avgPosition = new BigDecimal(avgPosition);
 	}
 
-	public String getCurrencyCode() {
-		return currencyCode;
-	}
-
-	public void setCurrencyCode(String currencyCode) {
-		this.currencyCode = currencyCode;
-	}
-
 	@Override
 	public Date getTimestamp() {
 		return timestamp;
@@ -493,90 +413,17 @@ public abstract class ReportBase extends Report {
 		this.dateEnd = dateEnd;
 	}
 
-	public Long getConversionValue() {
-		return conversionValue;
+	public String getConversionValue() {
+		return BigDecimalUtil.formatAsReadable(conversionValue);
 	}
 
-	public void setConversionValue(Long conversionValue) {
+	public void setConversionValue(String conversionValue) {
+		this.conversionValue = BigDecimalUtil
+				.parseFromNumberString(conversionValue);
+	}
+
+	public void setConversionValue(BigDecimal conversionValue) {
 		this.conversionValue = conversionValue;
-	}
-
-	public String getCostPerConversion1() {
-		return costPerConversion1.toString();
-	}
-
-	public void setCostPerConversion1(BigDecimal costPerConversion1) {
-		this.costPerConversion1 = costPerConversion1;
-	}
-
-	public void setCostPerConversion1(String costPerConversion1) {
-		this.costPerConversion1 = BigDecimalUtil
-				.parseFromNumberString(costPerConversion1);
-	}
-
-	public String getCostPerConversionMany() {
-		return costPerConversionMany.toString();
-	}
-
-	public void setCostPerConversionMany(BigDecimal costPerConversionMany) {
-		this.costPerConversionMany = costPerConversionMany;
-	}
-
-	public void setCostPerConversionMany(String costPerConversionMany) {
-		this.costPerConversionMany = BigDecimalUtil
-				.parseFromNumberString(costPerConversionMany);
-	}
-
-	public String getValuePerConversion1() {
-		return BigDecimalUtil.formatAsReadable(valuePerConversion1);
-	}
-
-	public void setValuePerConversion1(BigDecimal valuePerConversion1) {
-		this.valuePerConversion1 = valuePerConversion1;
-	}
-
-	public void setValuePerConversion1(String valuePerConversion1) {
-		this.valuePerConversion1 = BigDecimalUtil
-				.parseFromNumberString(valuePerConversion1);
-	}
-
-	public String getValuePerConversionMany() {
-		return BigDecimalUtil.formatAsReadable(valuePerConversionMany);
-	}
-
-	public void setValuePerConversionMany(BigDecimal valuePerConversionMany) {
-		this.valuePerConversionMany = valuePerConversionMany;
-	}
-
-	public void setValuePerConversionMany(String valuePerConversionMany) {
-		this.valuePerConversionMany = BigDecimalUtil
-				.parseFromNumberString(valuePerConversionMany);
-	}
-
-	public String getConversionRate1() {
-		return BigDecimalUtil.formatAsReadable(conversionRate1);
-	}
-
-	public String getConversionRateMany() {
-		return BigDecimalUtil.formatAsReadable(conversionRateMany);
-	}
-
-	public void setConversionRateMany(BigDecimal conversionRateMany) {
-		this.conversionRateMany = conversionRateMany;
-	}
-
-	public void setConversionRateMany(String conversionRateMany) {
-		this.conversionRateMany = BigDecimalUtil
-				.parseFromNumberString(conversionRateMany);
-	}
-
-	public void setConversionRate1(BigDecimal conversionRate1) {
-		this.conversionRate1 = conversionRate1;
-	}
-
-	public void setConversionRate1(String conversionRate1) {
-		this.conversionRate1 = BigDecimalUtil
-				.parseFromNumberString(conversionRate1);
 	}
 
 	public Long getConversionsManyPerClick() {
@@ -585,5 +432,13 @@ public abstract class ReportBase extends Report {
 
 	public void setConversionsManyPerClick(Long conversionsManyPerClick) {
 		this.conversionsManyPerClick = conversionsManyPerClick;
+	}
+
+	public Long getViewThroughConversions() {
+		return viewThroughConversions;
+	}
+
+	public void setViewThroughConversions(Long viewThroughConversions) {
+		this.viewThroughConversions = viewThroughConversions;
 	}
 }

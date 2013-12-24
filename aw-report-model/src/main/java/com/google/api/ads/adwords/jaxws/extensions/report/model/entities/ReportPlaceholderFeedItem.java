@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinitionReportType;
  */
 @Entity
 @Table(name = "AW_ReportPlaceholderFeedItem")
-@CsvReport(value = ReportDefinitionReportType.PLACEHOLDER_FEED_ITEM_REPORT)
+@CsvReport(value = ReportDefinitionReportType.PLACEHOLDER_FEED_ITEM_REPORT, reportExclusions = { "ViewThroughConversions" })
 public class ReportPlaceholderFeedItem extends ReportBase {
 
 	@Column(name = "CAMPAIGN_ID")

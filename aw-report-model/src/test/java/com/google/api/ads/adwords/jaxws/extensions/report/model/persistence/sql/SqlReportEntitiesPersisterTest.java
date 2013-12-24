@@ -44,294 +44,305 @@ import java.util.Map;
 @ContextConfiguration("classpath:aw-report-model-test-beans.xml")
 public class SqlReportEntitiesPersisterTest {
 
-  @Autowired
-  private EntityPersister reportEntitiesPersister;
+	@Autowired
+	private EntityPersister reportEntitiesPersister;
 
-  @Before
-  public void cleanDB(){
+	@Before
+	public void cleanDB() {
 
-    List<ReportAccount> reports = this.reportEntitiesPersister.listReports(ReportAccount.class);
-    this.reportEntitiesPersister.remove(reports);
-  }
+		List<ReportAccount> reports = this.reportEntitiesPersister
+				.listReports(ReportAccount.class);
+		this.reportEntitiesPersister.remove(reports);
+	}
 
-  /**
-   * Tests the persistence and retrieval of Report Entities.
-   */
-  @Test
-  public void testTokenPersistence() {
-    ReportBase report = new ReportAccount(123L, 456L);
-    report.setAccountDescriptiveName("testAccount");
-    report.setId();
-    List<Report> reportList = Lists.newArrayList();
-    reportList.add(report);
-    reportEntitiesPersister.persistReportEntities(reportList);
+	/**
+	 * Tests the persistence and retrieval of Report Entities.
+	 */
+	@Test
+	public void testTokenPersistence() {
+		ReportBase report = new ReportAccount(123L, 456L);
+		report.setId();
+		List<Report> reportList = Lists.newArrayList();
+		reportList.add(report);
+		reportEntitiesPersister.persistReportEntities(reportList);
 
-    List<ReportAccount> reportAccountList = reportEntitiesPersister
-        .listReports(ReportAccount.class);
-    Assert.assertNotNull(reportAccountList);
-    Assert.assertTrue(reportAccountList.size() == 1);
-    Assert.assertTrue(reportAccountList.get(0).getTopAccountId().equals(123L));
-    Assert.assertTrue(reportAccountList.get(0).getAccountId().equals(456L));
-    Assert.assertTrue(reportAccountList.get(0).getAccountDescriptiveName().equals("testAccount"));
+		List<ReportAccount> reportAccountList = reportEntitiesPersister
+				.listReports(ReportAccount.class);
+		Assert.assertNotNull(reportAccountList);
+		Assert.assertTrue(reportAccountList.size() == 1);
+		Assert.assertTrue(reportAccountList.get(0).getTopAccountId()
+				.equals(123L));
+		Assert.assertTrue(reportAccountList.get(0).getAccountId().equals(456L));
+		Assert.assertTrue(reportAccountList.get(0).getAccountDescriptiveName()
+				.equals("testAccount"));
 
-    report = new ReportAccount(789L, 456L);
-    report.setAccountDescriptiveName("updatedTestAccount");
-    reportList = Lists.newArrayList();
-    reportList.add(report);
-    reportEntitiesPersister.persistReportEntities(reportList);
+		report = new ReportAccount(789L, 456L);
+		reportList = Lists.newArrayList();
+		reportList.add(report);
+		reportEntitiesPersister.persistReportEntities(reportList);
 
-    reportAccountList = reportEntitiesPersister.listReports(ReportAccount.class);
-    Assert.assertNotNull(reportAccountList);
-    Assert.assertTrue(reportAccountList.size() == 1);
-    Assert.assertTrue(reportAccountList.get(0).getTopAccountId().equals(789L));
-    Assert.assertTrue(reportAccountList.get(0).getAccountId().equals(456L));
-    Assert.assertTrue(reportAccountList.get(0).getAccountDescriptiveName()
-        .equals("updatedTestAccount"));
+		reportAccountList = reportEntitiesPersister
+				.listReports(ReportAccount.class);
+		Assert.assertNotNull(reportAccountList);
+		Assert.assertTrue(reportAccountList.size() == 1);
+		Assert.assertTrue(reportAccountList.get(0).getTopAccountId()
+				.equals(789L));
+		Assert.assertTrue(reportAccountList.get(0).getAccountId().equals(456L));
+		Assert.assertTrue(reportAccountList.get(0).getAccountDescriptiveName()
+				.equals("updatedTestAccount"));
 
-    this.reportEntitiesPersister.remove(reportAccountList);
-  }
+		this.reportEntitiesPersister.remove(reportAccountList);
+	}
 
-  /**
-   * Tests the gets methods.
-   */
-  @Test
-  public void testGet() {
+	/**
+	 * Tests the gets methods.
+	 */
+	@Test
+	public void testGet() {
 
-    ReportBase report1 = new ReportAccount(123L, 456L);
-    report1.setAccountDescriptiveName("testAccount1");
-    report1.setAdNetwork("test2");
-    report1.setId();
-    ReportBase report2 = new ReportAccount(124L, 4567L);
-    report2.setAccountDescriptiveName("testAccount2");
-    report2.setAdNetwork("test2");
-    report2.setId();
-    List<Report> reportList = Lists.newArrayList();
-    reportList.add(report1);
-    reportList.add(report2);
-    reportEntitiesPersister.persistReportEntities(reportList);
+		ReportBase report1 = new ReportAccount(123L, 456L);
+		report1.setAdNetwork("test2");
+		report1.setId();
+		ReportBase report2 = new ReportAccount(124L, 4567L);
+		report2.setAdNetwork("test2");
+		report2.setId();
+		List<Report> reportList = Lists.newArrayList();
+		reportList.add(report1);
+		reportList.add(report2);
+		reportEntitiesPersister.persistReportEntities(reportList);
 
-    List<ReportAccount> list = this.reportEntitiesPersister.get(ReportAccount.class, 0, 1);
-    Assert.assertEquals(1, list.size());
-    Assert.assertTrue(list.contains(report1) || list.contains(report2));
+		List<ReportAccount> list = this.reportEntitiesPersister.get(
+				ReportAccount.class, 0, 1);
+		Assert.assertEquals(1, list.size());
+		Assert.assertTrue(list.contains(report1) || list.contains(report2));
 
-    list = this.reportEntitiesPersister.get(ReportAccount.class);
-    Assert.assertEquals(2, list.size());
+		list = this.reportEntitiesPersister.get(ReportAccount.class);
+		Assert.assertEquals(2, list.size());
 
-    Assert.assertTrue(list.contains(report1));
-    Assert.assertTrue(list.contains(report2));
+		Assert.assertTrue(list.contains(report1));
+		Assert.assertTrue(list.contains(report2));
 
-    this.reportEntitiesPersister.remove(list);
-  }
+		this.reportEntitiesPersister.remove(list);
+	}
 
-  /**
-   * Tests the gets methods with values for properties.
-   */
-  @Test
-  public void testGetWithValue() {
+	/**
+	 * Tests the gets methods with values for properties.
+	 */
+	@Test
+	public void testGetWithValue() {
 
-    ReportBase report1 = new ReportAccount(123L, 456L);
-    report1.setAccountDescriptiveName("testAccount1");
-    report1.setAdNetwork("test2");
-    report1.setId();
-    ReportBase report2 = new ReportAccount(124L, 4567L);
-    report2.setAccountDescriptiveName("testAccount2");
-    report2.setAdNetwork("test2");
-    report2.setId();
-    List<Report> reportList = Lists.newArrayList();
-    reportList.add(report1);
-    reportList.add(report2);
-    reportEntitiesPersister.persistReportEntities(reportList);
+		ReportAccount report1 = new ReportAccount(123L, 456L);
+		report1.setAccountDescriptiveName("testAccount1");
+		report1.setAdNetwork("test2");
+		report1.setId();
+		ReportAccount report2 = new ReportAccount(124L, 4567L);
+		report2.setAccountDescriptiveName("testAccount2");
+		report2.setAdNetwork("test2");
+		report2.setId();
+		List<Report> reportList = Lists.newArrayList();
+		reportList.add(report1);
+		reportList.add(report2);
+		reportEntitiesPersister.persistReportEntities(reportList);
 
-    List<ReportAccount> list = this.reportEntitiesPersister.get(ReportAccount.class, "adNetwork",
-        "test2", 0, 1);
-    Assert.assertEquals(1, list.size());
-    Assert.assertTrue(list.contains(report1) || list.contains(report2));
+		List<ReportAccount> list = this.reportEntitiesPersister.get(
+				ReportAccount.class, "adNetwork", "test2", 0, 1);
+		Assert.assertEquals(1, list.size());
+		Assert.assertTrue(list.contains(report1) || list.contains(report2));
 
-    list = this.reportEntitiesPersister.get(ReportAccount.class, "adNetwork", "test2", 0, 3);
-    Assert.assertEquals(2, list.size());
-    Assert.assertTrue(list.contains(report1));
-    Assert.assertTrue(list.contains(report2));
+		list = this.reportEntitiesPersister.get(ReportAccount.class,
+				"adNetwork", "test2", 0, 3);
+		Assert.assertEquals(2, list.size());
+		Assert.assertTrue(list.contains(report1));
+		Assert.assertTrue(list.contains(report2));
 
-    list = this.reportEntitiesPersister.get(ReportAccount.class, "accountDescriptiveName",
-        "testAccount1");
-    Assert.assertEquals(1, list.size());
-    Assert.assertTrue(list.contains(report1));
+		list = this.reportEntitiesPersister.get(ReportAccount.class,
+				"accountDescriptiveName", "testAccount1");
+		Assert.assertEquals(1, list.size());
+		Assert.assertTrue(list.contains(report1));
 
-    list = this.reportEntitiesPersister.get(ReportAccount.class, "accountDescriptiveName",
-        "testAccount2");
-    Assert.assertEquals(1, list.size());
-    Assert.assertTrue(list.contains(report2));
+		list = this.reportEntitiesPersister.get(ReportAccount.class,
+				"accountDescriptiveName", "testAccount2");
+		Assert.assertEquals(1, list.size());
+		Assert.assertTrue(list.contains(report2));
 
-    list = this.reportEntitiesPersister.get(ReportAccount.class, "adNetwork", "test2");
-    Assert.assertEquals(2, list.size());
-    Assert.assertTrue(list.contains(report1));
-    Assert.assertTrue(list.contains(report2));
+		list = this.reportEntitiesPersister.get(ReportAccount.class,
+				"adNetwork", "test2");
+		Assert.assertEquals(2, list.size());
+		Assert.assertTrue(list.contains(report1));
+		Assert.assertTrue(list.contains(report2));
 
-    this.reportEntitiesPersister.remove(list);
-  }
+		this.reportEntitiesPersister.remove(list);
+	}
 
-  /**
-   * Tests the gets methods with values for dates.
-   */
-  @Test
-  public void testGetWithDate() {
+	/**
+	 * Tests the gets methods with values for dates.
+	 */
+	@Test
+	public void testGetWithDate() {
 
-    DateTime start = new DateTime(2013, 3, 9, 10, 10);
-    DateTime end = new DateTime(2013, 3, 14, 10, 10);
+		DateTime start = new DateTime(2013, 3, 9, 10, 10);
+		DateTime end = new DateTime(2013, 3, 14, 10, 10);
 
-    ReportBase report1 = new ReportAccount(123L, 456L);
-    report1.setAccountDescriptiveName("testAccount1");
-    report1.setAdNetwork("test2");
-    report1.setDay(new DateTime(2013, 3, 10, 10, 10));
-    report1.setId();
-    ReportBase report2 = new ReportAccount(124L, 4567L);
-    report2.setAccountDescriptiveName("testAccount2");
-    report2.setAdNetwork("test2");
-    report2.setDay(new DateTime(2013, 3, 13, 10, 10));
-    report2.setId();
-    List<Report> reportList = Lists.newArrayList();
-    reportList.add(report1);
-    reportList.add(report2);
-    reportEntitiesPersister.persistReportEntities(reportList);
+		ReportAccount report1 = new ReportAccount(123L, 456L);
+		report1.setAccountDescriptiveName("testAccount1");
+		report1.setAdNetwork("test2");
+		report1.setDay(new DateTime(2013, 3, 10, 10, 10));
+		report1.setId();
+		ReportAccount report2 = new ReportAccount(124L, 4567L);
+		report2.setAccountDescriptiveName("testAccount2");
+		report2.setAdNetwork("test2");
+		report2.setDay(new DateTime(2013, 3, 13, 10, 10));
+		report2.setId();
+		List<Report> reportList = Lists.newArrayList();
+		reportList.add(report1);
+		reportList.add(report2);
+		reportEntitiesPersister.persistReportEntities(reportList);
 
-    List<ReportAccount> list = this.reportEntitiesPersister.get(ReportAccount.class, "adNetwork",
-        "test2", "day", start.toDate(), end.toDate());
-    Assert.assertEquals(2, list.size());
-    Assert.assertTrue(list.contains(report1));
-    Assert.assertTrue(list.contains(report2));
+		List<ReportAccount> list = this.reportEntitiesPersister.get(
+				ReportAccount.class, "adNetwork", "test2", "day",
+				start.toDate(), end.toDate());
+		Assert.assertEquals(2, list.size());
+		Assert.assertTrue(list.contains(report1));
+		Assert.assertTrue(list.contains(report2));
 
-    list = this.reportEntitiesPersister.get(ReportAccount.class, "adNetwork", "test2", "day", start
-        .plusDays(1).toDate(), end.minusDays(1).toDate(), 0, 1);
-    Assert.assertEquals(1, list.size());
-    Assert.assertTrue(list.contains(report1) || list.contains(report2));
+		list = this.reportEntitiesPersister.get(ReportAccount.class,
+				"adNetwork", "test2", "day", start.plusDays(1).toDate(), end
+						.minusDays(1).toDate(), 0, 1);
+		Assert.assertEquals(1, list.size());
+		Assert.assertTrue(list.contains(report1) || list.contains(report2));
 
-    list = this.reportEntitiesPersister.get(ReportAccount.class, "adNetwork", "test2", "day", start
-        .plusDays(1).toDate(), end.minusDays(2).toDate(), 0, 1);
-    Assert.assertEquals(1, list.size());
-    Assert.assertTrue(list.contains(report1));
+		list = this.reportEntitiesPersister.get(ReportAccount.class,
+				"adNetwork", "test2", "day", start.plusDays(1).toDate(), end
+						.minusDays(2).toDate(), 0, 1);
+		Assert.assertEquals(1, list.size());
+		Assert.assertTrue(list.contains(report1));
 
-    list = this.reportEntitiesPersister.get(ReportAccount.class, "adNetwork", "test2", "day", start
-        .plusDays(2).toDate(), end.minusDays(1).toDate(), 0, 1);
-    Assert.assertEquals(1, list.size());
-    Assert.assertTrue(list.contains(report2));
+		list = this.reportEntitiesPersister.get(ReportAccount.class,
+				"adNetwork", "test2", "day", start.plusDays(2).toDate(), end
+						.minusDays(1).toDate(), 0, 1);
+		Assert.assertEquals(1, list.size());
+		Assert.assertTrue(list.contains(report2));
 
-    list = this.reportEntitiesPersister.get(ReportAccount.class, "adNetwork", "test2", "day", start
-        .plusDays(2).toDate(), end.minusDays(2).toDate(), 0, 1);
-    Assert.assertEquals(0, list.size());
+		list = this.reportEntitiesPersister.get(ReportAccount.class,
+				"adNetwork", "test2", "day", start.plusDays(2).toDate(), end
+						.minusDays(2).toDate(), 0, 1);
+		Assert.assertEquals(0, list.size());
 
-    list = this.reportEntitiesPersister.get(ReportAccount.class, "adNetwork", "test2", "day", start
-        .plusDays(1).toDate(), end.minusDays(1).toDate());
-    Assert.assertEquals(2, list.size());
-    Assert.assertTrue(list.contains(report1));
-    Assert.assertTrue(list.contains(report2));
+		list = this.reportEntitiesPersister.get(ReportAccount.class,
+				"adNetwork", "test2", "day", start.plusDays(1).toDate(), end
+						.minusDays(1).toDate());
+		Assert.assertEquals(2, list.size());
+		Assert.assertTrue(list.contains(report1));
+		Assert.assertTrue(list.contains(report2));
 
-    this.reportEntitiesPersister.remove(list);
-  }
+		this.reportEntitiesPersister.remove(list);
+	}
 
-  /**
-   * Tests the gets methods with a map of values for properties.
-   */
-  @Test
-  public void testGetWithValueMap() {
+	/**
+	 * Tests the gets methods with a map of values for properties.
+	 */
+	@Test
+	public void testGetWithValueMap() {
 
-    ReportBase report1 = new ReportAccount(123L, 456L);
-    report1.setAccountDescriptiveName("testAccount1");
-    report1.setAdNetwork("test2");
-    report1.setId();
-    ReportBase report2 = new ReportAccount(124L, 4567L);
-    report2.setAccountDescriptiveName("testAccount2");
-    report2.setAdNetwork("test2");
-    report2.setId();
-    List<Report> reportList = Lists.newArrayList();
-    reportList.add(report1);
-    reportList.add(report2);
-    reportEntitiesPersister.persistReportEntities(reportList);
+		ReportAccount report1 = new ReportAccount(123L, 456L);
+		report1.setAccountDescriptiveName("testAccount1");
+		report1.setAdNetwork("test2");
+		report1.setId();
+		ReportAccount report2 = new ReportAccount(124L, 4567L);
+		report2.setAccountDescriptiveName("testAccount2");
+		report2.setAdNetwork("test2");
+		report2.setId();
+		List<Report> reportList = Lists.newArrayList();
+		reportList.add(report1);
+		reportList.add(report2);
+		reportEntitiesPersister.persistReportEntities(reportList);
 
-    Map<String, String> valueMap = new HashMap<String, String>();
-    valueMap.put("adNetwork", "test2");
+		Map<String, String> valueMap = new HashMap<String, String>();
+		valueMap.put("adNetwork", "test2");
 
-    List<ReportAccount> list = this.reportEntitiesPersister
-        .get(ReportAccount.class, valueMap, 0, 1);
-    Assert.assertEquals(1, list.size());
-    Assert.assertTrue(list.contains(report1) || list.contains(report2));
+		List<ReportAccount> list = this.reportEntitiesPersister.get(
+				ReportAccount.class, valueMap, 0, 1);
+		Assert.assertEquals(1, list.size());
+		Assert.assertTrue(list.contains(report1) || list.contains(report2));
 
-    valueMap = new HashMap<String, String>();
-    valueMap.put("adNetwork", "test2");
-    valueMap.put("accountDescriptiveName", "testAccount1");
-    list = this.reportEntitiesPersister.get(ReportAccount.class, valueMap, 0, 3);
-    Assert.assertEquals(1, list.size());
-    Assert.assertTrue(list.contains(report1));
+		valueMap = new HashMap<String, String>();
+		valueMap.put("adNetwork", "test2");
+		valueMap.put("accountDescriptiveName", "testAccount1");
+		list = this.reportEntitiesPersister.get(ReportAccount.class, valueMap,
+				0, 3);
+		Assert.assertEquals(1, list.size());
+		Assert.assertTrue(list.contains(report1));
 
-    valueMap = new HashMap<String, String>();
-    valueMap.put("adNetwork", "test2");
-    valueMap.put("accountDescriptiveName", "testAccount2");
-    list = this.reportEntitiesPersister.get(ReportAccount.class, valueMap);
-    Assert.assertEquals(1, list.size());
-    Assert.assertTrue(list.contains(report2));
+		valueMap = new HashMap<String, String>();
+		valueMap.put("adNetwork", "test2");
+		valueMap.put("accountDescriptiveName", "testAccount2");
+		list = this.reportEntitiesPersister.get(ReportAccount.class, valueMap);
+		Assert.assertEquals(1, list.size());
+		Assert.assertTrue(list.contains(report2));
 
-    valueMap = new HashMap<String, String>();
-    valueMap.put("accountDescriptiveName", "testAccount1");
-    list = this.reportEntitiesPersister.get(ReportAccount.class, valueMap);
-    Assert.assertEquals(1, list.size());
-    Assert.assertTrue(list.contains(report1));
+		valueMap = new HashMap<String, String>();
+		valueMap.put("accountDescriptiveName", "testAccount1");
+		list = this.reportEntitiesPersister.get(ReportAccount.class, valueMap);
+		Assert.assertEquals(1, list.size());
+		Assert.assertTrue(list.contains(report1));
 
-    valueMap = new HashMap<String, String>();
-    valueMap.put("adNetwork", "test2");
-    list = this.reportEntitiesPersister.get(ReportAccount.class, valueMap);
-    Assert.assertEquals(2, list.size());
-    Assert.assertTrue(list.contains(report1));
-    Assert.assertTrue(list.contains(report2));
+		valueMap = new HashMap<String, String>();
+		valueMap.put("adNetwork", "test2");
+		list = this.reportEntitiesPersister.get(ReportAccount.class, valueMap);
+		Assert.assertEquals(2, list.size());
+		Assert.assertTrue(list.contains(report1));
+		Assert.assertTrue(list.contains(report2));
 
-    this.reportEntitiesPersister.remove(list);
-  }
+		this.reportEntitiesPersister.remove(list);
+	}
 
-  /**
-   * Tests the list of reports grouped by month
-   */
-  @Test
-  public void testListMonthReports() {
+	/**
+	 * Tests the list of reports grouped by month
+	 */
+	@Test
+	public void testListMonthReports() {
 
-    DateTime start = new DateTime(2013, 5, 4, 0, 0, 0, 0);
-    DateTime end = new DateTime(2013, 7, 4, 0, 0, 0, 0);
+		DateTime start = new DateTime(2013, 5, 4, 0, 0, 0, 0);
+		DateTime end = new DateTime(2013, 7, 4, 0, 0, 0, 0);
 
-    ReportBase report1 = new ReportAccount(123L, 456L);
-    report1.setAccountDescriptiveName("testAccount1");
-    report1.setAdNetwork("test1");
-    report1.setMonth(start);
-    report1.setDateStart(DateUtil.formatYearMonthDay(start));
-    report1.setDateEnd(DateUtil.formatYearMonthDay(start));
-    report1.setId();
+		ReportAccount report1 = new ReportAccount(123L, 456L);
+		report1.setAccountDescriptiveName("testAccount1");
+		report1.setAdNetwork("test1");
+		report1.setDay(start);
+		report1.setDateStart(DateUtil.formatYearMonthDay(start));
+		report1.setDateEnd(DateUtil.formatYearMonthDay(start));
+		report1.setId();
 
-    ReportBase report2 = new ReportAccount(124L, 456L);
-    report2.setAccountDescriptiveName("testAccount2");
-    report2.setAdNetwork("test2");
-    report2.setMonth(start.plusMonths(1));
-    report2.setDateStart(DateUtil.formatYearMonthDay(start.plusMonths(1)));
-    report2.setDateEnd(DateUtil.formatYearMonthDay(start.plusMonths(1)));
-    report2.setId();
+		ReportAccount report2 = new ReportAccount(124L, 456L);
+		report2.setAccountDescriptiveName("testAccount2");
+		report2.setAdNetwork("test2");
+		report2.setDay(start.plusMonths(1));
+		report2.setDateStart(DateUtil.formatYearMonthDay(start.plusMonths(1)));
+		report2.setDateEnd(DateUtil.formatYearMonthDay(start.plusMonths(1)));
+		report2.setId();
 
-    ReportBase report3 = new ReportAccount(125L, 456L);
-    report3.setAccountDescriptiveName("testAccount3");
-    report3.setAdNetwork("test3");
-    report3.setMonth(start.plusMonths(10));
-    report3.setDateStart(DateUtil.formatYearMonthDay(start.plusMonths(10)));
-    report3.setDateEnd(DateUtil.formatYearMonthDay(start.plusMonths(10)));
-    report3.setId();
+		ReportAccount report3 = new ReportAccount(125L, 456L);
+		report3.setAccountDescriptiveName("testAccount3");
+		report3.setAdNetwork("test3");
+		report3.setDay(start.plusMonths(10));
+		report3.setDateStart(DateUtil.formatYearMonthDay(start.plusMonths(10)));
+		report3.setDateEnd(DateUtil.formatYearMonthDay(start.plusMonths(10)));
+		report3.setId();
 
-    List<Report> reportList = Lists.newArrayList();
-    reportList.add(report1);
-    reportList.add(report2);
-    reportList.add(report3);
+		List<Report> reportList = Lists.newArrayList();
+		reportList.add(report1);
+		reportList.add(report2);
+		reportList.add(report3);
 
-    reportEntitiesPersister.persistReportEntities(reportList);
+		reportEntitiesPersister.persistReportEntities(reportList);
 
-    List<? extends Report> reports = this.reportEntitiesPersister.listMonthReports(
-        ReportAccount.class, 456L, start, end, 0, 20);
+		List<? extends Report> reports = this.reportEntitiesPersister
+				.listMonthReports(ReportAccount.class, 456L, start, end, 0, 20);
 
-    Assert.assertEquals(2, reports.size());
-    Assert.assertEquals(report1, reports.get(0));
-    Assert.assertEquals(report2, reports.get(1));
+		Assert.assertEquals(2, reports.size());
+		Assert.assertEquals(report1, reports.get(0));
+		Assert.assertEquals(report2, reports.get(1));
 
-    this.reportEntitiesPersister.remove(reports);
-  }
+		this.reportEntitiesPersister.remove(reports);
+	}
 }

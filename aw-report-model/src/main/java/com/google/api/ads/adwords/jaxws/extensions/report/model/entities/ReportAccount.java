@@ -27,112 +27,142 @@ import javax.persistence.Table;
 
 /**
  * Specific report class for ReportAccount
- *
+ * 
  * @author jtoledo@google.com (Julian Toledo)
  */
 @Entity
 @Table(name = "AW_ReportAccount")
-@CsvReport(value = ReportDefinitionReportType.ACCOUNT_PERFORMANCE_REPORT)
+@CsvReport(value = ReportDefinitionReportType.ACCOUNT_PERFORMANCE_REPORT, reportExclusions = { "ClickType" })
 public class ReportAccount extends ReportBase {
 
-  @Column(name = "SEARCH_LOST_IS_BUDGET")
-  @CsvField(value = "Search Lost IS (budget)", reportField = "SearchBudgetLostImpressionShare")
-  private BigDecimal searchLostISBudget;
+	@Column(name = "ACCOUNT_DESCRIPTIVE_NAME", length = 255)
+	@CsvField(value = "Account", reportField = "AccountDescriptiveName")
+	private String accountDescriptiveName;
 
-  @Column(name = "SEARCH_LOST_IS_RANK")
-  @CsvField(value = "Search Lost IS (rank)", reportField = "SearchRankLostImpressionShare")
-  private BigDecimal searchLostISRank;
+	@Column(name = "CURRENCY_CODE", length = 6)
+	@CsvField(value = "Currency", reportField = "AccountCurrencyCode")
+	private String currencyCode;
 
-  @Column(name = "CONTENT_LOST_IS_BUDGET")
-  @CsvField(value = "Content Lost IS (budget)", reportField = "ContentBudgetLostImpressionShare")
-  private BigDecimal contentLostISBudget;
+	@Column(name = "SEARCH_LOST_IS_BUDGET")
+	@CsvField(value = "Search Lost IS (budget)", reportField = "SearchBudgetLostImpressionShare")
+	private BigDecimal searchLostISBudget;
 
-  @Column(name = "CONTENT_LOST_IS_RANK")
-  @CsvField(value = "Content Lost IS (rank)", reportField = "ContentRankLostImpressionShare")
-  private BigDecimal contentLostISRank;
+	@Column(name = "SEARCH_LOST_IS_RANK")
+	@CsvField(value = "Search Lost IS (rank)", reportField = "SearchRankLostImpressionShare")
+	private BigDecimal searchLostISRank;
 
-  /**
-   * Hibernate needs an empty constructor
-   */
-  public ReportAccount() {
-  }
+	@Column(name = "CONTENT_LOST_IS_BUDGET")
+	@CsvField(value = "Content Lost IS (budget)", reportField = "ContentBudgetLostImpressionShare")
+	private BigDecimal contentLostISBudget;
 
-  public ReportAccount(Long topAccountId, Long accountId) {
-    this.topAccountId = topAccountId;
-    this.accountId = accountId;
-  }
+	@Column(name = "CONTENT_LOST_IS_RANK")
+	@CsvField(value = "Content Lost IS (rank)", reportField = "ContentRankLostImpressionShare")
+	private BigDecimal contentLostISRank;
 
-  @Override
-  public void setId() {
-    // Generating unique _id after having date and accountId
-    this._id = this.getAccountId().toString();
+	/**
+	 * Hibernate needs an empty constructor
+	 */
+	public ReportAccount() {
+	}
 
-    this._id += setIdDates();
-    
-    // Adding extra fields for unique ID
-    if (this.getAdNetwork() != null && this.getAdNetwork().length() > 0) {
-      this._id += "-" + this.getAdNetwork();
-    }
-    if (this.getAdNetworkPartners() != null && this.getAdNetworkPartners().length() > 0) {
-      this._id += "-" + this.getAdNetworkPartners();
-    }
-    if (this.getDevice() != null && this.getDevice().length() > 0) {
-      this._id += "-" + this.getDevice();
-    }
-    if (this.getClickType() != null && this.getClickType().length() > 0) {
-      this._id += "-" + this.getClickType();
-    }
-  }
+	public ReportAccount(Long topAccountId, Long accountId) {
+		this.topAccountId = topAccountId;
+		this.accountId = accountId;
+	}
 
-  public String getSearchLostISBudget() {
-    return BigDecimalUtil.formatAsReadable(this.searchLostISBudget);
-  }
+	@Override
+	public void setId() {
+		// Generating unique _id after having date and accountId
+		this._id = this.getAccountId().toString();
 
-  public BigDecimal getSearchLostISBudgetBigDecimal() {
-    return searchLostISBudget;
-  }
+		this._id += setIdDates();
 
-  public void setSearchLostISBudget(String lostISBudget) {
-    lostISBudget = lostISBudget.replaceAll("--", "0");
-    this.searchLostISBudget = new BigDecimal(lostISBudget.replaceAll("\\s|%|>|<", ""));
-  }
+		// Adding extra fields for unique ID
+		if (this.getAdNetwork() != null && this.getAdNetwork().length() > 0) {
+			this._id += "-" + this.getAdNetwork();
+		}
+		if (this.getAdNetworkPartners() != null
+				&& this.getAdNetworkPartners().length() > 0) {
+			this._id += "-" + this.getAdNetworkPartners();
+		}
+		if (this.getDevice() != null && this.getDevice().length() > 0) {
+			this._id += "-" + this.getDevice();
+		}
+		if (this.getClickType() != null && this.getClickType().length() > 0) {
+			this._id += "-" + this.getClickType();
+		}
+	}
 
-  public String getSearchLostISRank() {
-    return BigDecimalUtil.formatAsReadable(this.searchLostISRank);
-  }
+	public String getSearchLostISBudget() {
+		return BigDecimalUtil.formatAsReadable(this.searchLostISBudget);
+	}
 
-  public BigDecimal getSearchLostISRankBigDecimal() {
-    return searchLostISRank;
-  }
+	public BigDecimal getSearchLostISBudgetBigDecimal() {
+		return searchLostISBudget;
+	}
 
-  public void setSearchLostISRank(String lostISRank) {
-    lostISRank = lostISRank.replaceAll("--", "0");
-    this.searchLostISRank = new BigDecimal(lostISRank.replaceAll("\\s|%|>|<", ""));
-  }
+	public void setSearchLostISBudget(String lostISBudget) {
+		lostISBudget = lostISBudget.replaceAll("--", "0");
+		this.searchLostISBudget = new BigDecimal(lostISBudget.replaceAll(
+				"\\s|%|>|<", ""));
+	}
 
-  public String getContentLostISBudget() {
-    return BigDecimalUtil.formatAsReadable(this.contentLostISBudget);
-  }
+	public String getSearchLostISRank() {
+		return BigDecimalUtil.formatAsReadable(this.searchLostISRank);
+	}
 
-  public BigDecimal getContentLostISBudgetBigDecimal() {
-    return contentLostISBudget;
-  }
+	public BigDecimal getSearchLostISRankBigDecimal() {
+		return searchLostISRank;
+	}
 
-  public void setContentLostISBudget(String lostISBudget) {
-    lostISBudget = lostISBudget.replaceAll("--", "0");
-    this.contentLostISBudget = new BigDecimal(lostISBudget.replaceAll("\\s|%|>|<", ""));
-  }
+	public void setSearchLostISRank(String lostISRank) {
+		lostISRank = lostISRank.replaceAll("--", "0");
+		this.searchLostISRank = new BigDecimal(lostISRank.replaceAll(
+				"\\s|%|>|<", ""));
+	}
 
-  public String getContentLostISRank() {
-    return BigDecimalUtil.formatAsReadable(this.contentLostISRank);
-  }
+	public String getContentLostISBudget() {
+		return BigDecimalUtil.formatAsReadable(this.contentLostISBudget);
+	}
 
-  public BigDecimal getContentLostISRankBigDecimal() {
-    return contentLostISRank;
-  }
+	public BigDecimal getContentLostISBudgetBigDecimal() {
+		return contentLostISBudget;
+	}
 
-  public void setContentLostISRank(String lostISRank) {
-    lostISRank = lostISRank.replaceAll("--", "0");
-    this.contentLostISRank = new BigDecimal(lostISRank.replaceAll("\\s|%|>|<", ""));
-  }
+	public void setContentLostISBudget(String lostISBudget) {
+		lostISBudget = lostISBudget.replaceAll("--", "0");
+		this.contentLostISBudget = new BigDecimal(lostISBudget.replaceAll(
+				"\\s|%|>|<", ""));
+	}
+
+	public String getContentLostISRank() {
+		return BigDecimalUtil.formatAsReadable(this.contentLostISRank);
+	}
+
+	public BigDecimal getContentLostISRankBigDecimal() {
+		return contentLostISRank;
+	}
+
+	public void setContentLostISRank(String lostISRank) {
+		lostISRank = lostISRank.replaceAll("--", "0");
+		this.contentLostISRank = new BigDecimal(lostISRank.replaceAll(
+				"\\s|%|>|<", ""));
+	}
+
+	public String getAccountDescriptiveName() {
+		return accountDescriptiveName;
+	}
+
+	public void setAccountDescriptiveName(String accountDescriptiveName) {
+		this.accountDescriptiveName = accountDescriptiveName;
+	}
+
+	public String getCurrencyCode() {
+		return currencyCode;
+	}
+
+	public void setCurrencyCode(String currencyCode) {
+		this.currencyCode = currencyCode;
+	}
+
 }

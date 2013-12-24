@@ -35,12 +35,8 @@ public class ReportDestinationUrlDefinitionTest extends
 
 		Assert.assertEquals(3448007340L, row.getAdGroupId().longValue());
 		Assert.assertEquals(84058260L, row.getCampaignId().longValue());
-		Assert.assertEquals("0.00", row.getConversionRate1());
-		Assert.assertEquals("0.00", row.getConversionRateMany());
 		Assert.assertEquals(0L, row.getConversionsManyPerClick().longValue());
 		Assert.assertEquals(null, row.getConversionValue());
-		Assert.assertEquals("0.00", row.getCostPerConversion1());
-		Assert.assertEquals("0.00", row.getCostPerConversionMany());
 		Assert.assertEquals("", row.getCriteriaDestinationUrl());
 		Assert.assertEquals("+immo +benodet", row.getCriteriaParameters());
 		Assert.assertEquals("Broad", row.getCriteriaTypeName());
@@ -58,12 +54,8 @@ public class ReportDestinationUrlDefinitionTest extends
 
 		Assert.assertEquals(5827855980L, row.getAdGroupId().longValue());
 		Assert.assertEquals(118203540L, row.getCampaignId().longValue());
-		Assert.assertEquals("0.00", row.getConversionRate1());
-		Assert.assertEquals("0.00", row.getConversionRateMany());
 		Assert.assertEquals(0L, row.getConversionsManyPerClick().longValue());
 		Assert.assertEquals(null, row.getConversionValue());
-		Assert.assertEquals("0.00", row.getCostPerConversion1());
-		Assert.assertEquals("0.00", row.getCostPerConversionMany());
 		Assert.assertEquals("", row.getCriteriaDestinationUrl());
 		Assert.assertEquals("Content", row.getCriteriaParameters());
 		Assert.assertEquals("Broad", row.getCriteriaTypeName());
@@ -110,22 +102,13 @@ public class ReportDestinationUrlDefinitionTest extends
 	@Override
 	protected String[] retrievePropertiesToBeSelected() {
 
-		return new String[] { "AccountTimeZoneId", "AdGroupId", "AdGroupName",
-				"AdGroupStatus", "CampaignId", "CampaignName",
-				"CampaignStatus", "ConversionRate",
-				"ConversionRateManyPerClick", "ConversionsManyPerClick",
-				"ConversionValue", "CostPerConversion",
-				"CostPerConversionManyPerClick", "CriteriaDestinationUrl",
-				"CriteriaParameters", "CriteriaStatus", "CriteriaTypeName",
-				"CustomerDescriptiveName", "DayOfWeek",
-				"EffectiveDestinationUrl", "IsNegative", "MonthOfYear",
-				"PrimaryCompanyName", "PrimaryUserLogin", "Quarter",
-				"TotalConvValue", "ValuePerConv", "ValuePerConversion",
-				"ValuePerConversionManyPerClick", "ValuePerConvManyPerClick",
-				"ViewThroughConversions", "Week", "Year", "ExternalCustomerId",
-				"Date", "Month", "AccountDescriptiveName", "Cost", "Clicks",
+		return new String[] { "AdGroupId", "CampaignId",
+				"ConversionsManyPerClick", "ConversionValue",
+				"CriteriaDestinationUrl", "CriteriaParameters",
+				"EffectiveDestinationUrl", "IsNegative",
+				"ViewThroughConversions", "Date", "Cost", "Clicks",
 				"Impressions", "Conversions", "Ctr", "AverageCpm",
-				"AverageCpc", "AveragePosition", "AccountCurrencyCode",
-				"Device", "ClickType", "AdNetworkType1", "AdNetworkType2" };
+				"AverageCpc", "AveragePosition", "Device", "ClickType",
+				"AdNetworkType1", "AdNetworkType2" };
 	}
 }

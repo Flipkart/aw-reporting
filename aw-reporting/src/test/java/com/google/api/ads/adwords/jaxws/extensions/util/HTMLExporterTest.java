@@ -32,106 +32,108 @@ import java.util.List;
 
 /**
  * @author markbowyer@google.com (Mark R. Bowyer)
- *
+ * 
  *         Test the HTML Exporter classes
  */
 public class HTMLExporterTest {
 
-  @Test
-  public void testPlaceHolderFeedItemReport() throws IOException, DocumentException {
+	@Test
+	public void testPlaceHolderFeedItemReport() throws IOException,
+			DocumentException {
 
-    List<Report> list = new ArrayList<Report>();
+		List<Report> list = new ArrayList<Report>();
 
-    ReportPlaceholderFeedItem reportPHFI = createFeedItemReportRow(123456789L);
-    list.add(reportPHFI);
-    reportPHFI = createFeedItemReportRow(987654321L);
-    list.add(reportPHFI);
-    reportPHFI = createFeedItemReportRow(135792468L);
-    list.add(reportPHFI);
-    reportPHFI = createFeedItemReportRow(246813579L);
-    list.add(reportPHFI);
+		ReportPlaceholderFeedItem reportPHFI = createFeedItemReportRow(123456789L);
+		list.add(reportPHFI);
+		reportPHFI = createFeedItemReportRow(987654321L);
+		list.add(reportPHFI);
+		reportPHFI = createFeedItemReportRow(135792468L);
+		list.add(reportPHFI);
+		reportPHFI = createFeedItemReportRow(246813579L);
+		list.add(reportPHFI);
 
-    File htmlFile = new File("target/testReport.html");
-    File pdfFile = new File("target/testReport.pdf");
-    
-    final File templateFile =
-        new File("src/main/resources/templates/PLACEHOLDER_FEED_ITEM_REPORT.tmpl");
+		File htmlFile = new File("target/testReport.html");
+		File pdfFile = new File("target/testReport.pdf");
 
-    HTMLExporter.exportHTML(
-        "Test Report", ReportDefinitionReportType.PLACEHOLDER_FEED_ITEM_REPORT, list, templateFile, htmlFile);
+		final File templateFile = new File(
+				"src/main/resources/templates/PLACEHOLDER_FEED_ITEM_REPORT.tmpl");
 
-    HTMLExporter.convertHTMLtoPDF(htmlFile, pdfFile);
-  }
+		HTMLExporter.exportHTML("Test Report",
+				ReportDefinitionReportType.PLACEHOLDER_FEED_ITEM_REPORT, list,
+				templateFile, htmlFile);
 
-  /**
-   * @param idNumber to use
-   * @return a filled in ReportPlaceholderFeedItem
-   */
-  private ReportPlaceholderFeedItem createFeedItemReportRow(Long idNumber) {
+		HTMLExporter.convertHTMLtoPDF(htmlFile, pdfFile);
+	}
 
-    ReportPlaceholderFeedItem reportPHFI = new ReportPlaceholderFeedItem();
-    reportPHFI.setMonth(DateTime.now());
-    reportPHFI.setAccountDescriptiveName("Test Account Name");
-    reportPHFI.setAccountId(idNumber);
-    reportPHFI.setCampaignId(idNumber);
-    //reportPHFI.setCampaignName("Test Campaign Name");
-    reportPHFI.setFeedId(idNumber);
-    reportPHFI.setFeedItemId(idNumber);
-    reportPHFI.setAdGroupId(idNumber);
-    //reportPHFI.setAdGroupName("Test AdGroup Name");
-    reportPHFI.setAdId(idNumber);
-    reportPHFI.setAvgCpc(new BigDecimal(2.00));
-    reportPHFI.setAvgCpm(new BigDecimal(1.00));
-    reportPHFI.setAvgPosition(new BigDecimal(2.2));
-    reportPHFI.setClicks((long) 33);
-    reportPHFI.setStatus("ACTIVE");
-    reportPHFI.setConversionRate1(new BigDecimal(1.5));
-    reportPHFI.setConversionRateMany(new BigDecimal(3.3));
-    return reportPHFI;
-  }
+	/**
+	 * @param idNumber
+	 *            to use
+	 * @return a filled in ReportPlaceholderFeedItem
+	 */
+	private ReportPlaceholderFeedItem createFeedItemReportRow(Long idNumber) {
 
-  @Test
-  public void testAccountPerformanceReport() throws IOException, DocumentException {
+		ReportPlaceholderFeedItem reportPHFI = new ReportPlaceholderFeedItem();
+		reportPHFI.setAccountId(idNumber);
+		reportPHFI.setCampaignId(idNumber);
+		// reportPHFI.setCampaignName("Test Campaign Name");
+		reportPHFI.setFeedId(idNumber);
+		reportPHFI.setFeedItemId(idNumber);
+		reportPHFI.setAdGroupId(idNumber);
+		// reportPHFI.setAdGroupName("Test AdGroup Name");
+		reportPHFI.setAdId(idNumber);
+		reportPHFI.setAvgCpc(new BigDecimal(2.00));
+		reportPHFI.setAvgCpm(new BigDecimal(1.00));
+		reportPHFI.setAvgPosition(new BigDecimal(2.2));
+		reportPHFI.setClicks((long) 33);
+		reportPHFI.setStatus("ACTIVE");
+		return reportPHFI;
+	}
 
-    List<Report> list = new ArrayList<Report>();
+	@Test
+	public void testAccountPerformanceReport() throws IOException,
+			DocumentException {
 
-    ReportAccount reportAccount = createAccountReportRow(123456789L);
-    list.add(reportAccount);
-    reportAccount = createAccountReportRow(987654321L);
-    list.add(reportAccount);
-    reportAccount = createAccountReportRow(135792468L);
-    list.add(reportAccount);
-    reportAccount = createAccountReportRow(246813579L);
-    list.add(reportAccount);
+		List<Report> list = new ArrayList<Report>();
 
-    File htmlFile = new File("target/testReport.html");
-    File pdfFile = new File("target/testReport.pdf");
-    
-    final File templateFile =
-        new File("src/main/resources/templates/ACCOUNT_PERFORMANCE_REPORT.tmpl");
+		ReportAccount reportAccount = createAccountReportRow(123456789L);
+		list.add(reportAccount);
+		reportAccount = createAccountReportRow(987654321L);
+		list.add(reportAccount);
+		reportAccount = createAccountReportRow(135792468L);
+		list.add(reportAccount);
+		reportAccount = createAccountReportRow(246813579L);
+		list.add(reportAccount);
 
-    HTMLExporter.exportHTML(
-        "Test Report", ReportDefinitionReportType.ACCOUNT_PERFORMANCE_REPORT, list, templateFile, htmlFile);
+		File htmlFile = new File("target/testReport.html");
+		File pdfFile = new File("target/testReport.pdf");
 
-    HTMLExporter.convertHTMLtoPDF(htmlFile, pdfFile);
-  }
+		final File templateFile = new File(
+				"src/main/resources/templates/ACCOUNT_PERFORMANCE_REPORT.tmpl");
 
-  /**
-   * @param idNumber to use
-   * @return a filled in ReportPlaceholderFeedItem
-   */
-  private ReportAccount createAccountReportRow(Long idNumber) {
+		HTMLExporter.exportHTML("Test Report",
+				ReportDefinitionReportType.ACCOUNT_PERFORMANCE_REPORT, list,
+				templateFile, htmlFile);
 
-    ReportAccount reportAccount = new ReportAccount();
-    reportAccount.setMonth(DateTime.now());
-    reportAccount.setAccountDescriptiveName("Test Account Name");
-    reportAccount.setAccountId(idNumber);
-    reportAccount.setImpressions(99l);
-    reportAccount.setCost(new BigDecimal(99.99));
-    reportAccount.setAvgCpc(new BigDecimal(2.00));
-    reportAccount.setAvgCpm(new BigDecimal(1.00));
-    reportAccount.setAvgPosition(new BigDecimal(2.2));
-    reportAccount.setClicks((long) 33);
-    return reportAccount;
-  }
+		HTMLExporter.convertHTMLtoPDF(htmlFile, pdfFile);
+	}
+
+	/**
+	 * @param idNumber
+	 *            to use
+	 * @return a filled in ReportPlaceholderFeedItem
+	 */
+	private ReportAccount createAccountReportRow(Long idNumber) {
+
+		ReportAccount reportAccount = new ReportAccount();
+		reportAccount.setDay(DateTime.now());
+		reportAccount.setAccountDescriptiveName("Test Account Name");
+		reportAccount.setAccountId(idNumber);
+		reportAccount.setImpressions(99l);
+		reportAccount.setCost(new BigDecimal(99.99));
+		reportAccount.setAvgCpc(new BigDecimal(2.00));
+		reportAccount.setAvgCpm(new BigDecimal(1.00));
+		reportAccount.setAvgPosition(new BigDecimal(2.2));
+		reportAccount.setClicks((long) 33);
+		return reportAccount;
+	}
 }

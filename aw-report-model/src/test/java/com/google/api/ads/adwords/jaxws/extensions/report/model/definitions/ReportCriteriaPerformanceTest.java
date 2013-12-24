@@ -32,8 +32,8 @@ public class ReportCriteriaPerformanceTest extends
 	@Override
 	protected void testFirstEntry(ReportCriteriaPerformance first) {
 
-		//Assert.assertEquals(1252422563L, first.getAccountId().longValue());
-		//TODO
+		// Assert.assertEquals(1252422563L, first.getAccountId().longValue());
+		// TODO
 	}
 
 	/**
@@ -42,8 +42,8 @@ public class ReportCriteriaPerformanceTest extends
 	 */
 	@Override
 	protected void testLastEntry(ReportCriteriaPerformance last) {
-		//Assert.assertEquals(1252422563L, last.getAccountId().longValue());
-		//TODO
+		// Assert.assertEquals(1252422563L, last.getAccountId().longValue());
+		// TODO
 	}
 
 	/**
@@ -62,77 +62,26 @@ public class ReportCriteriaPerformanceTest extends
 	@Override
 	protected String[] retrievePropertiesToBeSelected() {
 
-		return new String[] { "AccountTimeZoneId",
-				"AdGroupId",
-				"AdGroupName",
-				"AdGroupStatus",
-				"AdvertiserExperimentSegmentationBin",
-				"ApprovalStatus",
-				"BidModifier",
-				"CampaignId",
-				"CampaignName",
-				"CampaignStatus",
-				"ClickSignificance",
-				"ConversionCategoryName",
+		return new String[] { "AdGroupId",
+				"AdvertiserExperimentSegmentationBin", "ApprovalStatus",
+				"BidModifier", "CampaignId", "ClickSignificance",
 				"ConversionManyPerClickSignificance",
-				"ConversionRate",
-				"ConversionRateManyPerClick",
 				"ConversionRateManyPerClickSignificance",
-				"ConversionRateSignificance",
-				"ConversionSignificance",
-				"ConversionsManyPerClick",
-				"ConversionTypeName",
-				"ConversionValue",
-				"CostPerConversionManyPerClick",
+				"ConversionRateSignificance", "ConversionSignificance",
+				"ConversionsManyPerClick", "ConversionValue",
 				"CostPerConversionManyPerClickSignificance",
-				"CostPerConversionSignificance",
-				"CostSignificance",
-				"CpcBidSource",
-				"CpcSignificance",
-				"CpmSignificance",
-				"Criteria",
-				"CriteriaDestinationUrl",
-				"CriteriaType",
-				"CtrSignificance",
-				"CustomerDescriptiveName",
-				"DayOfWeek",
-				"DisplayName",
-				"FirstPageCpc",
-				"Id",
-				"ImpressionSignificance",
-				"IsNegative",
-				"MaxCpc",
-				"MaxCpm",
-				"MonthOfYear",
-				"Parameter",
-				"PercentCpa",
-				"PositionSignificance",
-				"PrimaryCompanyName",
-				"PrimaryUserLogin",
-				"QualityScore",
-				"Quarter",
-				"Slot",
-				"Status",
-				"TopOfPageCpc",
-				"TotalConvValue",
-				"ViewThroughConversions",
-				"ViewThroughConversionsSignificance",
-				"ExternalCustomerId",
-				"Date",
-		        "Month",
-				"AccountDescriptiveName",
-				"Cost",
-				"Clicks",
-				"Impressions",
-				"Conversions",
-				"Ctr",
-				"AverageCpm",
-				"AverageCpc",
-				"AveragePosition",
-				"AccountCurrencyCode",
-				"Device",
-				"ClickType",
-				"AdNetworkType1",
-				"AdNetworkType2" };
+				"CostPerConversionSignificance", "CostSignificance",
+				"CpcBidSource", "CpcSignificance", "CpmSignificance",
+				"Criteria", "CriteriaDestinationUrl", "CriteriaType",
+				"CtrSignificance", "CustomerDescriptiveName", "DisplayName",
+				"FirstPageCpc", "Id", "ImpressionSignificance", "IsNegative",
+				"MaxCpc", "MaxCpm", "Parameter", "PercentCpa",
+				"PositionSignificance", "QualityScore", "Slot", "Status",
+				"TopOfPageCpc", "ViewThroughConversions",
+				"ViewThroughConversionsSignificance", "ExternalCustomerId",
+				"Date", "AccountDescriptiveName", "Cost", "Clicks",
+				"Impressions", "Conversions", "Ctr", "AverageCpm",
+				"AverageCpc", "AveragePosition", "AccountCurrencyCode",
+				"Device", "ClickType", "AdNetworkType1", "AdNetworkType2" };
 	}
 }
