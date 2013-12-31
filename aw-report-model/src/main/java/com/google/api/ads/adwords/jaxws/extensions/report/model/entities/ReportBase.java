@@ -54,6 +54,10 @@ public abstract class ReportBase extends Report {
 	@CsvField(value = "Day", reportField = "Date")
 	protected Date day;
 
+	@Column(name = "HOUR_OF_DAY")
+	@CsvField(value = "Hour of day", reportField = "HourOfDay")
+	protected String hourOfDay;
+
 	@Column(name = "COST")
 	@CsvField(value = "Cost", reportField = "Cost")
 	protected BigDecimal cost;
@@ -158,8 +162,12 @@ public abstract class ReportBase extends Report {
 	public String setIdDates() {
 		// Day or Month
 		if (this.getDay() != null) {
-			return "-" + this.getDay();
+			return "-"
+					+ this.getDay()
+					+ (this.getHourOfDay() != null ? ("-" + this.getHourOfDay())
+							: "");
 		}
+
 		if (this.getDateRangeType() != null) {
 
 			DateRangeHandler handler = dateRangeHandlers.get(this
@@ -230,6 +238,14 @@ public abstract class ReportBase extends Report {
 		} catch (IllegalArgumentException e) {
 			this.day = null;
 		}
+	}
+
+	public String getHourOfDay() {
+		return hourOfDay;
+	}
+
+	public void setHourOfDay(String hourOfDay) {
+		this.hourOfDay = hourOfDay;
 	}
 
 	@Override

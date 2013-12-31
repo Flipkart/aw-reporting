@@ -24,117 +24,121 @@ import javax.persistence.Table;
 
 /**
  * Specific report class for ReportAccount
- *
+ * 
  * @author jtoledo@google.com (Julian Toledo)
  * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 @Entity
 @Table(name = "AW_ReportAdExtension")
-@CsvReport(value = ReportDefinitionReportType.AD_EXTENSIONS_PERFORMANCE_REPORT,
-    reportExclusions = {"ExternalCustomerId", "AccountDescriptiveName", "AccountCurrencyCode"})
+@CsvReport(value = ReportDefinitionReportType.AD_EXTENSIONS_PERFORMANCE_REPORT, reportExclusions = {
+		"HourOfDay", "ExternalCustomerId", "AccountDescriptiveName",
+		"AccountCurrencyCode" })
 public class ReportAdExtension extends ReportBase {
 
-  @Column(name = "CAMPAIGN_ID")
-  @CsvField(value = "Campaign ID", reportField = "CampaignId")
-  private Long campaignId;
+	@Column(name = "CAMPAIGN_ID")
+	@CsvField(value = "Campaign ID", reportField = "CampaignId")
+	private Long campaignId;
 
-  @Column(name = "AD_EXTENSION_ID")
-  @CsvField(value = "Ad Extension ID", reportField = "AdExtensionId")
-  private Long adExtensionId;
+	@Column(name = "AD_EXTENSION_ID")
+	@CsvField(value = "Ad Extension ID", reportField = "AdExtensionId")
+	private Long adExtensionId;
 
-  @Column(name = "AD_EXTENSION_TYPE", length = 64)
-  @CsvField(value = "Ad Extension Type", reportField = "AdExtensionType")
-  private String adExtensionType;
+	@Column(name = "AD_EXTENSION_TYPE", length = 64)
+	@CsvField(value = "Ad Extension Type", reportField = "AdExtensionType")
+	private String adExtensionType;
 
-  @Column(name = "AD_EXTENSION_STATUS", length = 32)
-  @CsvField(value = "State", reportField = "Status")
-  private String status;
+	@Column(name = "AD_EXTENSION_STATUS", length = 32)
+	@CsvField(value = "State", reportField = "Status")
+	private String status;
 
-  @Column(name = "AD_EXTENSION_APPROVAL_STATUS", length = 32)
-  @CsvField(value = "Status", reportField = "ApprovalStatus")
-  private String approvalStatus;
+	@Column(name = "AD_EXTENSION_APPROVAL_STATUS", length = 32)
+	@CsvField(value = "Status", reportField = "ApprovalStatus")
+	private String approvalStatus;
 
-  /**
-   * Hibernate needs an empty constructor
-   */
-  public ReportAdExtension() {
-  }
+	/**
+	 * Hibernate needs an empty constructor
+	 */
+	public ReportAdExtension() {
+	}
 
-  public ReportAdExtension(Long topAccountId, Long accountId) {
-    this.topAccountId = topAccountId;
-    this.accountId = accountId;
-  }
+	public ReportAdExtension(Long topAccountId, Long accountId) {
+		this.topAccountId = topAccountId;
+		this.accountId = accountId;
+	}
 
-  @Override
-  public void setId() {
-    // Generating unique _id after having accountId, campaignId, adGroupId and date
-    if (this.getCampaignId() != null && this.getAdExtensionId() != null) {
-      this._id = this.getCampaignId() + "-" + this.getAdExtensionId();
-    }
+	@Override
+	public void setId() {
+		// Generating unique _id after having accountId, campaignId, adGroupId
+		// and date
+		if (this.getCampaignId() != null && this.getAdExtensionId() != null) {
+			this._id = this.getCampaignId() + "-" + this.getAdExtensionId();
+		}
 
-    this._id += setIdDates();
+		this._id += setIdDates();
 
-    if (this.getAdExtensionType() != null && this.getAdExtensionType().length() > 0) {
-      this._id += "-" + this.getAdExtensionType();
-    }
+		if (this.getAdExtensionType() != null
+				&& this.getAdExtensionType().length() > 0) {
+			this._id += "-" + this.getAdExtensionType();
+		}
 
-    // Adding extra fields for unique ID
-    if (this.getAdNetwork() != null && this.getAdNetwork().length() > 0) {
-      this._id += "-" + this.getAdNetwork();
-    }
-    if (this.getAdNetworkPartners() != null && this.getAdNetworkPartners().length() > 0) {
-      this._id += "-" + this.getAdNetworkPartners();
-    }
-    if (this.getDevice() != null && this.getDevice().length() > 0) {
-      this._id += "-" + this.getDevice();
-    }
-    if (this.getClickType() != null && this.getClickType().length() > 0) {
-      this._id += "-" + this.getClickType();
-    }
-  }
+		// Adding extra fields for unique ID
+		if (this.getAdNetwork() != null && this.getAdNetwork().length() > 0) {
+			this._id += "-" + this.getAdNetwork();
+		}
+		if (this.getAdNetworkPartners() != null
+				&& this.getAdNetworkPartners().length() > 0) {
+			this._id += "-" + this.getAdNetworkPartners();
+		}
+		if (this.getDevice() != null && this.getDevice().length() > 0) {
+			this._id += "-" + this.getDevice();
+		}
+		if (this.getClickType() != null && this.getClickType().length() > 0) {
+			this._id += "-" + this.getClickType();
+		}
+	}
 
-  // campaignId
-  public Long getCampaignId() {
-    return campaignId;
-  }
+	// campaignId
+	public Long getCampaignId() {
+		return campaignId;
+	}
 
-  public void setCampaignId(Long campaignId) {
-    this.campaignId = campaignId;
-  }
+	public void setCampaignId(Long campaignId) {
+		this.campaignId = campaignId;
+	}
 
-  // status
-  public String getStatus() {
-    return status;
-  }
+	// status
+	public String getStatus() {
+		return status;
+	}
 
-  public void setStatus(String status) {
-    this.status = status;
-  }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-  // adExtensionId
-  public Long getAdExtensionId() {
-    return adExtensionId;
-  }
+	// adExtensionId
+	public Long getAdExtensionId() {
+		return adExtensionId;
+	}
 
-  public void setAdExtensionId(Long adExtensionId) {
-    this.adExtensionId = adExtensionId;
-  }
+	public void setAdExtensionId(Long adExtensionId) {
+		this.adExtensionId = adExtensionId;
+	}
 
-  // adExtensionType
-  public String getAdExtensionType() {
-    return adExtensionType;
-  }
+	// adExtensionType
+	public String getAdExtensionType() {
+		return adExtensionType;
+	}
 
-  public void setAdExtensionType(String adExtensionType) {
-    this.adExtensionType = adExtensionType;
-  }
+	public void setAdExtensionType(String adExtensionType) {
+		this.adExtensionType = adExtensionType;
+	}
 
-  // approvalStatus
-  public String getApprovalStatus() {
-    return approvalStatus;
-  }
+	// approvalStatus
+	public String getApprovalStatus() {
+		return approvalStatus;
+	}
 
-  public void setApprovalStatus(String approvalStatus) {
-    this.approvalStatus = approvalStatus;
-  }
+	public void setApprovalStatus(String approvalStatus) {
+		this.approvalStatus = approvalStatus;
+	}
 }

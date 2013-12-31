@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinitionReportType;
 @Entity
 @Table(name = "AW_ReportURL")
 @CsvReport(value = ReportDefinitionReportType.URL_PERFORMANCE_REPORT, reportExclusions = {
-		"AveragePosition", "Device", "ClickType" })
+		"HourOfDay", "AveragePosition", "Device", "ClickType" })
 public class ReportUrl extends ReportBase {
 
 	@Column(name = "AD_FORMAT")

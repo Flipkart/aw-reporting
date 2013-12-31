@@ -31,7 +31,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "AW_ReportAd")
-@CsvReport(value = ReportDefinitionReportType.AD_PERFORMANCE_REPORT)
+@CsvReport(value = ReportDefinitionReportType.AD_PERFORMANCE_REPORT, reportExclusions = { "HourOfDay" })
 public class ReportAd extends ReportBase {
 
   @Column(name = "AD_ID")

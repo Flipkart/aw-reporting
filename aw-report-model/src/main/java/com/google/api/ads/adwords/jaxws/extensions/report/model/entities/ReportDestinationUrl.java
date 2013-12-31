@@ -29,7 +29,7 @@ import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinitionReportType;
  */
 @Entity
 @Table(name = "AW_ReportDestinationUrl")
-@CsvReport(value = ReportDefinitionReportType.DESTINATION_URL_REPORT)
+@CsvReport(value = ReportDefinitionReportType.DESTINATION_URL_REPORT, reportExclusions = { "HourOfDay" })
 public class ReportDestinationUrl extends ReportBase {
 
 	@Column(name = "ADGROUPID")
