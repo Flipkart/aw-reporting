@@ -64,8 +64,7 @@ public class MongoEntityPersister implements EntityPersister {
    */
   @Override
   public <T, V> List<T> get(Class<T> t, Map<String, V> keyValueList, int numToSkip, int limit) {
-    DBCollection dbcollection;
-    dbcollection = db.getCollection(t.getCanonicalName());
+    DBCollection dbcollection = getDBCollection(t, false);
 
     BasicDBObject query = new BasicDBObject();
     if (keyValueList != null) {
@@ -211,12 +210,7 @@ public class MongoEntityPersister implements EntityPersister {
     T newT = null;
     if (t != null) {
 
-      DBCollection dbcollection;
-      if (db.collectionExists(t.getClass().getCanonicalName())) {
-        dbcollection = db.getCollection(t.getClass().getCanonicalName());
-      } else {
-        dbcollection = db.createCollection(t.getClass().getCanonicalName(), new BasicDBObject());
-      }
+      DBCollection dbcollection = getDBCollection(t.getClass(), true);
 
       String jsonObject;
       jsonObject = gson.toJson(t);
@@ -236,17 +230,8 @@ public class MongoEntityPersister implements EntityPersister {
     if (listT != null && listT.size() > 0) {
       DBCollection dbcollection;
       for (T t : listT) {
-        String classTName = t.getClass().getCanonicalName();
+        dbcollection = getDBCollection(t.getClass(), true);
 
-        if (db.collectionExists(classTName)) {
-          dbcollection = db.getCollection(classTName);
-        } else {
-          dbcollection = db.createCollection(classTName, new BasicDBObject());
-        }
-
-        if (classTName.equals("model.adwords.ModelCampaign")) {
-          System.out.println(classTName);
-        }
         String jsonObject = gson.toJson(t);
 
         DBObject dbObject = (DBObject) com.mongodb.util.JSON.parse(jsonObject.toString());
@@ -262,12 +247,7 @@ public class MongoEntityPersister implements EntityPersister {
   @Override
   public <T> void remove(T t) {
     if (t != null) {
-      DBCollection dbcollection;
-      if (db.collectionExists(t.getClass().getCanonicalName())) {
-        dbcollection = db.getCollection(t.getClass().getCanonicalName());
-      } else {
-        dbcollection = db.createCollection(t.getClass().getCanonicalName(), new BasicDBObject());
-      }
+      DBCollection dbcollection = getDBCollection(t.getClass(), true);
 
       String jsonObject = gson.toJson(t);
       DBObject dbObject = (DBObject) com.mongodb.util.JSON.parse(jsonObject.toString());
@@ -285,12 +265,7 @@ public class MongoEntityPersister implements EntityPersister {
       DBCollection dbcollection;
       for (T t : listT) {
 
-        String classTName = t.getClass().getCanonicalName();
-        if (db.collectionExists(classTName)) {
-          dbcollection = db.getCollection(classTName);
-        } else {
-          dbcollection = db.createCollection(classTName, new BasicDBObject());
-        }
+    	  dbcollection = getDBCollection(t.getClass(), true);
 
         String jsonObject = gson.toJson(t);
         DBObject dbObject = (DBObject) com.mongodb.util.JSON.parse(jsonObject.toString());
@@ -306,7 +281,7 @@ public class MongoEntityPersister implements EntityPersister {
    */
   @Override
   public <T> void createIndex(Class<T> classT, String key) {
-    DBCollection dbcollection = db.getCollection(classT.getCanonicalName());
+    DBCollection dbcollection = getDBCollection(classT, false);
     dbcollection.ensureIndex(new BasicDBObject(key, 1));
   }
 
@@ -323,7 +298,7 @@ public class MongoEntityPersister implements EntityPersister {
         dbObject.put(key, 1);
       }
     }
-    DBCollection dbcollection = db.getCollection(classT.getCanonicalName());
+    DBCollection dbcollection = getDBCollection(classT, false);
     dbcollection.ensureIndex(dbObject);
     List<DBObject> list = dbcollection.getIndexInfo();
     for (DBObject o : list) {
@@ -381,5 +356,16 @@ public class MongoEntityPersister implements EntityPersister {
       int page,
       int amount) {
     return null;
+  }
+
+  private <T> DBCollection getDBCollection(Class<T> classT, boolean createIfNotExisting) {
+	  String collectionName = classT.getSimpleName();
+	  DBCollection dbcollection = null;
+      if (db.collectionExists(collectionName)) {
+        dbcollection = db.getCollection(collectionName);
+      } else if(createIfNotExisting) {
+        dbcollection = db.createCollection(collectionName, new BasicDBObject());
+      }
+      return dbcollection;
   }
 }
