@@ -61,6 +61,10 @@ Fill in the following number to set the number of threads for the CSV processing
 
 >aw.report.processor.threads=4
 
+Set the following to save day-wise report snapshot.
+
+>aw.report.processor.saveReportSnapshot=false
+
 Fill in the following with your database connection.
 
 >aw.report.model.db.sql.url=jdbc:mysql://localhost:3306/AWReports?rewriteBatchedStatements=true

@@ -106,6 +106,7 @@ public class ReportProcessor {
 
 	private int reportRowsSetSize = REPORT_BUFFER_DB;
 	private int numberOfReportProcessors = NUMBER_OF_REPORT_PROCESSORS;
+    private boolean saveReportSnapshot = false;
 
 	/**
 	 * Constructor.
@@ -131,7 +132,8 @@ public class ReportProcessor {
 			@Value(value = "${clientId}") String clientId,
 			@Value(value = "${clientSecret}") String clientSecret,
 			@Value(value = "${aw.report.processor.rows.size:}") Integer reportRowsSetSize,
-			@Value(value = "${aw.report.processor.threads:}") Integer numberOfReportProcessors) {
+			@Value(value = "${aw.report.processor.threads:}") Integer numberOfReportProcessors,
+            @Value(value = "${aw.report.processor.saveReportSnapshot:}") Boolean saveReportSnapshot) {
 
 		this.mccAccountId = mccAccountId;
 		this.developerToken = developerToken;
@@ -144,6 +146,9 @@ public class ReportProcessor {
 		}
 		if (numberOfReportProcessors != null && numberOfReportProcessors > 0) {
 			this.numberOfReportProcessors = numberOfReportProcessors;
+		}
+        if (saveReportSnapshot != null) {
+			this.saveReportSnapshot = saveReportSnapshot;
 		}
 	}
 
@@ -174,7 +179,7 @@ public class ReportProcessor {
 				RunnableProcessor<R> runnableProcesor = new RunnableProcessor<R>(
 						file, csvToBean, mappingStrategy, dateRangeType,
 						dateStart, dateEnd, mccAccountId, persister,
-						reportRowsSetSize);
+						reportRowsSetSize, saveReportSnapshot);
 				runnableProcesor.setLatch(latch);
 				executorService.execute(runnableProcesor);
 

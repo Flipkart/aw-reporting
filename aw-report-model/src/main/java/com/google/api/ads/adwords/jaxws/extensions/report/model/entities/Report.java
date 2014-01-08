@@ -76,6 +76,8 @@ public abstract class Report {
   @CsvField(value = "Customer ID", reportField = "ExternalCustomerId")
   protected Long accountId;
 
+  private boolean saveReportSnapshot;
+
   public Report() {
     timestamp = new DateTime().toDate();
   }
@@ -155,89 +157,11 @@ public abstract class Report {
     this.dateEnd = dateEnd;
   }
 
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((_id == null) ? 0 : _id.hashCode());
-    result = prime * result + ((accountId == null) ? 0 : accountId.hashCode());
-    result = prime * result + ((dateEnd == null) ? 0 : dateEnd.hashCode());
-    result = prime * result + ((dateRangeType == null) ? 0 : dateRangeType.hashCode());
-    result = prime * result + ((dateStart == null) ? 0 : dateStart.hashCode());
-    result = prime * result + ((partnerId == null) ? 0 : partnerId.hashCode());
-    result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
-    result = prime * result + ((topAccountId == null) ? 0 : topAccountId.hashCode());
-    return result;
+  public boolean isSaveReportSnapshot() {
+    return saveReportSnapshot;
   }
 
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    Report other = (Report) obj;
-    if (_id == null) {
-      if (other._id != null) {
-        return false;
-      }
-    } else if (!_id.equals(other._id)) {
-      return false;
-    }
-    if (accountId == null) {
-      if (other.accountId != null) {
-        return false;
-      }
-    } else if (!accountId.equals(other.accountId)) {
-      return false;
-    }
-    if (dateEnd == null) {
-      if (other.dateEnd != null) {
-        return false;
-      }
-    } else if (!dateEnd.equals(other.dateEnd)) {
-      return false;
-    }
-    if (dateRangeType == null) {
-      if (other.dateRangeType != null) {
-        return false;
-      }
-    } else if (!dateRangeType.equals(other.dateRangeType)) {
-      return false;
-    }
-    if (dateStart == null) {
-      if (other.dateStart != null) {
-        return false;
-      }
-    } else if (!dateStart.equals(other.dateStart)) {
-      return false;
-    }
-    if (partnerId == null) {
-      if (other.partnerId != null) {
-        return false;
-      }
-    } else if (!partnerId.equals(other.partnerId)) {
-      return false;
-    }
-    if (timestamp == null) {
-      if (other.timestamp != null) {
-        return false;
-      }
-    } else if (!timestamp.equals(other.timestamp)) {
-      return false;
-    }
-    if (topAccountId == null) {
-      if (other.topAccountId != null) {
-        return false;
-      }
-    } else if (!topAccountId.equals(other.topAccountId)) {
-      return false;
-    }
-    return true;
+  public void setSaveReportSnapshot(boolean saveReportSnapshot) {
+    this.saveReportSnapshot = saveReportSnapshot;
   }
 }

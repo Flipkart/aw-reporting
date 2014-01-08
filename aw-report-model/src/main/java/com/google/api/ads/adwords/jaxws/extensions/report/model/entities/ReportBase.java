@@ -165,7 +165,8 @@ public abstract class ReportBase extends Report {
 			return "-"
 					+ this.getDay()
 					+ (this.getHourOfDay() != null ? ("-" + this.getHourOfDay())
-							: "");
+							: "")
+                    + (this.isSaveReportSnapshot() ? ("-" + DateUtil.formatYearMonthDay(this.getTimestamp())):"");
 		}
 
 		if (this.getDateRangeType() != null) {
