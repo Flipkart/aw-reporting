@@ -64,7 +64,7 @@ public class MongoEntityPersister implements EntityPersister {
    */
   @Override
   public <T, V> List<T> get(Class<T> t, Map<String, V> keyValueList, int numToSkip, int limit) {
-    DBCollection dbcollection = getDBCollection(t, false);
+    DBCollection dbcollection = getDBCollection(t, true);
 
     BasicDBObject query = new BasicDBObject();
     if (keyValueList != null) {
@@ -281,7 +281,7 @@ public class MongoEntityPersister implements EntityPersister {
    */
   @Override
   public <T> void createIndex(Class<T> classT, String key) {
-    DBCollection dbcollection = getDBCollection(classT, false);
+    DBCollection dbcollection = getDBCollection(classT, true);
     dbcollection.ensureIndex(new BasicDBObject(key, 1));
   }
 
@@ -298,7 +298,7 @@ public class MongoEntityPersister implements EntityPersister {
         dbObject.put(key, 1);
       }
     }
-    DBCollection dbcollection = getDBCollection(classT, false);
+    DBCollection dbcollection = getDBCollection(classT, true);
     dbcollection.ensureIndex(dbObject);
     List<DBObject> list = dbcollection.getIndexInfo();
     for (DBObject o : list) {
