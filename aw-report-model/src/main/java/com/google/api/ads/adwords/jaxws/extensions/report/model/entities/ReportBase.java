@@ -166,7 +166,8 @@ public abstract class ReportBase extends Report {
 					+ this.getDay()
 					+ (this.getHourOfDay() != null ? ("-" + this.getHourOfDay())
 							: "")
-                    + (this.isSaveReportSnapshot() ? ("-" + DateUtil.formatYearMonthDay(this.getTimestamp())):"");
+                    + (this.getSnapshotDay() != null ? ("-" + this.getSnapshotDay())
+							: "");
 		}
 
 		if (this.getDateRangeType() != null) {
@@ -181,7 +182,12 @@ public abstract class ReportBase extends Report {
 			}
 		}
 		if (this.getDateStart() != null && this.getDateEnd() != null) {
-			return "-" + this.getDateStart() + "-" + this.getDateEnd();
+			return "-"
+					+ this.getDateStart()
+					+ "-"
+					+ this.getDateEnd()
+					+ (this.getSnapshotDay() != null ? ("-" + this
+							.getSnapshotDay()) : "");
 		}
 		return "";
 	}

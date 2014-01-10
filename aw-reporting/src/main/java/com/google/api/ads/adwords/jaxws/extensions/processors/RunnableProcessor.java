@@ -67,7 +67,7 @@ public class RunnableProcessor<R extends Report> implements Runnable {
   private String mccAccountId;
   private EntityPersister persister;
   private int reportRowsSetSize;
-  private boolean saveReportSnapshot;
+  private String reportSnapshotDownloadDay;
 
   /**
    * C'tor.
@@ -79,7 +79,7 @@ public class RunnableProcessor<R extends Report> implements Runnable {
   public RunnableProcessor(File file,  ModifiedCsvToBean<R> csvToBean,
       MappingStrategy<R> mappingStrategy, ReportDefinitionDateRangeType dateRangeType,
       String dateStart, String dateEnd, String mccAccountId, EntityPersister persister,
-      Integer reportRowsSetSize, Boolean saveReportSnapshot) {
+      Integer reportRowsSetSize, String reportSnapshotDownloadDay) {
     this.file = file;
     this.csvToBean = csvToBean;
     this.mappingStrategy = mappingStrategy;
@@ -89,7 +89,7 @@ public class RunnableProcessor<R extends Report> implements Runnable {
     this.mccAccountId = mccAccountId;
     this.persister = persister;
     this.reportRowsSetSize = reportRowsSetSize;
-    this.saveReportSnapshot = saveReportSnapshot;
+    this.reportSnapshotDownloadDay = reportSnapshotDownloadDay;
   }
 
   /**
@@ -130,7 +130,7 @@ public class RunnableProcessor<R extends Report> implements Runnable {
         report.setDateRangeType(dateRangeType.value());
         report.setDateStart(dateStart);
         report.setDateEnd(dateEnd);
-        report.setSaveReportSnapshot(saveReportSnapshot);
+        report.setSnapshotDay(reportSnapshotDownloadDay);
         report.setId();
 
         reportBuffer.add(report);

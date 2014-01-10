@@ -19,15 +19,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.List;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import com.google.api.ads.adwords.jaxws.extensions.report.model.util.DateUtil;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -155,7 +153,7 @@ public class ReportProcessor {
 	private <R extends Report> void processFiles(Class<R> reportBeanClass,
 			Collection<File> localFiles,
 			ReportDefinitionDateRangeType dateRangeType, String dateStart,
-			String dateEnd) {
+			String dateEnd, Date reportDownloadDate) {
 
 		final CountDownLatch latch = new CountDownLatch(localFiles.size());
 		ExecutorService executorService = Executors
@@ -167,7 +165,9 @@ public class ReportProcessor {
 		Stopwatch stopwatch = new Stopwatch();
 		stopwatch.start();
 
-		for (File file : localFiles) {
+        String reportSnapshotDownloadDay = saveReportSnapshot ? DateUtil.formatYearMonthDay(reportDownloadDate) : null;
+
+        for (File file : localFiles) {
 			LOGGER.trace(".");
 			try {
 
@@ -179,7 +179,7 @@ public class ReportProcessor {
 				RunnableProcessor<R> runnableProcesor = new RunnableProcessor<R>(
 						file, csvToBean, mappingStrategy, dateRangeType,
 						dateStart, dateEnd, mccAccountId, persister,
-						reportRowsSetSize, saveReportSnapshot);
+						reportRowsSetSize, reportSnapshotDownloadDay);
 				runnableProcesor.setLatch(latch);
 				executorService.execute(runnableProcesor);
 
@@ -547,8 +547,9 @@ public class ReportProcessor {
 		// Download Reports to local files and Generate Report objects
 		LOGGER.info("\n\n ** Generating: " + reportType.name() + " **");
 		LOGGER.info(" Downloading reports...");
-		Collection<File> localFiles = Lists.newArrayList();
-		try {
+		Collection<File> localFiles;
+		Date reportDownloadDate = new Date();
+        try {
 
 			ReportDefinition reportDefinition = getReportDefinition(reportType,
 					dateRangeType, dateStart, dateEnd, properties);
@@ -563,7 +564,7 @@ public class ReportProcessor {
 		}
 
 		this.processLocalFiles(reportType, localFiles, dateStart, dateEnd,
-				dateRangeType);
+				dateRangeType, reportDownloadDate);
 
 		this.deleteTemporaryFiles(localFiles, reportType);
 	}
@@ -586,7 +587,8 @@ public class ReportProcessor {
 	private <R extends Report> void processLocalFiles(
 			ReportDefinitionReportType reportType, Collection<File> localFiles,
 			String dateStart, String dateEnd,
-			ReportDefinitionDateRangeType dateRangeType) {
+			ReportDefinitionDateRangeType dateRangeType,
+            Date reportDownloadDate) {
 
 		Stopwatch stopwatch = new Stopwatch();
 		stopwatch.start();
@@ -595,7 +597,7 @@ public class ReportProcessor {
 		Class<R> reportBeanClass = (Class<R>) this.csvReportEntitiesMapping
 				.getReportBeanClass(reportType);
 		this.processFiles(reportBeanClass, localFiles, dateRangeType,
-				dateStart, dateEnd);
+				dateStart, dateEnd, reportDownloadDate);
 
 		stopwatch.stop();
 		LOGGER.info("\n* DB Process finished in "

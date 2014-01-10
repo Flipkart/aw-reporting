@@ -76,7 +76,8 @@ public abstract class Report {
   @CsvField(value = "Customer ID", reportField = "ExternalCustomerId")
   protected Long accountId;
 
-  private boolean saveReportSnapshot;
+  @Column(name = "SNAPSHOT_DAY")
+  protected String snapshotDay;
 
   public Report() {
     timestamp = new DateTime().toDate();
@@ -91,9 +92,14 @@ public abstract class Report {
   public abstract void setId();
 
   public String setIdDates() {
-    if (this.getDateStart() != null && this.getDateEnd() != null) {
-      return "-" + this.getDateStart() + "-" + this.getDateEnd();
-    }
+		if (this.getDateStart() != null && this.getDateEnd() != null) {
+			return "-"
+					+ this.getDateStart()
+					+ "-"
+					+ this.getDateEnd()
+					+ (this.getSnapshotDay() != null ? ("-" + this
+							.getSnapshotDay()) : "");
+		}
     return "";
   }
 
@@ -157,11 +163,11 @@ public abstract class Report {
     this.dateEnd = dateEnd;
   }
 
-  public boolean isSaveReportSnapshot() {
-    return saveReportSnapshot;
+  public String getSnapshotDay() {
+    return snapshotDay;
   }
 
-  public void setSaveReportSnapshot(boolean saveReportSnapshot) {
-    this.saveReportSnapshot = saveReportSnapshot;
+  public void setSnapshotDay(String snapshotDay) {
+    this.snapshotDay = snapshotDay;
   }
 }
