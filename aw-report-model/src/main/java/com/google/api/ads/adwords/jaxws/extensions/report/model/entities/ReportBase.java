@@ -180,9 +180,10 @@ public abstract class ReportBase extends Report {
 	@Override
 	public String setIdDates() {
 		// Day or Month
-		if (this.getDay() != null) {
+		String reportDay = this.getDay();
+        if (reportDay != null) {
 			return "-"
-					+ this.getDay()
+					+ reportDay.replaceAll("-", "")
 					+ (this.getHourOfDay() != null ? ("-" + this.getHourOfDay())
 							: "")
                     + (this.getSnapshotDay() != null ? ("-" + this.getSnapshotDay())

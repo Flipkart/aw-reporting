@@ -65,9 +65,9 @@ if [ "$1" == "configure" ] ; then
     chown -Rf root:root /etc/cron.d/$PAC
     touch /etc/cron.d/$PAC
     /etc/init.d/cron restart
-    if [ -x "/etc/init.d/$PAC" ]; then
-     /etc/init.d/$PAC start || true
-    fi
+    #if [ -x "/etc/init.d/$PAC" ]; then
+    # /etc/init.d/$PAC start || true
+    #fi
 fi
 
 

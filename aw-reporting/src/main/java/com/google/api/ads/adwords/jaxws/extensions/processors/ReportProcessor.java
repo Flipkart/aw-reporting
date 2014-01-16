@@ -165,7 +165,7 @@ public class ReportProcessor {
 		Stopwatch stopwatch = new Stopwatch();
 		stopwatch.start();
 
-        String reportSnapshotDownloadDay = saveReportSnapshot ? DateUtil.formatYearMonthDay(reportDownloadDate) : null;
+        String reportSnapshotDownloadDay = saveReportSnapshot ? DateUtil.formatYearMonthDayNoDash(reportDownloadDate) : null;
 
         for (File file : localFiles) {
 			LOGGER.trace(".");
