@@ -262,7 +262,13 @@ public abstract class ReportBase extends Report {
 
 	@Override
 	public void setDateRangeType(String dateRangeType) {
-		this.dateRangeType = dateRangeType;
+		//If report is segmented by day then dateRangeType is not significant
+        if(this.getDay() != null)
+        {
+			this.dateRangeType = null;
+        } else {
+			this.dateRangeType = dateRangeType;
+        }
 	}
 
 	public void setCost(BigDecimal cost) {

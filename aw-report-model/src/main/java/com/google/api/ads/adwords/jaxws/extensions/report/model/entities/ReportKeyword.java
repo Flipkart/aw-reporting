@@ -72,7 +72,7 @@ public class ReportKeyword extends ReportBase {
 
 	@Column(name = "IS_NEGATIVE")
 	@CsvField(value = "Is negative", reportField = "IsNegative")
-	private boolean negative;
+	private Boolean negative;
 
 	/**
 	 * Hibernate needs an empty constructor
