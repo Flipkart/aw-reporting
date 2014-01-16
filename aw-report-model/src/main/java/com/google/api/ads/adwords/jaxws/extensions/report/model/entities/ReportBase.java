@@ -38,6 +38,8 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * The base abstract class with base report fields
  * 
@@ -52,70 +54,87 @@ public abstract class ReportBase extends Report {
 
 	@Column(name = "DAY")
 	@CsvField(value = "Day", reportField = "Date")
+	@SerializedName("d")
 	protected Date day;
 
 	@Column(name = "HOUR_OF_DAY")
 	@CsvField(value = "Hour of day", reportField = "HourOfDay")
+	@SerializedName("hr")
 	protected String hourOfDay;
 
 	@Column(name = "COST")
 	@CsvField(value = "Cost", reportField = "Cost")
+	@SerializedName("c")
 	protected BigDecimal cost;
 
 	@Column(name = "CLICKS")
 	@CsvField(value = "Clicks", reportField = "Clicks")
+	@SerializedName("cl")
 	protected Long clicks;
 
 	@Column(name = "IMPRESSIONS")
 	@CsvField(value = "Impressions", reportField = "Impressions")
+	@SerializedName("i")
 	protected Long impressions;
 
 	@Column(name = "CONVERSIONS")
 	@CsvField(value = "Conv. (1-per-click)", reportField = "Conversions")
+	@SerializedName("conv")
 	protected Long conversions = 0l;
 
 	@Column(name = "CTR")
 	@CsvField(value = "CTR", reportField = "Ctr")
+	@SerializedName("ctr")
 	protected BigDecimal ctr;
 
 	@Column(name = "AVERAGE_CPM")
 	@CsvField(value = "Avg. CPM", reportField = "AverageCpm")
+	@SerializedName("acpm")
 	protected BigDecimal avgCpm;
 
 	@Column(name = "AVERAGE_CPC")
 	@CsvField(value = "Avg. CPC", reportField = "AverageCpc")
+	@SerializedName("acpc")
 	protected BigDecimal avgCpc;
 
 	@Column(name = "AVERAGE_POSITION")
 	@CsvField(value = "Avg. position", reportField = "AveragePosition")
+	@SerializedName("apos")
 	protected BigDecimal avgPosition;
 
 	@Column(name = "DEVICE", length = 64)
 	@CsvField(value = "Device", reportField = "Device")
+	@SerializedName("dev")
 	protected String device;
 
 	@Column(name = "CLICK_TYPE", length = 64)
 	@CsvField(value = "Click type", reportField = "ClickType")
+	@SerializedName("ct")
 	protected String clickType;
 
 	@Column(name = "NETWORK", length = 32)
 	@CsvField(value = "Network", reportField = "AdNetworkType1")
+	@SerializedName("nw")
 	protected String adNetwork;
 
 	@Column(name = "NETWORK_PARTNERS", length = 32)
 	@CsvField(value = "Network (with search partners)", reportField = "AdNetworkType2")
+	@SerializedName("np")
 	protected String adNetworkPartners;
 
 	@Column(name = "CONVERSIONSMANYPERCLICK")
 	@CsvField(value = "Conv. (many-per-click)", reportField = "ConversionsManyPerClick")
+	@SerializedName("convm")
 	protected Long conversionsManyPerClick;
 
 	@Column(name = "CONVERSION_VALUE")
 	@CsvField(value = "Total conv. value", reportField = "ConversionValue")
+	@SerializedName("cv")
 	protected BigDecimal conversionValue;
 
 	@Column(name = "VIEWTHROUGHCONVERSIONS")
 	@CsvField(value = "View-through conv.", reportField = "ViewThroughConversions")
+	@SerializedName("vtc")
 	protected Long viewThroughConversions;
 
 	private static final Map<String, DateRangeHandler> dateRangeHandlers = Maps

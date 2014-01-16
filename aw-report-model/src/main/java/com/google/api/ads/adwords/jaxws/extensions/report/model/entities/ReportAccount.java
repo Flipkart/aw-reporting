@@ -25,6 +25,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Specific report class for ReportAccount
  * 
@@ -37,26 +39,32 @@ public class ReportAccount extends ReportBase {
 
 	@Column(name = "ACCOUNT_DESCRIPTIVE_NAME", length = 255)
 	@CsvField(value = "Account", reportField = "AccountDescriptiveName")
+    @SerializedName("adn")
 	private String accountDescriptiveName;
 
 	@Column(name = "CURRENCY_CODE", length = 6)
 	@CsvField(value = "Currency", reportField = "AccountCurrencyCode")
+    @SerializedName("currc")
 	private String currencyCode;
 
 	@Column(name = "SEARCH_LOST_IS_BUDGET")
 	@CsvField(value = "Search Lost IS (budget)", reportField = "SearchBudgetLostImpressionShare")
+    @SerializedName("slisb")
 	private BigDecimal searchLostISBudget;
 
 	@Column(name = "SEARCH_LOST_IS_RANK")
 	@CsvField(value = "Search Lost IS (rank)", reportField = "SearchRankLostImpressionShare")
+    @SerializedName("slisr")
 	private BigDecimal searchLostISRank;
 
 	@Column(name = "CONTENT_LOST_IS_BUDGET")
 	@CsvField(value = "Content Lost IS (budget)", reportField = "ContentBudgetLostImpressionShare")
+    @SerializedName("clisb")
 	private BigDecimal contentLostISBudget;
 
 	@Column(name = "CONTENT_LOST_IS_RANK")
 	@CsvField(value = "Content Lost IS (rank)", reportField = "ContentRankLostImpressionShare")
+    @SerializedName("clisr")
 	private BigDecimal contentLostISRank;
 
 	/**

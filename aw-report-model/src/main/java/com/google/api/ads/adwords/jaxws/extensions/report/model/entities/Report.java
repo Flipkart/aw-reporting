@@ -24,6 +24,8 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * The base abstract class for all Reports
  *
@@ -55,28 +57,36 @@ public abstract class Report {
   protected String _id;
 
   @Column(name = "PARTNER_ID")
+  @SerializedName("pId")
   protected Long partnerId;
 
   @Column(name = "TOP_ACCOUNT_ID")
+  @SerializedName("tid")
   protected Long topAccountId;
 
   @Column(name = "TIMESTAMP")
+  @SerializedName("ts")
   protected Date timestamp;
 
   @Column(name = "DATE_START")
+  @SerializedName("ds")
   protected String dateStart;
 
   @Column(name = "DATE_END")
+  @SerializedName("de")
   protected String dateEnd;
 
   @Column(name = "DATE_RANGE_TYPE")
+  @SerializedName("drt")
   protected String dateRangeType;
 
   @Column(name = "ACCOUNT_ID")
   @CsvField(value = "Customer ID", reportField = "ExternalCustomerId")
+  @SerializedName("acid")
   protected Long accountId;
 
   @Column(name = "SNAPSHOT_DAY")
+  @SerializedName("sd")
   protected String snapshotDay;
 
   public Report() {

@@ -25,6 +25,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Specific report class for ReportCampaign
  *
@@ -38,18 +40,22 @@ public class ReportCampaign extends ReportBase {
 
   @Column(name = "CAMPAIGN_ID")
   @CsvField(value = "Campaign ID", reportField = "CampaignId")
+  @SerializedName("cid")
   private Long campaignId;
 
   @Column(name = "CAMPAIGN_NAME", length = 255)
   @CsvField(value = "Campaign", reportField = "CampaignName")
+  @SerializedName("name")
   private String campaignName;
 
   @Column(name = "STATUS", length = 32)
   @CsvField(value = "Campaign state", reportField = "Status")
+  @SerializedName("st")
   private String status;
 
   @Column(name = "BUDGET")
   @CsvField(value = "Budget", reportField = "Amount")
+  @SerializedName("b")
   private BigDecimal budget;
 
   /**

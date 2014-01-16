@@ -23,6 +23,8 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Specific report class for ReportAd
  *
@@ -36,44 +38,54 @@ public class ReportAd extends ReportBase {
 
   @Column(name = "AD_ID")
   @CsvField(value = "Ad ID", reportField = "Id")
+  @SerializedName("aid")
   private Long adId;
 
   @Lob
   @Column(name = "DISPLAY_URL", length = 1024)
   @CsvField(value = "Display URL", reportField = "DisplayUrl")
+  @SerializedName("durl")
   private String displayUrl;
 
   @Lob
   @Column(name = "DESTINATION_URL", length = 2048)
   @CsvField(value = "Destination URL", reportField = "Url")
+  @SerializedName("url")
   private String destinationUrl;
 
   @Column(name = "HEADLINE", length = 128)
   @CsvField(value = "Ad", reportField = "Headline")
+  @SerializedName("hl")
   private String headline;
 
   @Column(name = "LINE1", length = 128)
   @CsvField(value = "Description line 1", reportField = "Description1")
+  @SerializedName("d1")
   private String line1;
 
   @Column(name = "LINE2", length = 128)
   @CsvField(value = "Description line 2", reportField = "Description2")
+  @SerializedName("d2")
   private String line2;
 
   @Column(name = "ADGROUP_ID")
   @CsvField(value = "Ad group ID", reportField = "AdGroupId")
+  @SerializedName("agid")
   private Long adGroupId;
 
   @Column(name = "CAMPAIGN_ID")
   @CsvField(value = "Campaign ID", reportField = "CampaignId")
+  @SerializedName("cid")
   private Long campaignId;
 
   @Column(name = "STATUS", length = 32)
   @CsvField(value = "Ad state", reportField = "Status")
+  @SerializedName("st")
   private String adState;
 
   @Column(name = "CREATIVE_APPROVAL_STATUS", length = 32)
   @CsvField(value = "Ad Approval Status", reportField = "CreativeApprovalStatus")
+  @SerializedName("cas")
   private String creativeApprovalStatus;
 
   /**

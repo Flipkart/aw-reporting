@@ -22,6 +22,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Specific report class for ReportAdGroup
  *
@@ -35,18 +37,22 @@ public class ReportAdGroup extends ReportBase {
 
   @Column(name = "ADGROUP_ID")
   @CsvField(value = "Ad group ID", reportField = "AdGroupId")
+  @SerializedName("agid")
   private Long adGroupId;
 
   @Column(name = "ADGROUP_NAME", length = 255)
   @CsvField(value = "Ad group", reportField = "AdGroupName")
+  @SerializedName("name")
   private String adGroupName;
 
   @Column(name = "CAMPAIGN_ID")
   @CsvField(value = "Campaign ID", reportField = "CampaignId")
+  @SerializedName("cid")
   private Long campaignId;
 
   @Column(name = "STATUS", length = 32)
   @CsvField(value = "Ad group state", reportField = "Status")
+  @SerializedName("st")
   private String status;
 
   /**

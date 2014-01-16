@@ -26,6 +26,8 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Specific report class for ReportKeyword
  * 
@@ -39,39 +41,48 @@ public class ReportKeyword extends ReportBase {
 
 	@Column(name = "KEYWORD_ID")
 	@CsvField(value = "Keyword ID", reportField = "Id")
+    @SerializedName("kid")
 	private Long keywordId;
 
 	@Column(name = "QUALITY_SCORE")
 	@CsvField(value = "Quality score", reportField = "QualityScore")
+    @SerializedName("qs")
 	private BigDecimal qualityScore;
 
 	@Column(name = "KEYWORD_MATCH_TYPE", length = 32)
 	@CsvField(value = "Match type", reportField = "KeywordMatchType")
+    @SerializedName("kmt")
 	private String keywordMatchType;
 
 	@Column(name = "KEYWORD_TEXT", length = 255)
 	@CsvField(value = "Keyword", reportField = "KeywordText")
+    @SerializedName("kt")
 	private String keywordText;
 
 	@Lob
 	@Column(name = "DESTINATION_URL", length = 2048)
 	@CsvField(value = "Destination URL", reportField = "DestinationUrl")
+    @SerializedName("url")
 	private String destinationUrl;
 
 	@Column(name = "ADGROUP_ID")
 	@CsvField(value = "Ad group ID", reportField = "AdGroupId")
+    @SerializedName("agid")
 	private Long adGroupId;
 
 	@Column(name = "CAMPAIGN_ID")
 	@CsvField(value = "Campaign ID", reportField = "CampaignId")
+    @SerializedName("cid")
 	private Long campaignId;
 
 	@Column(name = "STATUS", length = 32)
 	@CsvField(value = "Keyword state", reportField = "Status")
+    @SerializedName("st")
 	private String status;
 
 	@Column(name = "IS_NEGATIVE")
 	@CsvField(value = "Is negative", reportField = "IsNegative")
+    @SerializedName("neg")
 	private Boolean negative;
 
 	/**
