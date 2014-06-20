@@ -18,6 +18,8 @@ import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.C
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinitionReportType;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -54,6 +56,17 @@ public class ReportAdGroup extends ReportBase {
   @CsvField(value = "Ad group state", reportField = "Status")
   @SerializedName("st")
   private String status;
+
+    @Column(name = "DISPLAY_MAX_CPC")
+    @CsvField(value = "Display Network max. CPC", reportField = "KeywordContentMaxCpc")
+    @SerializedName("dcpc")
+    private BigDecimal displayMaxCPC;
+
+    @Column(name = "MAX_CPC")
+    @CsvField(value = "Default max. CPC", reportField = "KeywordMaxCpc")
+    @SerializedName("mcpc")
+    private Double maxCPC;
+
 
   /**
    * Hibernate needs an empty constructor
@@ -125,4 +138,22 @@ public class ReportAdGroup extends ReportBase {
   public void setStatus(String status) {
     this.status = status;
   }
+
+    //maxCPC
+    public Double getMaxCPC() {
+        return maxCPC;
+    }
+
+    public void setMaxCPC(Double maxCPC) {
+        this.maxCPC = maxCPC;
+    }
+
+    //displayMaxCPC
+     public BigDecimal getDisplayMaxCPC() {
+        return displayMaxCPC;
+    }
+
+    public void setDisplayMaxCPC(BigDecimal displayMaxCPC) {
+        this.displayMaxCPC = displayMaxCPC;
+    }
 }

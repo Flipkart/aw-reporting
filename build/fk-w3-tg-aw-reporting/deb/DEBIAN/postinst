@@ -7,7 +7,8 @@ PAC_GROUP="fk-w3"
 PAC_USER=_PACKAGE_
 
 AW_REPORTING_CONF_DIR=/etc/fk-w3-tg-aw-reporting/conf
-AW_REPORTING_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report.properties
+AW_REPORTING_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-metric.properties
+AW_REPORTING_ATTRIBUTE_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-attribute.properties
 
 HOST_NAME=$(hostname -f)
 
@@ -40,6 +41,7 @@ function updateConfigFile {
 }
 
 updateConfigFile aw-report-properties $AW_REPORTING_CONF_FILE root 644
+updateConfigFile aw-report-attribute-properties $AW_REPORTING_ATTRIBUTE_CONF_FILE root 644
 
 if [ "$1" == "configure" ] ; then
     # Create a lot of symlinks 

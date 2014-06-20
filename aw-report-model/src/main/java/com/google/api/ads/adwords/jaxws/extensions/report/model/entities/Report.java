@@ -14,11 +14,13 @@
 
 package com.google.api.ads.adwords.jaxws.extensions.report.model.entities;
 
+import com.google.api.ads.adwords.jaxws.extensions.report.Services.ReportModeService;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvField;
 
 import org.joda.time.DateTime;
 
 import java.util.Date;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -89,6 +91,10 @@ public abstract class Report {
   @SerializedName("sd")
   protected String snapshotDay;
 
+  @Column(name = "LAST_UPDATED")
+  @SerializedName("lu")
+  protected Long lastUpdatedTimeStamp;
+
   public Report() {
     timestamp = new DateTime().toDate();
   }
@@ -99,18 +105,27 @@ public abstract class Report {
     timestamp = new DateTime().toDate();
   }
 
+
   public abstract void setId();
 
   public String setIdDates() {
-		if (this.getDateStart() != null && this.getDateEnd() != null) {
-			return "-"
-					+ this.getDateStart()
-					+ "-"
-					+ this.getDateEnd()
-					+ (this.getSnapshotDay() != null ? ("-" + this
-							.getSnapshotDay()) : "");
-		}
-    return "";
+
+      ReportMode mode = ReportModeService.getReportMode();
+
+      //this is for ATTRIBUTE reports
+      if(mode.equals(ReportMode.ATTRIBUTE) && this.getLastUpdatedTimeStamp() != null){
+          return "-" + this.getLastUpdatedTimeStamp().toString();
+      }
+
+      if (this.getDateStart() != null && this.getDateEnd() != null) {
+          return "-"
+              + this.getDateStart()
+              + "-"
+              + this.getDateEnd()
+              + (this.getSnapshotDay() != null ? ("-" + this
+              .getSnapshotDay()) : "");
+      }
+      return "";
   }
 
   public String get_id() {
@@ -179,5 +194,13 @@ public abstract class Report {
 
   public void setSnapshotDay(String snapshotDay) {
     this.snapshotDay = snapshotDay;
+  }
+
+  public Long getLastUpdatedTimeStamp() {
+    return lastUpdatedTimeStamp;
+  }
+
+  public void setLastUpdatedTimeStamp(Long lastUpdatedTimeStamp) {
+    this.lastUpdatedTimeStamp = lastUpdatedTimeStamp;
   }
 }

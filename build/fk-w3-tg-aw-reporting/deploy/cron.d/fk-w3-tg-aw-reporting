@@ -1,4 +1,5 @@
-MAILTO='santhana.kumar@flipkart.com'
+MAILTO='anurag.laddha@flipkart.com'
 
-10 18 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchReports.sh
+10 19 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchMetricReports.sh
+10 19 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeReports.sh
 

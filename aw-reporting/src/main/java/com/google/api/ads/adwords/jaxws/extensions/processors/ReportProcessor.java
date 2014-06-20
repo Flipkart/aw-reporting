@@ -25,6 +25,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import com.google.api.ads.adwords.jaxws.extensions.report.Services.ReportModeService;
+import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportMode;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.DateUtil;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
@@ -722,7 +724,7 @@ public class ReportProcessor {
 		reportDefinition.setDateRangeType(dateRangeType);
 		reportDefinition.setReportType(reportDefinitionReportType);
 		reportDefinition.setDownloadFormat(DownloadFormat.GZIPPED_CSV);
-		reportDefinition.setIncludeZeroImpressions(false);
+		reportDefinition.setIncludeZeroImpressions(ReportModeService.getIncludeZeroImpressions());
 		reportDefinition.setSelector(selector);
 		return reportDefinition;
 	}

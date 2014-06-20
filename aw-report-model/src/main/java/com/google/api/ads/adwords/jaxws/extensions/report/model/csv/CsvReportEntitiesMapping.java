@@ -79,6 +79,8 @@ public class CsvReportEntitiesMapping {
     }
 
     for (Class<? extends Report> reportBeanClass : reportBeans) {
+
+        //report type being linked with reportbean
       CsvReport csvReport = reportBeanClass.getAnnotation(CsvReport.class);
       this.reportDefinitionMap.put(csvReport.value(), reportBeanClass);
 

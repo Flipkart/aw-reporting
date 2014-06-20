@@ -15,8 +15,10 @@
 package com.google.api.ads.adwords.jaxws.extensions.processors;
 
 import com.google.api.ads.adwords.jaxws.extensions.downloader.AdWordsSessionBuilderSynchronizer;
+import com.google.api.ads.adwords.jaxws.extensions.report.Services.ReportModeService;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.AwReportCsvReader;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.Report;
+import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportMode;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.CsvParserIterator;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.ModifiedCsvToBean;
@@ -27,6 +29,7 @@ import org.apache.log4j.Logger;
 
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.bean.MappingStrategy;
+import org.joda.time.DateTime;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,8 +37,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -92,6 +94,40 @@ public class RunnableProcessor<R extends Report> implements Runnable {
     this.reportSnapshotDownloadDay = reportSnapshotDownloadDay;
   }
 
+
+    //This is for debug purpose only ---> prints output of csv file
+    private void printCSVReportData(CSVReader csv){
+        if (csv != null){
+           List<String[]> allRows = new ArrayList<String[]>();
+
+            try {
+                allRows = csv.readAll(); //read all rows in csv
+                if (allRows.size() <= 0){
+                    LOGGER.debug("$$$$$$$$ No data in csv for : " + file.getAbsolutePath());
+                }
+                else{
+                    LOGGER.debug("$$$$$$ Printing data in csv for : " + file.getAbsolutePath());
+                    int count = 0;
+                    StringBuilder sb = new StringBuilder();
+                    for(String[] row : allRows){
+
+                        if (count > 10) break; //print 5 rows per csv
+
+                         sb.setLength(0); //clear buffer
+                        for(String field : row){
+                           sb.append(field + ",");
+                        }
+                        LOGGER.debug("CSV row : " + sb.toString());
+                        count++;
+                    }
+                }
+            } catch (IOException e) {
+                LOGGER.error(e.getMessage());
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+        }
+    }
+
   /**
    * Executes the API call to download the report that was given when this {@code Runnable} was
    * created.
@@ -113,8 +149,10 @@ public class RunnableProcessor<R extends Report> implements Runnable {
       CsvParserIterator<R> reportRowsList = csvToBean.lazyParse(mappingStrategy, csvReader);
       LOGGER.debug("... success.");
 
+
       LOGGER.debug("Starting report persistence...");
       List<R> reportBuffer = Lists.newArrayList();
+
       while (reportRowsList.hasNext()) {
 
         R report = reportRowsList.next();
@@ -127,10 +165,18 @@ public class RunnableProcessor<R extends Report> implements Runnable {
         }
 
         report.setTopAccountId(Long.parseLong(this.mccAccountId.replaceAll("-", "")));
-        report.setDateRangeType(dateRangeType.value());
-        report.setDateStart(dateStart);
-        report.setDateEnd(dateEnd);
-        report.setSnapshotDay(reportSnapshotDownloadDay);
+
+        //TODO better to create a setup() method in Reporting and pass all setup data as hashmap and setup Report based on criteria
+        ReportMode mode = ReportModeService.getReportMode();
+        if (mode == null || mode.equals(ReportMode.METRIC)){
+          report.setDateRangeType(dateRangeType.value());
+          report.setDateStart(dateStart);
+          report.setDateEnd(dateEnd);
+          report.setSnapshotDay(reportSnapshotDownloadDay);
+        }
+        else if(mode.equals(ReportMode.ATTRIBUTE)){
+          report.setLastUpdatedTimeStamp(DateTime.now().getMillis());
+        }
         report.setId();
 
         reportBuffer.add(report);

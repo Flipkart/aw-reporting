@@ -14,6 +14,7 @@
 
 package com.google.api.ads.adwords.jaxws.extensions.report.model.entities;
 
+import com.google.api.ads.adwords.jaxws.extensions.report.Services.ReportModeService;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.DateRangeHandler;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.Last14DaysDateRangeHandler;
@@ -51,6 +52,9 @@ import com.google.gson.annotations.SerializedName;
  */
 @MappedSuperclass
 public abstract class ReportBase extends Report {
+
+    private static final String REPORT_TYPE_METRIC ="M";
+    private static final String REPORT_TYPE_ATTRIBUTE ="A";
 
 	@Column(name = "DAY")
 	@CsvField(value = "Day", reportField = "Date")
@@ -137,6 +141,18 @@ public abstract class ReportBase extends Report {
 	@SerializedName("vtc")
 	protected Long viewThroughConversions;
 
+    @Column(name = "REPORT_TYPE", length=1)
+    @SerializedName("rt")
+    protected String reportType = REPORT_TYPE_METRIC;
+
+    @Column(name = "PROCESSING_STATUS", length=1)
+    @SerializedName("pst")
+    protected String ingestionStatus = null;
+
+    @Column(name = "PROCESSING_TIME")
+    @SerializedName("pt")
+    protected Long ingestionProcessingTime;
+
 	private static final Map<String, DateRangeHandler> dateRangeHandlers = Maps
 			.newHashMap();
 
@@ -166,19 +182,40 @@ public abstract class ReportBase extends Report {
 	 */
 	public ReportBase() {
 		timestamp = new DateTime().toDate();
+        setReportType();
 	}
 
 	public ReportBase(Long topAccountId, Long accountId) {
 		this.topAccountId = topAccountId;
 		this.accountId = accountId;
 		timestamp = new DateTime().toDate();
+        setReportType();
 	}
+
+    private void setReportType(){
+        ReportMode mode = ReportModeService.getReportMode();
+
+        if (mode.equals(ReportMode.ATTRIBUTE)){
+            reportType = REPORT_TYPE_ATTRIBUTE;
+        }
+        else if (mode.equals(ReportMode.METRIC)){
+            reportType = REPORT_TYPE_METRIC;
+        }
+    }
 
 	@Override
 	public abstract void setId();
 
 	@Override
 	public String setIdDates() {
+
+        ReportMode mode = ReportModeService.getReportMode();
+
+        //this is for ATTRIBUTE reports
+        if(mode.equals(ReportMode.ATTRIBUTE) && this.getLastUpdatedTimeStamp() != null){
+            return "-" + this.getLastUpdatedTimeStamp().toString();
+        }
+
 		// Day or Month
 		String reportDay = this.getDay();
         if (reportDay != null) {
@@ -209,6 +246,7 @@ public abstract class ReportBase extends Report {
 					+ (this.getSnapshotDay() != null ? ("-" + this
 							.getSnapshotDay()) : "");
 		}
+
 		return "";
 	}
 
@@ -490,4 +528,8 @@ public abstract class ReportBase extends Report {
 	public void setViewThroughConversions(Long viewThroughConversions) {
 		this.viewThroughConversions = viewThroughConversions;
 	}
+
+    public String getReportType() {
+        return reportType;
+    }
 }

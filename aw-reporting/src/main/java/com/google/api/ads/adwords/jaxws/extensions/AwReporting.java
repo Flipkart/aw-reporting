@@ -16,6 +16,7 @@ package com.google.api.ads.adwords.jaxws.extensions;
 
 import com.google.api.ads.adwords.jaxws.extensions.processors.ReportProcessor;
 import com.google.api.ads.adwords.jaxws.extensions.proxy.JaxWsProxySelector;
+import com.google.api.ads.adwords.jaxws.extensions.report.Services.ReportModeService;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.Report;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAccount;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.persistence.EntityPersister;
@@ -129,6 +130,8 @@ public class AwReporting {
       }
 
       Properties properties = initApplicationContextAndProperties(propertiesPath);
+
+      ReportModeService.setReportMode(properties.getProperty("reportMode"));  //TODO use constant. Any other approach?
 
       LOGGER.debug("Creating ReportProcessor bean...");
       ReportProcessor processor = createReportProcessor();

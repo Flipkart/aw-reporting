@@ -58,6 +58,36 @@ public class ReportCampaign extends ReportBase {
   @SerializedName("b")
   private BigDecimal budget;
 
+  @Column(name = "SEARCH_IMPRESSION_SHARE")
+  @CsvField(value = "Search Impr. share", reportField = "SearchImpressionShare")
+  @SerializedName("sis")
+  private BigDecimal searchImpressionShare;
+
+  @Column(name = "BOUNCE_RATE")
+  @CsvField(value = "Bounce rate", reportField = "BounceRate")
+  @SerializedName("br")
+  private BigDecimal bounceRate;
+
+
+  @Column(name = "PERCENT_NEW_VISITORS")
+  @CsvField(value = "% new visits", reportField = "PercentNewVisitors")
+  @SerializedName("pnr")
+  private BigDecimal percentNewVisitors;
+
+
+  @Column(name = "AVERAGE_VISIT_DURATION")
+  @CsvField(value = "Avg. visit duration (seconds)", reportField = "AverageTimeOnSite")
+  @SerializedName("avd")
+  private BigDecimal averageVisitDuration;
+
+
+  @Column(name = "ADVERTISING_CHANNEL", length = 32)
+  @CsvField(value = "Advertising Channel", reportField = "AdvertisingChannelType")
+  @SerializedName("adc")
+  private String advertisingChannelType;
+
+
+
   /**
    * Hibernate needs an empty constructor
    */
@@ -131,4 +161,53 @@ public class ReportCampaign extends ReportBase {
   public void setBudget(String budget) {
     this.budget = BigDecimalUtil.parseFromNumberString(budget);
   }
+
+  public BigDecimal getSearchImpressionShareBigDecimal() {
+        return this.searchImpressionShare;
+    }
+
+     public String getSearchImpressionShare() {
+        return BigDecimalUtil.formatAsReadable(this.searchImpressionShare);
+    }
+
+    public void setSearchImpressionShare(String searchImpressionShare) {
+        searchImpressionShare = searchImpressionShare.replaceAll("--", "0");
+        this.searchImpressionShare = new BigDecimal(searchImpressionShare.replaceAll(
+				"\\s|%|>|<", ""));;
+    }
+
+
+    public BigDecimal getBounceRate() {
+        return bounceRate;
+    }
+
+    public void setBounceRate(BigDecimal bounceRate) {
+        this.bounceRate = bounceRate;
+    }
+
+    public BigDecimal getPercentNewVisitors() {
+        return percentNewVisitors;
+    }
+
+    public void setPercentNewVisitors(BigDecimal percentNewVisitors) {
+        this.percentNewVisitors = percentNewVisitors;
+    }
+
+
+     public BigDecimal getAverageVisitDuration() {
+        return averageVisitDuration;
+    }
+
+    public void setAverageVisitDuration(BigDecimal averageVisitDuration) {
+        this.averageVisitDuration = averageVisitDuration;
+    }
+
+    public String getAdvertisingChannelType() {
+        return advertisingChannelType;
+    }
+
+    public void setAdvertisingChannelType(String advertisingChannelType) {
+        this.advertisingChannelType = advertisingChannelType;
+    }
+
 }

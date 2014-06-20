@@ -67,6 +67,12 @@ public class ReportAccount extends ReportBase {
     @SerializedName("clisr")
 	private BigDecimal contentLostISRank;
 
+
+    @Column(name = "SEARCH_IMPRESSION_SHARE")
+	@CsvField(value = "Search Impr. share", reportField = "SearchImpressionShare")
+    @SerializedName("sis")
+	private BigDecimal searchImpressionShare;
+
 	/**
 	 * Hibernate needs an empty constructor
 	 */
@@ -172,5 +178,19 @@ public class ReportAccount extends ReportBase {
 	public void setCurrencyCode(String currencyCode) {
 		this.currencyCode = currencyCode;
 	}
+
+    public BigDecimal getSearchImpressionShareBigDecimal() {
+        return this.searchImpressionShare;
+    }
+
+     public String getSearchImpressionShare() {
+        return BigDecimalUtil.formatAsReadable(this.searchImpressionShare);
+    }
+
+    public void setSearchImpressionShare(String searchImpressionShare) {
+        searchImpressionShare = searchImpressionShare.replaceAll("--", "0");
+        this.searchImpressionShare = new BigDecimal(searchImpressionShare.replaceAll(
+				"\\s|%|>|<", ""));;
+    }
 
 }
