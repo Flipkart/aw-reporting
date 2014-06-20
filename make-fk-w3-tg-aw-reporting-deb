@@ -72,7 +72,9 @@ chmod -R 777 "$DEB_DIR/etc/$PACKAGE/conf"
 
 #replacing constants
 replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/${PACKAGE}"
-replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/fetchReports.sh"
+#replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/fetchReports.sh"
+replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/fetchAttributeReports.sh"
+replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/fetchMetricReports.sh"
 replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/${PACKAGE}-OOR"
 replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/${PACKAGE}-PIR"
 replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/${PACKAGE}"
