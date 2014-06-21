@@ -19,6 +19,6 @@ JAVA_OPTS="$JAVA_OPTS -Xmn512M -Xms2048M -Xmx4096M -XX:PermSize=256M -XX:MaxPerm
 JAVA_OPTS="$JAVA_OPTS -Dfile.encoding=UTF-8"
 
 ##JMX
-JAVA_OPTS="$JAVA_OPTS -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=8896 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote=true"
+JAVA_OPTS="$JAVA_OPTS -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=8897 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote=true"
 
 exec java -jar $JAVA_OPTS $JAR_FILE -dateRange YESTERDAY -file $CONF_FILE
