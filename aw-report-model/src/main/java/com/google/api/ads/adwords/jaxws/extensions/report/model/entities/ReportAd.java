@@ -53,17 +53,17 @@ public class ReportAd extends ReportBase {
   @SerializedName("url")
   private String destinationUrl;
 
-  @Column(name = "HEADLINE", length = 128)
+  @Column(name = "HEADLINE", length = 500)
   @CsvField(value = "Ad", reportField = "Headline")
   @SerializedName("hl")
   private String headline;
 
-  @Column(name = "LINE1", length = 128)
+  @Column(name = "LINE1", length = 500)
   @CsvField(value = "Description line 1", reportField = "Description1")
   @SerializedName("d1")
   private String line1;
 
-  @Column(name = "LINE2", length = 128)
+  @Column(name = "LINE2", length = 500)
   @CsvField(value = "Description line 2", reportField = "Description2")
   @SerializedName("d2")
   private String line2;
@@ -87,6 +87,11 @@ public class ReportAd extends ReportBase {
   @CsvField(value = "Ad Approval Status", reportField = "CreativeApprovalStatus")
   @SerializedName("cas")
   private String creativeApprovalStatus;
+
+    @Column(name = "AD_TYPE", length = 50)
+    @CsvField(value = "Ad type", reportField = "AdType")
+    @SerializedName("adt")
+    private String adType;
 
   /**
    * Hibernate needs an empty constructor
@@ -211,4 +216,13 @@ public class ReportAd extends ReportBase {
   public void setCreativeApprovalStatus(String creativeApprovalStatus) {
     this.creativeApprovalStatus = creativeApprovalStatus;
   }
+
+    //Ad type
+    public String getAdType() {
+        return adType;
+    }
+
+    public void setAdType(String adType) {
+        this.adType = adType;
+    }
 }
