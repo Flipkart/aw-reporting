@@ -88,7 +88,7 @@ public class ReportKeyword extends ReportBase {
     @Column(name = "MAX_CPC")
     @CsvField(value = "Max. CPC", reportField = "MaxCpc")
     @SerializedName("mcpc")
-    private BigDecimal maxCPC;
+    private String maxCPC;
 
 	/**
 	 * Hibernate needs an empty constructor
@@ -222,11 +222,11 @@ public class ReportKeyword extends ReportBase {
 		this.negative = negative;
 	}
 
-        public BigDecimal getMaxCPC() {
+        public String getMaxCPC() {
         return maxCPC;
     }
 
-    public void setMaxCPC(BigDecimal maxCPC) {
+    public void setMaxCPC(String maxCPC) {
         this.maxCPC = maxCPC;
     }
 }

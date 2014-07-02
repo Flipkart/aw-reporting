@@ -67,7 +67,6 @@ public class ReportAccount extends ReportBase {
     @SerializedName("clisr")
 	private BigDecimal contentLostISRank;
 
-
     @Column(name = "SEARCH_IMPRESSION_SHARE")
 	@CsvField(value = "Search Impr. share", reportField = "SearchImpressionShare")
     @SerializedName("sis")

@@ -60,12 +60,12 @@ public class ReportAdGroup extends ReportBase {
     @Column(name = "DISPLAY_MAX_CPC")
     @CsvField(value = "Display Network max. CPC", reportField = "KeywordContentMaxCpc")
     @SerializedName("dcpc")
-    private BigDecimal displayMaxCPC;
+    private String displayMaxCPC;
 
     @Column(name = "MAX_CPC")
     @CsvField(value = "Default max. CPC", reportField = "KeywordMaxCpc")
     @SerializedName("mcpc")
-    private Double maxCPC;
+    private String maxCPC;
 
 
   /**
@@ -140,20 +140,20 @@ public class ReportAdGroup extends ReportBase {
   }
 
     //maxCPC
-    public Double getMaxCPC() {
+    public String getMaxCPC() {
         return maxCPC;
     }
 
-    public void setMaxCPC(Double maxCPC) {
+    public void setMaxCPC(String maxCPC) {
         this.maxCPC = maxCPC;
     }
 
     //displayMaxCPC
-     public BigDecimal getDisplayMaxCPC() {
+     public String getDisplayMaxCPC() {
         return displayMaxCPC;
     }
 
-    public void setDisplayMaxCPC(BigDecimal displayMaxCPC) {
+    public void setDisplayMaxCPC(String displayMaxCPC) {
         this.displayMaxCPC = displayMaxCPC;
     }
 }
