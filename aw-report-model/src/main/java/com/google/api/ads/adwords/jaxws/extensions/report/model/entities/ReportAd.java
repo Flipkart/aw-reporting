@@ -58,12 +58,12 @@ public class ReportAd extends ReportBase {
   @SerializedName("hl")
   private String headline;
 
-  @Column(name = "LINE1", length = 500)
+  @Column(name = "DESCRIPTION_1", length = 500)
   @CsvField(value = "Description line 1", reportField = "Description1")
   @SerializedName("d1")
   private String line1;
 
-  @Column(name = "LINE2", length = 500)
+  @Column(name = "DESCRIPTION_2", length = 500)
   @CsvField(value = "Description line 2", reportField = "Description2")
   @SerializedName("d2")
   private String line2;
