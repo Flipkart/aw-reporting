@@ -22,4 +22,4 @@ JAVA_OPTS="$JAVA_OPTS -Dfile.encoding=UTF-8"
 ##JMX
 JAVA_OPTS="$JAVA_OPTS -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=8896 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote=true"
 
-exec java -jar $JAVA_OPTS $JAR_FILE -dateRange LAST_14_DAYS -file $CONF_FILE -accountIdsFile $ACCOUNTS_FILE
+exec java -jar $JAVA_OPTS $JAR_FILE -dateRange YESTERDAY -file $CONF_FILE -accountIdsFile $ACCOUNTS_FILE
