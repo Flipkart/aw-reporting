@@ -1,6 +1,6 @@
 MAILTO='anurag.laddha@flipkart.com'
 
-15 15 * * 6 root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchMetricReports.sh
-#30 2 * * 4 root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeReports.sh
+#15 15 * * 6 root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchMetricReports.sh
+15 17 * * 6 root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeReports.sh
 
 
