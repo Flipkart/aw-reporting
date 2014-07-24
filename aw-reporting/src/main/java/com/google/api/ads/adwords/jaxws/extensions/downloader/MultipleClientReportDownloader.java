@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.downloader;
 
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinition;
 import com.google.common.base.Stopwatch;
 
 import org.apache.log4j.Logger;

@@ -20,14 +20,14 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201309.DownloadFormat;
-import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinitionReportType;
-import com.google.api.ads.adwords.lib.jaxb.v201309.Selector;
+import com.google.api.ads.adwords.lib.jaxb.v201402.DownloadFormat;
+import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201402.Selector;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponseException;
 import com.google.api.ads.adwords.lib.utils.ReportException;
-import com.google.api.ads.adwords.lib.utils.v201309.DetailedReportDownloadResponseException;
+import com.google.api.ads.adwords.lib.utils.v201402.DetailedReportDownloadResponseException;
 import com.google.api.ads.common.lib.exception.ValidationException;
 import com.google.common.collect.Lists;
 

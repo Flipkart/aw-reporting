@@ -28,9 +28,9 @@ import com.google.api.ads.adwords.jaxws.extensions.report.model.persistence.Auth
 import com.google.api.ads.adwords.jaxws.extensions.report.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.jaxws.extensions.util.DynamicPropertyPlaceholderConfigurer;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionReportType;
 import com.google.api.ads.common.lib.exception.OAuthException;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;

@@ -3,7 +3,7 @@ package com.google.api.ads.adwords.jaxws.extensions.report.model.csv;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.Report;
-import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionReportType;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;

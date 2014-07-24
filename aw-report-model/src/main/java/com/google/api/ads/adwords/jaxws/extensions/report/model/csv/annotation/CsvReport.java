@@ -3,7 +3,7 @@ package com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionReportType;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

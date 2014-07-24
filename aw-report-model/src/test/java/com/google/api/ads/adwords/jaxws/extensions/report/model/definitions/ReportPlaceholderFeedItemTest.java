@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.definitions.AbstractReportDefinitionTest;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionReportType;
 
 /**
  * Tests the Placeholder Feed Item report definition.

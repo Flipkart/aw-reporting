@@ -27,7 +27,7 @@ import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRan
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.YesterdayDateRangeHandler;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.DateUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201309.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionDateRangeType;
 import com.google.api.client.util.Maps;
 
 import org.joda.time.DateTime;
@@ -81,11 +81,6 @@ public abstract class ReportBase extends Report {
 	@SerializedName("i")
 	protected Long impressions;
 
-	@Column(name = "CONVERSIONS")
-	@CsvField(value = "Conv. (1-per-click)", reportField = "Conversions")
-	@SerializedName("conv")
-	protected Long conversions = 0l;
-
 	@Column(name = "CTR")
 	@CsvField(value = "CTR", reportField = "Ctr")
 	@SerializedName("ctr")
@@ -126,10 +121,17 @@ public abstract class ReportBase extends Report {
 	@SerializedName("np")
 	protected String adNetworkPartners;
 
+    // One Per Click
+    @Column(name = "CONVERSIONS")
+	@CsvField(value = "Converted clicks", reportField = "Conversions")
+	@SerializedName("conv")
+	protected Long conversions = 0L;
+
+    // Many Per Click
 	@Column(name = "CONVERSIONSMANYPERCLICK")
-	@CsvField(value = "Conv. (many-per-click)", reportField = "ConversionsManyPerClick")
+    @CsvField(value = "Conversions", reportField = "ConversionsManyPerClick")
 	@SerializedName("convm")
-	protected Long conversionsManyPerClick;
+	protected Long conversionsManyPerClick = 0L;
 
 	@Column(name = "CONVERSION_VALUE")
 	@CsvField(value = "Total conv. value", reportField = "ConversionValue")
@@ -139,7 +141,7 @@ public abstract class ReportBase extends Report {
 	@Column(name = "VIEWTHROUGHCONVERSIONS")
 	@CsvField(value = "View-through conv.", reportField = "ViewThroughConversions")
 	@SerializedName("vtc")
-	protected Long viewThroughConversions;
+	protected Long viewThroughConversions = 0L;
 
     @Column(name = "REPORT_TYPE", length=1)
     @SerializedName("rt")
