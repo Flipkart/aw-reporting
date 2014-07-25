@@ -153,7 +153,7 @@ public abstract class ReportBase extends Report {
 
     @Column(name = "PROCESSING_TIME")
     @SerializedName("pt")
-    protected Long ingestionProcessingTime;
+    protected Date ingestionProcessingTime;
 
 	private static final Map<String, DateRangeHandler> dateRangeHandlers = Maps
 			.newHashMap();
