@@ -9,7 +9,14 @@ PAC_USER=_PACKAGE_
 AW_REPORTING_CONF_DIR=/etc/fk-w3-tg-aw-reporting/conf
 AW_REPORTING_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-metric.properties
 AW_REPORTING_ATTRIBUTE_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-attribute.properties
-AW_REPORTING_ACCOUNTS_CONF_FILE=$AW_REPORTING_CONF_DIR/accounts
+
+AW_REPORTING_ACCOUNTS_ALL_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsAll
+AW_REPORTING_ACCOUNTS_APPAREL_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsApparel
+AW_REPORTING_ACCOUNTS_BOOKS_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsBooks
+AW_REPORTING_ACCOUNTS_MISC_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsMisc
+AW_REPORTING_ACCOUNTS_MOBILE_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsMobile
+AW_REPORTING_ACCOUNTS_SHOES_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsShoes
+AW_REPORTING_ACCOUNTS_TOYS_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsToys
 
 HOST_NAME=$(hostname -f)
 
@@ -43,7 +50,15 @@ function updateConfigFile {
 
 updateConfigFile aw-report-properties $AW_REPORTING_CONF_FILE root 644
 updateConfigFile aw-report-attribute-properties $AW_REPORTING_ATTRIBUTE_CONF_FILE root 644
-updateConfigFile aw-report-accounts $AW_REPORTING_ACCOUNTS_CONF_FILE root 644
+
+updateConfigFile aw-report-accounts $AW_REPORTING_ACCOUNTS_ALL_CONF_FILE root 644
+updateConfigFile aw-report-accounts-apparel $AW_REPORTING_ACCOUNTS_APPAREL_CONF_FILE root 644
+updateConfigFile aw-report-accounts-books $AW_REPORTING_ACCOUNTS_BOOKS_CONF_FILE root 644
+updateConfigFile aw-report-accounts-small-misc $AW_REPORTING_ACCOUNTS_MISC_CONF_FILE root 644
+updateConfigFile aw-report-accounts-mobile $AW_REPORTING_ACCOUNTS_MOBILE_CONF_FILE root 644
+updateConfigFile aw-report-accounts-shoes $AW_REPORTING_ACCOUNTS_SHOES_CONF_FILE root 644
+updateConfigFile aw-report-accounts-toys $AW_REPORTING_ACCOUNTS_TOYS_CONF_FILE root 644
+
 
 if [ "$1" == "configure" ] ; then
     # Create a lot of symlinks 

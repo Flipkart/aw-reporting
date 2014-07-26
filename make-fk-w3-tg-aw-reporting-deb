@@ -73,6 +73,14 @@ chmod -R 777 "$DEB_DIR/etc/$PACKAGE/conf"
 #replacing constants
 replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/${PACKAGE}"
 #replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/fetchReports.sh"
+
+replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/fetchAttributeApparel.sh"
+replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/fetchAttributeBooks.sh"
+replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/fetchAttributeMisc.sh"
+replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/fetchAttributeMobile.sh"
+replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/fetchAttributeShoes.sh"
+replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/fetchAttributeToys.sh"
+
 replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/fetchAttributeReports.sh"
 replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/fetchMetricReports.sh"
 replacePlaceHolders "${DEB_DIR}/usr/share/${PACKAGE}/bin/${PACKAGE}-OOR"

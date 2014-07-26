@@ -1,6 +1,14 @@
 MAILTO='anurag.laddha@flipkart.com'
 
+#metrics for all the accounts
 #15 15 * * 6 root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchMetricReports.sh
-15 17 * * 6 root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeReports.sh
+
+#attribute data download by account size
+01 19 * * 6 root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeMisc.sh
+10 19 * * 6 root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeMobile.sh
+20 19 * * 6 root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeApparel.sh
+30 19 * * 6 root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeShoes.sh
+40 19 * * 6 root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeToys.sh
+50 19 * * 6 root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeBooks.sh
 
 

@@ -1,9 +1,11 @@
 #!/bin/bash
 
+#Fetch attribute data for all counts
+
 LOG_DIR=/var/log/flipkart/w3/_PACKAGE_
 CONF_FILE=/etc/_PACKAGE_/conf/aw-report-attribute.properties
 JAR_FILE=/usr/share/_PACKAGE_/lib/aw-reporting.jar
-ACCOUNTS_FILE=/etc/_PACKAGE_/conf/accounts
+ACCOUNTS_FILE=/etc/_PACKAGE_/conf/accountsAll
 
 JAVA_OPTS=""
 

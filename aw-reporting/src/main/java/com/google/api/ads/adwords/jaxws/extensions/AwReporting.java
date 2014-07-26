@@ -374,7 +374,7 @@ public class AwReporting {
 
     FileAppender fa = new FileAppender();
     fa.setName("FileLogger");
-    fa.setFile("aw-reporting.log");
+    fa.setFile("/var/log/flipkart/w3/fk-w3-tg-aw-reporting/aw-reporting.log");
     fa.setLayout(new PatternLayout("%d %-5p [%c{1}] %m%n"));
     fa.setThreshold(logLevel);
     fa.setAppend(true);
