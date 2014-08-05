@@ -679,13 +679,21 @@ public class ReportProcessor {
      */
     private void setCustomPredicates(ReportDefinitionReportType reportDefinitionReportType, Selector selector){
 
-        //Download only non-negative keywords data
+        //Download only specified keywords data
         if (reportDefinitionReportType.equals(ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT)){
             Predicate isNegativePredicate = new Predicate();
             isNegativePredicate.setField("IsNegative");
             isNegativePredicate.setOperator(PredicateOperator.IN);
-            isNegativePredicate.getValues().addAll(Arrays.asList(new String[] {"FALSE", "false"}));
+            isNegativePredicate.getValues().addAll(Arrays.asList(new String[] {"FALSE", "false"}));  //allow only non-negative keywords
             selector.getPredicates().add(isNegativePredicate);
+        }
+        //Download only specified ad data
+        else if (reportDefinitionReportType.equals(ReportDefinitionReportType.AD_PERFORMANCE_REPORT)){
+            Predicate adTypePredicate = new Predicate();
+            adTypePredicate.setField("AdType");
+            adTypePredicate.setOperator(PredicateOperator.IN);
+            adTypePredicate.getValues().add("TEXT_AD"); //allow only text ads
+            selector.getPredicates().add(adTypePredicate);
         }
     }
 
