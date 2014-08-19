@@ -18,14 +18,12 @@ import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.C
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionReportType;
-
-import java.math.BigDecimal;
+import com.google.gson.annotations.SerializedName;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
-import com.google.gson.annotations.SerializedName;
+import java.math.BigDecimal;
 
 /**
  * Specific report class for ReportCampaign
@@ -119,6 +117,9 @@ public class ReportCampaign extends ReportBase {
     }
     if (this.getClickType() != null && this.getClickType().length() > 0) {
       this._id += "-" + this.getClickType();
+    }
+    if (this.getAdvertisingChannelType() != null && this.getAdvertisingChannelType().length() > 0) {
+      this._id += "-" + this.getAdvertisingChannelType();
     }
   }
 
