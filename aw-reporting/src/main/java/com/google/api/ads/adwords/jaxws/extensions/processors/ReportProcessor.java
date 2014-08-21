@@ -28,6 +28,10 @@ import java.util.concurrent.TimeUnit;
 import com.google.api.ads.adwords.jaxws.extensions.report.Services.ReportModeService;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportMode;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.DateUtil;
+import com.google.api.ads.adwords.jaxws.v201402.cm.Ad;
+import com.google.api.ads.adwords.jaxws.v201402.cm.AdGroupAd;
+import com.google.api.ads.adwords.jaxws.v201406.cm.AdGroupAdService;
+import com.google.api.ads.adwords.lib.jaxb.v201402.*;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,12 +53,6 @@ import com.google.api.ads.adwords.jaxws.extensions.util.GetRefreshToken;
 import com.google.api.ads.adwords.jaxws.v201402.mcm.ApiException;
 import com.google.api.ads.adwords.jaxws.v201402.mcm.ManagedCustomer;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201402.DateRange;
-import com.google.api.ads.adwords.lib.jaxb.v201402.DownloadFormat;
-import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionReportType;
-import com.google.api.ads.adwords.lib.jaxb.v201402.Selector;
 import com.google.api.ads.common.lib.auth.OfflineCredentials;
 import com.google.api.ads.common.lib.auth.OfflineCredentials.Api;
 import com.google.api.ads.common.lib.exception.OAuthException;
@@ -667,9 +665,37 @@ public class ReportProcessor {
 		this.adjustDateRange(reportDefinitionReportType, dateRangeType,
 				dateStart, dateEnd, selector);
 
+        this.setCustomPredicates(reportDefinitionReportType, selector);
+
 		return this.instantiateReportDefinition(reportDefinitionReportType,
 				dateRangeType, selector);
 	}
+
+
+    /**
+     * Predicates for the report definition
+     * @param reportDefinitionReportType
+     * @param selector
+     */
+    private void setCustomPredicates(ReportDefinitionReportType reportDefinitionReportType, Selector selector){
+
+        //Download only specified keywords data
+        if (reportDefinitionReportType.equals(ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT)){
+            Predicate isNegativePredicate = new Predicate();
+            isNegativePredicate.setField("IsNegative");
+            isNegativePredicate.setOperator(PredicateOperator.IN);
+            isNegativePredicate.getValues().addAll(Arrays.asList(new String[] {"FALSE", "false"}));  //allow only non-negative keywords
+            selector.getPredicates().add(isNegativePredicate);
+        }
+        //Download only specified ad data
+        else if (reportDefinitionReportType.equals(ReportDefinitionReportType.AD_PERFORMANCE_REPORT)){
+            Predicate adTypePredicate = new Predicate();
+            adTypePredicate.setField("AdType");
+            adTypePredicate.setOperator(PredicateOperator.IN);
+            adTypePredicate.getValues().add("TEXT_AD"); //allow only text ads
+            selector.getPredicates().add(adTypePredicate);
+        }
+    }
 
 	/**
 	 * Adjusts the date range in case of a custom date type. The adjustment do
