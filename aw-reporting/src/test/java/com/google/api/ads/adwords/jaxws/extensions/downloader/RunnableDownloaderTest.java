@@ -14,23 +14,13 @@
 
 package com.google.api.ads.adwords.jaxws.extensions.downloader;
 
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201402.DownloadFormat;
-import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionReportType;
-import com.google.api.ads.adwords.lib.jaxb.v201402.Selector;
+import com.google.api.ads.adwords.lib.jaxb.v201406.*;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponseException;
 import com.google.api.ads.adwords.lib.utils.ReportException;
-import com.google.api.ads.adwords.lib.utils.v201402.DetailedReportDownloadResponseException;
+import com.google.api.ads.adwords.lib.utils.v201406.DetailedReportDownloadResponseException;
 import com.google.api.ads.common.lib.exception.ValidationException;
 import com.google.common.collect.Lists;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
@@ -40,6 +30,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
+
+import static org.mockito.Mockito.*;
 
 /**
  * Test case for the {@code RunnableDownloader} class.

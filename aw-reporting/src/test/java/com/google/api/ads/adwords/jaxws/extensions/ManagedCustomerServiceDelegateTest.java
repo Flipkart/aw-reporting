@@ -14,17 +14,11 @@
 
 package com.google.api.ads.adwords.jaxws.extensions;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import com.google.api.ads.adwords.jaxws.v201402.cm.Selector;
-import com.google.api.ads.adwords.jaxws.v201402.mcm.ApiException;
-import com.google.api.ads.adwords.jaxws.v201402.mcm.ManagedCustomer;
-import com.google.api.ads.adwords.jaxws.v201402.mcm.ManagedCustomerPage;
-import com.google.api.ads.adwords.jaxws.v201402.mcm.ManagedCustomerServiceInterface;
-
+import com.google.api.ads.adwords.jaxws.v201406.cm.Selector;
+import com.google.api.ads.adwords.jaxws.v201406.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201406.mcm.ManagedCustomer;
+import com.google.api.ads.adwords.jaxws.v201406.mcm.ManagedCustomerPage;
+import com.google.api.ads.adwords.jaxws.v201406.mcm.ManagedCustomerServiceInterface;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -34,6 +28,11 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Test case for the {@code ManagedCustomerServiceDelegate} class.

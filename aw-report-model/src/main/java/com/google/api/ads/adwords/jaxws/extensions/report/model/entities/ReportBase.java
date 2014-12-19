@@ -16,30 +16,19 @@ package com.google.api.ads.adwords.jaxws.extensions.report.model.entities;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.Services.ReportModeService;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvField;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.DateRangeHandler;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.Last14DaysDateRangeHandler;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.Last30DaysDateRangeHandler;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.Last7DaysDateRangeHandler;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.LastMonthDateRangeHandler;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.LastWeekDateRangeHandler;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.ThisMonthDateRangeHandler;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.TodayDateRangeHandler;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.YesterdayDateRangeHandler;
+import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.*;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.DateUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201406.ReportDefinitionDateRangeType;
 import com.google.api.client.util.Maps;
-
+import com.google.gson.annotations.SerializedName;
 import org.joda.time.DateTime;
-
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-
-import com.google.gson.annotations.SerializedName;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Map;
 
 /**
  * The base abstract class with base report fields

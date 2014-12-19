@@ -1,12 +1,12 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation;
 
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201406.ReportDefinitionReportType;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Annotation to indicate that a java Bean class is the representation of the CSV file data.

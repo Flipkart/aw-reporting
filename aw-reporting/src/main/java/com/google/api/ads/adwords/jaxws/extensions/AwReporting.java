@@ -25,8 +25,8 @@ import com.google.api.ads.adwords.jaxws.extensions.util.DataBaseType;
 import com.google.api.ads.adwords.jaxws.extensions.util.DynamicPropertyPlaceholderConfigurer;
 import com.google.api.ads.adwords.jaxws.extensions.util.FileUtil;
 import com.google.api.ads.adwords.jaxws.extensions.util.HTMLExporter;
-import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201402.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201406.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201406.ReportDefinitionReportType;
 import com.google.api.client.util.Sets;
 
 import org.apache.commons.cli.BasicParser;
