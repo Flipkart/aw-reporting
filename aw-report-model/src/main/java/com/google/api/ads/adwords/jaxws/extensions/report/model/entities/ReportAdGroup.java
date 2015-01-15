@@ -16,7 +16,7 @@ package com.google.api.ads.adwords.jaxws.extensions.report.model.entities;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvReport;
-import com.google.api.ads.adwords.lib.jaxb.v201406.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
 import com.google.gson.annotations.SerializedName;
 
 import javax.persistence.Column;
@@ -54,15 +54,10 @@ public class ReportAdGroup extends ReportBase {
   @SerializedName("st")
   private String status;
 
-    @Column(name = "DISPLAY_MAX_CPC")
-    @CsvField(value = "Display Network max. CPC", reportField = "KeywordContentMaxCpc")
-    @SerializedName("dcpc")
-    private String displayMaxCPC;
-
-    @Column(name = "MAX_CPC")
-    @CsvField(value = "Default max. CPC", reportField = "KeywordMaxCpc")
-    @SerializedName("mcpc")
-    private String maxCPC;
+  @Column(name = "MAX_CPC")
+  @CsvField(value = "Default max. CPC", reportField = "CpcBid")
+  @SerializedName("cpcb")
+  private String maxCPC;
 
 
   /**
@@ -136,21 +131,13 @@ public class ReportAdGroup extends ReportBase {
     this.status = status;
   }
 
-    //maxCPC
-    public String getMaxCPC() {
-        return maxCPC;
-    }
+  //maxCPC
+  public String getMaxCPC() {
+      return maxCPC;
+  }
 
-    public void setMaxCPC(String maxCPC) {
-        this.maxCPC = maxCPC;
-    }
+  public void setMaxCPC(String maxCPC) {
+      this.maxCPC = maxCPC;
+  }
 
-    //displayMaxCPC
-     public String getDisplayMaxCPC() {
-        return displayMaxCPC;
-    }
-
-    public void setDisplayMaxCPC(String displayMaxCPC) {
-        this.displayMaxCPC = displayMaxCPC;
-    }
 }

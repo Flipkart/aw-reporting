@@ -14,6 +14,37 @@
 
 package com.google.api.ads.adwords.jaxws.extensions.processors;
 
+import au.com.bytecode.opencsv.bean.MappingStrategy;
+import com.google.api.ads.adwords.jaxws.extensions.ManagedCustomerDelegate;
+import com.google.api.ads.adwords.jaxws.extensions.downloader.MultipleClientReportDownloader;
+import com.google.api.ads.adwords.jaxws.extensions.report.Services.ReportModeService;
+import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.AnnotationBasedMappingStrategy;
+import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.CsvReportEntitiesMapping;
+import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.AuthMcc;
+import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.Report;
+import com.google.api.ads.adwords.jaxws.extensions.report.model.persistence.AuthTokenPersister;
+import com.google.api.ads.adwords.jaxws.extensions.report.model.persistence.EntityPersister;
+import com.google.api.ads.adwords.jaxws.extensions.report.model.util.DateUtil;
+import com.google.api.ads.adwords.jaxws.extensions.report.model.util.ModifiedCsvToBean;
+import com.google.api.ads.adwords.jaxws.extensions.util.GetRefreshToken;
+import com.google.api.ads.adwords.jaxws.v201409.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201409.mcm.ManagedCustomer;
+import com.google.api.ads.adwords.lib.client.AdWordsSession;
+import com.google.api.ads.adwords.lib.jaxb.v201409.*;
+import com.google.api.ads.common.lib.auth.OfflineCredentials;
+import com.google.api.ads.common.lib.auth.OfflineCredentials.Api;
+import com.google.api.ads.common.lib.exception.OAuthException;
+import com.google.api.ads.common.lib.exception.ValidationException;
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.util.Sets;
+import com.google.common.base.Stopwatch;
+import com.google.common.collect.Lists;
+import org.apache.log4j.Logger;
+import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,43 +55,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
-import com.google.api.ads.adwords.jaxws.extensions.report.Services.ReportModeService;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportMode;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.util.DateUtil;
-import com.google.api.ads.adwords.jaxws.v201406.cm.Ad;
-import com.google.api.ads.adwords.jaxws.v201406.cm.AdGroupAd;
-import com.google.api.ads.adwords.jaxws.v201406.cm.AdGroupAdService;
-import com.google.api.ads.adwords.lib.jaxb.v201406.*;
-import org.apache.log4j.Logger;
-import org.joda.time.DateTime;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-import au.com.bytecode.opencsv.bean.MappingStrategy;
-
-import com.google.api.ads.adwords.jaxws.extensions.ManagedCustomerDelegate;
-import com.google.api.ads.adwords.jaxws.extensions.downloader.MultipleClientReportDownloader;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.AnnotationBasedMappingStrategy;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.CsvReportEntitiesMapping;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.AuthMcc;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.Report;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.persistence.AuthTokenPersister;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.persistence.EntityPersister;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.util.ModifiedCsvToBean;
-import com.google.api.ads.adwords.jaxws.extensions.util.GetRefreshToken;
-import com.google.api.ads.adwords.jaxws.v201406.mcm.ApiException;
-import com.google.api.ads.adwords.jaxws.v201406.mcm.ManagedCustomer;
-import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.common.lib.auth.OfflineCredentials;
-import com.google.api.ads.common.lib.auth.OfflineCredentials.Api;
-import com.google.api.ads.common.lib.exception.OAuthException;
-import com.google.api.ads.common.lib.exception.ValidationException;
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.util.Sets;
-import com.google.common.base.Stopwatch;
-import com.google.common.collect.Lists;
 
 /**
  * Main reporting processor responsible for downloading and saving the files to

@@ -19,7 +19,7 @@ import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.C
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.*;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.DateUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201406.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionDateRangeType;
 import com.google.api.client.util.Maps;
 import com.google.gson.annotations.SerializedName;
 import org.joda.time.DateTime;

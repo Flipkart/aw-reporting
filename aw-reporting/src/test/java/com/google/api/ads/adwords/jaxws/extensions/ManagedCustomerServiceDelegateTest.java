@@ -14,11 +14,11 @@
 
 package com.google.api.ads.adwords.jaxws.extensions;
 
-import com.google.api.ads.adwords.jaxws.v201406.cm.Selector;
-import com.google.api.ads.adwords.jaxws.v201406.mcm.ApiException;
-import com.google.api.ads.adwords.jaxws.v201406.mcm.ManagedCustomer;
-import com.google.api.ads.adwords.jaxws.v201406.mcm.ManagedCustomerPage;
-import com.google.api.ads.adwords.jaxws.v201406.mcm.ManagedCustomerServiceInterface;
+import com.google.api.ads.adwords.jaxws.v201409.cm.Selector;
+import com.google.api.ads.adwords.jaxws.v201409.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201409.mcm.ManagedCustomer;
+import com.google.api.ads.adwords.jaxws.v201409.mcm.ManagedCustomerPage;
+import com.google.api.ads.adwords.jaxws.v201409.mcm.ManagedCustomerServiceInterface;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;

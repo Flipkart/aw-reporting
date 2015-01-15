@@ -1,7 +1,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.definitions;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportCriteriaPerformance;
-import com.google.api.ads.adwords.lib.jaxb.v201406.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -75,7 +75,7 @@ public class ReportCriteriaPerformanceTest extends
 				"Criteria", "CriteriaDestinationUrl", "CriteriaType",
 				"CtrSignificance", "CustomerDescriptiveName", "DisplayName",
 				"FirstPageCpc", "Id", "ImpressionSignificance", "IsNegative",
-				"MaxCpc", "MaxCpm", "Parameter", "PercentCpa",
+				"CpcBid", "CpmBid", "Parameter", "PercentCpa",
 				"PositionSignificance", "QualityScore", "Slot", "Status",
 				"TopOfPageCpc", "ViewThroughConversions",
 				"ViewThroughConversionsSignificance", "ExternalCustomerId",

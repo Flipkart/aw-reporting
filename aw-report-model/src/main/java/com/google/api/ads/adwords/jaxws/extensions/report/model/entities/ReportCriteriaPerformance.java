@@ -17,7 +17,7 @@ package com.google.api.ads.adwords.jaxws.extensions.report.model.entities;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201406.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -139,11 +139,11 @@ public class ReportCriteriaPerformance extends ReportBase {
 	private String isNegative;
 
 	@Column(name = "MAX_CPC")
-	@CsvField(value = "Max. CPC", reportField = "MaxCpc")
+	@CsvField(value = "Max. CPC", reportField = "CpcBid")
 	private String maxCpc;
 
 	@Column(name = "MAX_CPM")
-	@CsvField(value = "Max. CPM", reportField = "MaxCpm")
+	@CsvField(value = "Max. CPM", reportField = "CpmBid")
 	private String maxCpm;
 
 	@Column(name = "PARAMETER")
