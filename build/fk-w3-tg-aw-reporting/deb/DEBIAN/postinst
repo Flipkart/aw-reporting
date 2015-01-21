@@ -9,6 +9,7 @@ PAC_USER=_PACKAGE_
 AW_REPORTING_CONF_DIR=/etc/fk-w3-tg-aw-reporting/conf
 AW_REPORTING_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-metric.properties
 AW_REPORTING_ATTRIBUTE_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-attribute.properties
+AW_REPORTING_METRIC_DELAYED_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-metric-delayed.properties
 
 AW_REPORTING_ACCOUNTS_ALL_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsAll
 AW_REPORTING_ACCOUNTS_APPAREL_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsApparel
@@ -50,6 +51,7 @@ function updateConfigFile {
 
 updateConfigFile aw-report-properties $AW_REPORTING_CONF_FILE root 644
 updateConfigFile aw-report-attribute-properties $AW_REPORTING_ATTRIBUTE_CONF_FILE root 644
+updateConfigFile aw-report-properties-delayed $AW_REPORTING_METRIC_DELAYED_CONF_FILE root 644
 
 updateConfigFile aw-report-accounts $AW_REPORTING_ACCOUNTS_ALL_CONF_FILE root 644
 updateConfigFile aw-report-accounts-apparel $AW_REPORTING_ACCOUNTS_APPAREL_CONF_FILE root 644
