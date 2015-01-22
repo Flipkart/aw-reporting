@@ -1,4 +1,4 @@
-MAILTO='vignesh.raghuraman@flipkart.com'
+MAILTO='amol.sharma@flipkart.com,santhana.kumar@flipkart.com,vignesh.raghuraman@flipkart.com'
 
 #metrics for all the accounts
 #45 12 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchMetricDelayedReports.sh
