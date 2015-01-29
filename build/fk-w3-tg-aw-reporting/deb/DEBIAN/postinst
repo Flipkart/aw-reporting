@@ -7,9 +7,8 @@ PAC_GROUP="fk-w3"
 PAC_USER=_PACKAGE_
 
 AW_REPORTING_CONF_DIR=/etc/fk-w3-tg-aw-reporting/conf
-AW_REPORTING_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-metric.properties
+AW_REPORTING_METRIC_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-metric.properties
 AW_REPORTING_ATTRIBUTE_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-attribute.properties
-AW_REPORTING_METRIC_DELAYED_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-metric-delayed.properties
 
 AW_REPORTING_ACCOUNTS_ALL_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsAll
 AW_REPORTING_ACCOUNTS_APPAREL_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsApparel
@@ -18,6 +17,11 @@ AW_REPORTING_ACCOUNTS_MISC_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsMisc
 AW_REPORTING_ACCOUNTS_MOBILE_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsMobile
 AW_REPORTING_ACCOUNTS_SHOES_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsShoes
 AW_REPORTING_ACCOUNTS_TOYS_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsToys
+
+AW_REPORTING_PLA_ACCOUNTS_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsPLA
+AW_REPORTING_PLA_ATTRIBUTE_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-PLA-attribute.properties
+AW_REPORTING_PLA_METRIC_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-PLA-metric.properties
+AW_REPORTING_PLA_METRIC_DELAYED_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-PLA-metric-delayed.properties
 
 HOST_NAME=$(hostname -f)
 
@@ -49,9 +53,8 @@ function updateConfigFile {
         fi
 }
 
-updateConfigFile aw-report-properties $AW_REPORTING_CONF_FILE root 644
+updateConfigFile aw-report-properties $AW_REPORTING_METRIC_CONF_FILE root 644
 updateConfigFile aw-report-attribute-properties $AW_REPORTING_ATTRIBUTE_CONF_FILE root 644
-updateConfigFile aw-report-properties-delayed $AW_REPORTING_METRIC_DELAYED_CONF_FILE root 644
 
 updateConfigFile aw-report-accounts $AW_REPORTING_ACCOUNTS_ALL_CONF_FILE root 644
 updateConfigFile aw-report-accounts-apparel $AW_REPORTING_ACCOUNTS_APPAREL_CONF_FILE root 644
@@ -60,6 +63,11 @@ updateConfigFile aw-report-accounts-small-misc $AW_REPORTING_ACCOUNTS_MISC_CONF_
 updateConfigFile aw-report-accounts-mobile $AW_REPORTING_ACCOUNTS_MOBILE_CONF_FILE root 644
 updateConfigFile aw-report-accounts-shoes $AW_REPORTING_ACCOUNTS_SHOES_CONF_FILE root 644
 updateConfigFile aw-report-accounts-toys $AW_REPORTING_ACCOUNTS_TOYS_CONF_FILE root 644
+
+updateConfigFile aw-report-PLA-accounts $AW_REPORTING_PLA_ACCOUNTS_CONF_FILE root 644
+updateConfigFile aw-report-PLA-attribute-properties $AW_REPORTING_PLA_ATTRIBUTE_CONF_FILE root 644
+updateConfigFile aw-report-PLA-properties $AW_REPORTING_PLA_METRIC_CONF_FILE root 644
+updateConfigFile aw-report-PLA-properties-delayed $AW_REPORTING_PLA_METRIC_DELAYED_CONF_FILE root 644
 
 
 if [ "$1" == "configure" ] ; then
