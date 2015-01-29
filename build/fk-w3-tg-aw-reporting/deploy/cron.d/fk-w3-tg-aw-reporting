@@ -3,12 +3,12 @@ MAILTO='amol.sharma@flipkart.com,santhana.kumar@flipkart.com,vignesh.raghuraman@
 # SEARCH
 
 # Metrics for all the accounts
-30 14 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchMetricReports.sh
+30 15 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchMetricReports.sh
 
 # Attribute data download by account size
-00 15 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeMisc.sh
-10 15 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeMobile.sh
-20 15 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeApparel.sh
-30 15 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeShoes.sh
-40 15 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeToys.sh
-50 15 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeBooks.sh
+00 16 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeMisc.sh
+10 16 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeMobile.sh
+20 16 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeApparel.sh
+30 16 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeShoes.sh
+40 16 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeToys.sh
+50 16 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeBooks.sh
