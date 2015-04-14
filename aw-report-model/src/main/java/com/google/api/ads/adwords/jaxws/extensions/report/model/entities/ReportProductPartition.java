@@ -46,7 +46,7 @@ public class ReportProductPartition extends ReportBase {
   @Column(name = "MAX_CPC")
   @CsvField(value = "Max. CPC", reportField = "CpcBid")
   @SerializedName("mcpc")
-  private BigDecimal maxCPC;
+  private String maxCPC;
 
   @Column(name = "PARTITION_TYPE")
   @CsvField(value = "Partition Type", reportField = "PartitionType")
@@ -134,19 +134,11 @@ public class ReportProductPartition extends ReportBase {
     }
 
     public String getMaxCPC() {
-		return BigDecimalUtil.formatAsReadable(maxCPC);
-	}
-
-    public BigDecimal getMaxCPCBigDecimal() {
-        return maxCPC;
+      return maxCPC;
     }
 
     public void setMaxCPC(String maxCPC) {
-		this.maxCPC = BigDecimalUtil.parseFromNumberString(maxCPC);
-	}
-
-    public void setMaxCPC(BigDecimal maxCPC) {
-        this.maxCPC = maxCPC;
+      this.maxCPC = maxCPC;
     }
 
     public String getPartitionType() {
