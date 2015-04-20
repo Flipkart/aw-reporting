@@ -1,6 +1,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.Services;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportMode;
+import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
 
 /**
  * Created by IntelliJ IDEA.
@@ -48,7 +49,7 @@ public class ReportModeService {
         return tableNamePrefix;
     }
 
-    public static boolean getIncludeZeroImpressions(){
+    public static boolean getIncludeZeroImpressions(ReportDefinitionReportType reportDefinitionReportType){
         boolean includeZeroImpressions = false;
 
         if (reportMode != null){
@@ -56,7 +57,10 @@ public class ReportModeService {
                 includeZeroImpressions = false;
             }
             else if (reportMode.equals(ReportMode.ATTRIBUTE)){
-                includeZeroImpressions = true;
+                if(reportDefinitionReportType.equals(ReportDefinitionReportType.SHOPPING_PERFORMANCE_REPORT))   // Few reports DO NOT support Zero Impression rows. Set includeZeroImpressions to false for them
+                    includeZeroImpressions = false;
+                else
+                    includeZeroImpressions = true;
             }
         }
         return includeZeroImpressions;

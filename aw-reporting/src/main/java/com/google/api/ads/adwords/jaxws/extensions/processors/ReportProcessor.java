@@ -744,7 +744,7 @@ public class ReportProcessor {
 		reportDefinition.setDateRangeType(dateRangeType);
 		reportDefinition.setReportType(reportDefinitionReportType);
 		reportDefinition.setDownloadFormat(DownloadFormat.GZIPPED_CSV);
-		reportDefinition.setIncludeZeroImpressions(ReportModeService.getIncludeZeroImpressions());
+		reportDefinition.setIncludeZeroImpressions(ReportModeService.getIncludeZeroImpressions(reportDefinitionReportType));
 		reportDefinition.setSelector(selector);
 		return reportDefinition;
 	}
