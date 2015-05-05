@@ -40,12 +40,12 @@ public class ReportShoppingPerformance extends ReportBase {
   @Column(name = "GMC_ACCOUNT_ID")
   @CsvField(value = "MCA Id", reportField = "AggregatorId")
   @SerializedName("mcaid")
-  private Long mcaId;
+  private String mcaId;
 
   @Column(name = "MERCHANT_ACCOUNT_ID")
   @CsvField(value = "MC Id", reportField = "MerchantId")
   @SerializedName("mcid")
-  private Long mcId;
+  private String mcId;
 
   @Column(name = "BRAND")
   @CsvField(value = "Brand", reportField = "Brand")
@@ -141,9 +141,11 @@ public class ReportShoppingPerformance extends ReportBase {
   public void setId() {
     // Generating unique _id after having accountId, campaignId, adGroupId and date
     if (this.getAccountId() != null && this.getCampaignId() != null &&
-            this.getAdGroupId()!=null && this.getItemId()!=null) {
+            this.getAdGroupId()!=null && this.getItemId()!=null &&
+            this.getMcId()!=null && this.getMcaId()!=null) {
       this._id = this.getAccountId() + "-" + this.getCampaignId() +
-            "-" + this.getAdGroupId() + "-" + this.getItemId();
+            "-" + this.getAdGroupId() + "-" + this.getMcId() +
+              "-" + this.getMcaId() + "-" + this.getItemId();
     }
 
     this._id += setIdDates();
@@ -182,19 +184,19 @@ public class ReportShoppingPerformance extends ReportBase {
         this.itemId = itemId;
     }
 
-    public Long getMcaId() {
+    public String getMcaId() {
         return mcaId;
     }
 
-    public void setMcaId(Long mcaId) {
+    public void setMcaId(String mcaId) {
         this.mcaId = mcaId;
     }
 
-    public Long getMcId() {
+    public String getMcId() {
         return mcId;
     }
 
-    public void setMcId(Long mcId) {
+    public void setMcId(String mcId) {
         this.mcId = mcId;
     }
 
