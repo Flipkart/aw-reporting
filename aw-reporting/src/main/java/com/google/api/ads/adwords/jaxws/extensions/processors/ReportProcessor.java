@@ -156,8 +156,7 @@ public class ReportProcessor {
 		// Processing Report Local Files
 		LOGGER.info(" Procesing reports...");
 
-		Stopwatch stopwatch = new Stopwatch();
-		stopwatch.start();
+		Stopwatch stopwatch = Stopwatch.createStarted();
 
         String reportSnapshotDownloadDay = saveReportSnapshot ? DateUtil.formatYearMonthDayNoDash(reportDownloadDate) : null;
 
@@ -490,8 +489,7 @@ public class ReportProcessor {
 		LOGGER.info("*** Generating Reports for " + accountIdsSet.size()
 				+ " accounts ***");
 
-		Stopwatch stopwatch = new Stopwatch();
-		stopwatch.start();
+		Stopwatch stopwatch = Stopwatch.createStarted();
 
 		Set<ReportDefinitionReportType> reports = this.csvReportEntitiesMapping
 				.getDefinedReports();
@@ -584,8 +582,7 @@ public class ReportProcessor {
 			ReportDefinitionDateRangeType dateRangeType,
             Date reportDownloadDate) {
 
-		Stopwatch stopwatch = new Stopwatch();
-		stopwatch.start();
+		Stopwatch stopwatch = Stopwatch.createStarted();
 
 		@SuppressWarnings("unchecked")
 		Class<R> reportBeanClass = (Class<R>) this.csvReportEntitiesMapping
