@@ -27,7 +27,6 @@ replacePlaceHolders() {
     sed -i -e "s/_USER_/$PAC_USER/g" $file
 }
 
-
 # Create base dir for debian packaging
 AW_REPORTING_DIR="$LOCAL_DIR/aw-reporting"
 KRATU_DIR="$LOCAL_DIR/examples/kratubackend"
