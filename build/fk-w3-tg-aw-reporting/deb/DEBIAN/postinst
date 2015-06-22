@@ -7,7 +7,7 @@ PAC_GROUP="fk-w3"
 PAC_USER=_PACKAGE_
 
 AW_REPORTING_CONF_DIR=/etc/fk-w3-tg-aw-reporting/conf
-AW_REPORTING_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-metric.properties
+AW_REPORTING_METRIC_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-metric.properties
 AW_REPORTING_METRIC_DELAYED_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-metric-delayed.properties
 AW_REPORTING_ATTRIBUTE_CONF_FILE=$AW_REPORTING_CONF_DIR/aw-report-attribute.properties
 
@@ -29,31 +29,38 @@ function getConfig  {
     curl -sf $config_url
 }
 
+function updateOwnership {
+    config_file="$1"
+    owner="$2"
+    perms="$3"
+
+    if [ -n "$owner" ]; then
+        chown "$owner" "$config_file"
+    fi
+
+    if [ -n "$perms" ]; then
+        chmod "$perms" "$config_file"
+    fi
+} 
+
 function updateConfigFile {
-        config_key="$1"
-        config_file="$2"
-        owner="$3"
-        perms="$4"
+    config_key="$1"
+    config_file="$2"
+    owner="$3"
+    perms="$4"
 
-        DATA=$(getConfig $config_key)
-        if [ -n "$DATA" ]; then
-
-                mkdir -p $(dirname "$config_file")
-                echo "$DATA" |fromdos >"$config_file"
-
-                if [ -n "$owner" ]; then
-                        chown "$owner" "$config_file"
-                fi
-
-                if [ -n "$perms" ]; then
-                        chmod "$perms" "$config_file"
-                fi
-        fi
+    DATA=$(getConfig $config_key)
+    
+    if [ -n "$DATA" ]; then
+        mkdir -p $(dirname "$config_file")
+        echo "$DATA" |fromdos >"$config_file"
+        updateOwnership $config_key $owner $perms
+    fi
 }
 
-updateConfigFile aw-report-properties $AW_REPORTING_CONF_FILE root 644
-updateConfigFile aw-report-properties-delayed $AW_REPORTING_METRIC_DELAYED_CONF_FILE root 644
-updateConfigFile aw-report-attribute-properties $AW_REPORTING_ATTRIBUTE_CONF_FILE root 644
+updateOwnership $AW_REPORTING_METRIC_CONF_FILE root 644
+updateOwnership $AW_REPORTING_METRIC_DELAYED_CONF_FILE root 644
+updateOwnership $AW_REPORTING_ATTRIBUTE_CONF_FILE root 644
 
 updateConfigFile aw-report-accounts $AW_REPORTING_ACCOUNTS_ALL_CONF_FILE root 644
 updateConfigFile aw-report-accounts-apparel $AW_REPORTING_ACCOUNTS_APPAREL_CONF_FILE root 644
