@@ -54,7 +54,7 @@ function updateConfigFile {
     if [ -n "$DATA" ]; then
         mkdir -p $(dirname "$config_file")
         echo "$DATA" |fromdos >"$config_file"
-        updateOwnership $config_key $owner $perms
+        updateOwnership $config_file $owner $perms
     fi
 }
 
