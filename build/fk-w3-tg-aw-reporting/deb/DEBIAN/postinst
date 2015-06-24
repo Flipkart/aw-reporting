@@ -23,12 +23,6 @@ AW_REPORTING_ACCOUNTS_DISPLAY_CONF_FILE=$AW_REPORTING_CONF_DIR/accountsDisplay
 
 HOST_NAME=$(hostname -f)
 
-function getConfig  {
-    config_key="$1"
-    config_url="http://pf-config-publish.nm.flipkart.com/cfgsvc/v1/configuration/${PAC}/-/${HOST_NAME}/0/${config_key}?raw=true"
-    curl -sf $config_url
-}
-
 function updateOwnership {
     config_file="$1"
     owner="$2"
@@ -43,33 +37,18 @@ function updateOwnership {
     fi
 } 
 
-function updateConfigFile {
-    config_key="$1"
-    config_file="$2"
-    owner="$3"
-    perms="$4"
-
-    DATA=$(getConfig $config_key)
-    
-    if [ -n "$DATA" ]; then
-        mkdir -p $(dirname "$config_file")
-        echo "$DATA" |fromdos >"$config_file"
-        updateOwnership $config_file $owner $perms
-    fi
-}
-
 updateOwnership $AW_REPORTING_METRIC_CONF_FILE root 644
 updateOwnership $AW_REPORTING_METRIC_DELAYED_CONF_FILE root 644
 updateOwnership $AW_REPORTING_ATTRIBUTE_CONF_FILE root 644
 
-updateConfigFile aw-report-accounts $AW_REPORTING_ACCOUNTS_ALL_CONF_FILE root 644
-updateConfigFile aw-report-accounts-apparel $AW_REPORTING_ACCOUNTS_APPAREL_CONF_FILE root 644
-updateConfigFile aw-report-accounts-books $AW_REPORTING_ACCOUNTS_BOOKS_CONF_FILE root 644
-updateConfigFile aw-report-accounts-small-misc $AW_REPORTING_ACCOUNTS_MISC_CONF_FILE root 644
-updateConfigFile aw-report-accounts-mobile $AW_REPORTING_ACCOUNTS_MOBILE_CONF_FILE root 644
-updateConfigFile aw-report-accounts-shoes $AW_REPORTING_ACCOUNTS_SHOES_CONF_FILE root 644
-updateConfigFile aw-report-accounts-toys $AW_REPORTING_ACCOUNTS_TOYS_CONF_FILE root 644
-updateConfigFile aw-report-accounts-display $AW_REPORTING_ACCOUNTS_DISPLAY_CONF_FILE root 644
+updateOwnership $AW_REPORTING_ACCOUNTS_ALL_CONF_FILE root 644
+updateOwnership $AW_REPORTING_ACCOUNTS_APPAREL_CONF_FILE root 644
+updateOwnership $AW_REPORTING_ACCOUNTS_BOOKS_CONF_FILE root 644
+updateOwnership $AW_REPORTING_ACCOUNTS_MISC_CONF_FILE root 644
+updateOwnership $AW_REPORTING_ACCOUNTS_MOBILE_CONF_FILE root 644
+updateOwnership $AW_REPORTING_ACCOUNTS_SHOES_CONF_FILE root 644
+updateOwnership $AW_REPORTING_ACCOUNTS_TOYS_CONF_FILE root 644
+updateOwnership $AW_REPORTING_ACCOUNTS_DISPLAY_CONF_FILE root 644
 
 
 if [ "$1" == "configure" ] ; then
