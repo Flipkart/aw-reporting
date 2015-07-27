@@ -47,10 +47,16 @@ public class ReportAd extends ReportBase {
   private String displayUrl;
 
   @Lob
-  @Column(name = "DESTINATION_URL", length = 2048)
-  @CsvField(value = "Destination URL", reportField = "Url")
-  @SerializedName("url")
-  private String destinationUrl;
+  @Column(name = "FINAL_URL", length = 2048)
+  @CsvField(value = "Final URL", reportField = "CreativeFinalUrls")
+  @SerializedName("furl")
+  private String finalUrl;
+
+  @Lob
+  @Column(name = "TRACKING_TEMPLATE", length = 2048)
+  @CsvField(value = "Tracking template", reportField = "CreativeTrackingUrlTemplate")
+  @SerializedName("tt")
+  private String trackingTemplate;
 
   @Column(name = "HEADLINE", length = 500)
   @CsvField(value = "Ad", reportField = "Headline")
@@ -163,13 +169,22 @@ public class ReportAd extends ReportBase {
     this.displayUrl = displayUrl;
   }
 
-  // destinationUrl
-  public String getDestinationUrl() {
-    return destinationUrl;
+  // finalUrl
+  public String getFinalUrl() {
+      return finalUrl;
   }
 
-  public void setDestinationUrl(String destinationUrl) {
-    this.destinationUrl = destinationUrl;
+  public void setFinalUrl(String finalUrl) {
+      this.finalUrl = finalUrl;
+  }
+
+  // trackingTemplate
+  public String getTrackingTemplate() {
+      return trackingTemplate;
+  }
+
+  public void setTrackingTemplate(String trackingTemplate) {
+      this.trackingTemplate = trackingTemplate;
   }
 
   // headline
