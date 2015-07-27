@@ -52,7 +52,7 @@ public class ReportKeywordDefinitionTest extends
 		Assert.assertEquals("10.00", first.getQualityScore());
 		Assert.assertEquals("Broad", first.getKeywordMatchType());
 		Assert.assertEquals("achat forêt", first.getKeywordText());
-		Assert.assertEquals("", first.getDestinationUrl());
+		//Assert.assertEquals("", first.getDestinationUrl()); //Add corrosponding for Final URL and tracking template
 		Assert.assertFalse(first.isNegative());
 
 	}
@@ -82,7 +82,7 @@ public class ReportKeywordDefinitionTest extends
 		Assert.assertEquals("10.00", last.getQualityScore());
 		Assert.assertEquals("Broad", last.getKeywordMatchType());
 		Assert.assertEquals("propriete sologne a vendre", last.getKeywordText());
-		Assert.assertEquals("", last.getDestinationUrl());
+		//Assert.assertEquals("", last.getDestinationUrl()); //Add corrosponding for Final URL and tracking template
 		Assert.assertFalse(last.isNegative());
 
 	}

@@ -2,6 +2,7 @@ Package: _PACKAGE_
 Version: 1._VERSION_
 Section: flipkart/w3
 Priority: standard
+Depends:  oracle-j2sdk1.8
 Architecture: all
 Maintainer: W3-TrafficGen <w3-trafficgen@flipkart.com>
 Description: Search Engine Marketing Adwords Reporting

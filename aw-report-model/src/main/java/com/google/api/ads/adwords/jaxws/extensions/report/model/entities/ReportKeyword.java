@@ -57,11 +57,17 @@ public class ReportKeyword extends ReportBase {
     @SerializedName("kt")
 	private String keywordText;
 
-	@Lob
-	@Column(name = "DESTINATION_URL", length = 2048)
-	@CsvField(value = "Destination URL", reportField = "CriteriaDestinationUrl")
-    @SerializedName("url")
-	private String destinationUrl;
+    @Lob
+    @Column(name = "FINAL_URL", length = 2048)
+    @CsvField(value = "Final URL", reportField = "FinalUrls")
+    @SerializedName("furl")
+    private String finalUrl;
+
+    @Lob
+    @Column(name = "TRACKING_TEMPLATE", length = 2048)
+    @CsvField(value = "Tracking template", reportField = "TrackingUrlTemplate")
+    @SerializedName("tt")
+    private String trackingTemplate;
 
 	@Column(name = "ADGROUP_ID")
 	@CsvField(value = "Ad group ID", reportField = "AdGroupId")
@@ -171,14 +177,23 @@ public class ReportKeyword extends ReportBase {
 		this.keywordText = keywordText;
 	}
 
-	// destinationUrl
-	public String getDestinationUrl() {
-		return destinationUrl;
-	}
+    // finalUrl
+    public String getFinalUrl() {
+        return finalUrl;
+    }
 
-	public void setDestinationUrl(String destinationUrl) {
-		this.destinationUrl = destinationUrl;
-	}
+    public void setFinalUrl(String finalUrl) {
+        this.finalUrl = finalUrl;
+    }
+
+    // trackingTemplate
+    public String getTrackingTemplate() {
+        return trackingTemplate;
+    }
+
+    public void setTrackingTemplate(String trackingTemplate) {
+        this.trackingTemplate = trackingTemplate;
+    }
 
 	// adGroupId
 	public Long getAdGroupId() {
