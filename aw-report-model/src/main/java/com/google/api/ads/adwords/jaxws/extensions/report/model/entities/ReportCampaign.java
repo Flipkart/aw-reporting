@@ -17,7 +17,7 @@ package com.google.api.ads.adwords.jaxws.extensions.report.model.entities;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 import com.google.gson.annotations.SerializedName;
 
 import javax.persistence.Column;
@@ -47,7 +47,7 @@ public class ReportCampaign extends ReportBase {
   private String campaignName;
 
   @Column(name = "STATUS", length = 32)
-  @CsvField(value = "Campaign state", reportField = "Status")
+  @CsvField(value = "Campaign state", reportField = "CampaignStatus")
   @SerializedName("st")
   private String status;
 

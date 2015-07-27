@@ -4,7 +4,6 @@ import com.google.api.ads.adwords.jaxws.extensions.kratu.restserver.kratu.Genera
 import com.google.api.ads.adwords.jaxws.extensions.kratu.restserver.kratu.KratuRest;
 import com.google.api.ads.adwords.jaxws.extensions.kratu.restserver.reports.GenerateReportsRest;
 import com.google.api.ads.adwords.jaxws.extensions.kratu.restserver.reports.ReportAccountRest;
-import com.google.api.ads.adwords.jaxws.extensions.kratu.restserver.reports.ReportAdExtensionRest;
 import com.google.api.ads.adwords.jaxws.extensions.kratu.restserver.reports.ReportAdGroupRest;
 import com.google.api.ads.adwords.jaxws.extensions.kratu.restserver.reports.ReportAdRest;
 import com.google.api.ads.adwords.jaxws.extensions.kratu.restserver.reports.ReportCampaignNegativeKeywordRest;
@@ -105,13 +104,6 @@ public class RestServer extends Application {
     router.attach("/reportcampaignnegativekeyword/{accountId}", ReportCampaignNegativeKeywordRest.class); //LIST Account level
     router.attach("/reportcampaignnegativekeyword/campaign/{campaignId}", ReportCampaignNegativeKeywordRest.class); //LIST Campaign level
     router.attach("/reportcampaignnegativekeyword/keyword/{criterionId}", ReportCampaignNegativeKeywordRest.class); //LIST Keyword level
-
-    // ReportAdExtension
-    // ?dateStart=yyyyMMdd&dateEnd=yyyyMMdd
-    router.attach("/reportadextension/", ReportAdExtensionRest.class); //LIST All
-    router.attach("/reportadextension/{accountId}", ReportAdExtensionRest.class); //LIST Account level
-    router.attach("/reportadextension/campaign/{campaignId}", ReportAdExtensionRest.class); //LIST Campaign level
-    router.attach("/reportadextension/adextension/{adExtensionId}", ReportAdExtensionRest.class); //LIST Keyword level
 
     // *** Kratu ***
     // ?includeZeroImpressions=false by default

@@ -17,7 +17,7 @@ package com.google.api.ads.adwords.jaxws.extensions.report.model.entities;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -67,11 +67,11 @@ public class ReportCriteriaPerformance extends ReportBase {
 	private String conversionRateManyPerClickSignificance;
 
 	@Column(name = "CONVERSION_RATE_SIGNIFICANCE")
-	@CsvField(value = "Conv. rate (1-per-click) ACE indicator", reportField = "ConversionRateSignificance")
+	@CsvField(value = "Conv. rate (1-per-click) ACE indicator", reportField = "ClickConversionRateSignificance")
 	private String conversionRateSignificance;
 
 	@Column(name = "CONVERSION_SIGNIFICANCE")
-	@CsvField(value = "Conv. (1-per-click) ACE indicator", reportField = "ConversionSignificance")
+	@CsvField(value = "Conv. (1-per-click) ACE indicator", reportField = "ConvertedClicksSignificance")
 	private String conversionSignificance;
 
 	@Column(name = "COST_PER_CONVERSION_MANY_PER_CLICK_SIGNIFICANCE")
@@ -79,7 +79,7 @@ public class ReportCriteriaPerformance extends ReportBase {
 	private String costPerConversionManyPerClickSignificance;
 
 	@Column(name = "COST_PER_CONVERSION_SIGNIFICANCE")
-	@CsvField(value = "Cost/conv. (1-per-click) ACE indicator", reportField = "CostPerConversionSignificance")
+	@CsvField(value = "Cost/conv. (1-per-click) ACE indicator", reportField = "CostPerConvertedClickSignificance")
 	private String costPerConversionSignificance;
 
 	@Column(name = "COST_SIGNIFICANCE")

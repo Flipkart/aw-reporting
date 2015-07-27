@@ -16,17 +16,13 @@ package com.google.api.ads.adwords.jaxws.extensions.report.model.entities;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.Services.ReportModeService;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvField;
-
+import com.google.gson.annotations.SerializedName;
 import org.joda.time.DateTime;
-
-import java.util.Date;
-import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-
-import com.google.gson.annotations.SerializedName;
+import java.util.Date;
 
 /**
  * The base abstract class for all Reports
@@ -49,7 +45,6 @@ public abstract class Report {
   public static final String _adGroupId = "adGroupId";
   public static final String _keywordId = "keywordId";
   public static final String _adId = "adId";
-  public static final String _adExtensionId = "adExtensionId";
   public static final String _day = "day";
   public static final String _dateStart = "dateStart";
   public static final String _dateEnd = "dateEnd";

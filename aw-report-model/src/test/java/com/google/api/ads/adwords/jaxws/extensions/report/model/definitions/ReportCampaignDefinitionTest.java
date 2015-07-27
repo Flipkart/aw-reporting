@@ -1,7 +1,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.definitions;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportCampaign;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -93,9 +93,9 @@ public class ReportCampaignDefinitionTest extends
 	protected String[] retrievePropertiesToBeSelected() {
 
 		return new String[] { "ExternalCustomerId", "Cost", "Clicks",
-				"Impressions", "Conversions", "Ctr", "AverageCpm",
+				"Impressions", "ConvertedClicks", "Ctr", "AverageCpm",
 				"AverageCpc", "AveragePosition", "CampaignId", "CampaignName",
-				"Status", "Amount", "Date", "AdNetworkType1", "AdNetworkType2",
+				"CampaignStatus", "Amount", "Date", "AdNetworkType1", "AdNetworkType2",
 				"Device", "ClickType", "ConversionsManyPerClick",
 				"ConversionValue", "ViewThroughConversions" };
 	}

@@ -17,7 +17,6 @@ package com.google.api.ads.adwords.jaxws.extensions.kratu.data;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.Report;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAccount;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAd;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAdExtension;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAdGroup;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportCampaign;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportCampaignNegativeKeyword;
@@ -138,19 +137,6 @@ public class StorageHelper {
         dateStart, dateEnd);
   }
 
-  // ReportAdExtension
-  public List<ReportAdExtension> getReportAdExtensionByCampaignId(Long campaignId, Date dateStart,
-      Date dateEnd) {
-    return entityPersister.get(ReportAdExtension.class, ReportAdExtension._campaignId, campaignId,
-        Report._day, dateStart, dateEnd);
-  }
-
-  public List<ReportAdExtension> getReportAdExtensionByAdExtensionId(Long adExtensionId, Date dateStart,
-      Date dateEnd) {
-    return entityPersister.get(ReportAdExtension.class, ReportAdExtension._adExtensionId, adExtensionId, Report._day,
-        dateStart, dateEnd);
-  }
-
   // ReportCampaignNegativeKeyword
   public List<ReportCampaignNegativeKeyword> getReportCampaignNegativeKeywordByCampaignId(Long keywordId, Date dateStart,
       Date dateEnd) {
@@ -230,6 +216,5 @@ public class StorageHelper {
     entityPersister.createIndex(ReportAdGroup.class, indexes);
     entityPersister.createIndex(ReportAd.class, indexes);
     entityPersister.createIndex(ReportKeyword.class, indexes);
-    entityPersister.createIndex(ReportAdExtension.class, indexes);
   }
 }

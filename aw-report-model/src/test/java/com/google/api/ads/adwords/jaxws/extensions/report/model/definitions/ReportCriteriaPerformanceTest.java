@@ -1,7 +1,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.definitions;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportCriteriaPerformance;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -67,10 +67,10 @@ public class ReportCriteriaPerformanceTest extends
 				"BidModifier", "CampaignId", "ClickSignificance",
 				"ConversionManyPerClickSignificance",
 				"ConversionRateManyPerClickSignificance",
-				"ConversionRateSignificance", "ConversionSignificance",
+				"ClickConversionRateSignificance", "ConvertedClicksSignificance",
 				"ConversionsManyPerClick", "ConversionValue",
 				"CostPerConversionManyPerClickSignificance",
-				"CostPerConversionSignificance", "CostSignificance",
+				"CostPerConvertedClickSignificance", "CostSignificance",
 				"CpcBidSource", "CpcSignificance", "CpmSignificance",
 				"Criteria", "CriteriaDestinationUrl", "CriteriaType",
 				"CtrSignificance", "CustomerDescriptiveName", "DisplayName",
@@ -80,7 +80,7 @@ public class ReportCriteriaPerformanceTest extends
 				"TopOfPageCpc", "ViewThroughConversions",
 				"ViewThroughConversionsSignificance", "ExternalCustomerId",
 				"Date", "AccountDescriptiveName", "Cost", "Clicks",
-				"Impressions", "Conversions", "Ctr", "AverageCpm",
+				"Impressions", "ConvertedClicks", "Ctr", "AverageCpm",
 				"AverageCpc", "AveragePosition", "AccountCurrencyCode",
 				"Device", "ClickType", "AdNetworkType1", "AdNetworkType2" };
 	}

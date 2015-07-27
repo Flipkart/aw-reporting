@@ -19,7 +19,7 @@ import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.C
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.*;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.DateUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionDateRangeType;
 import com.google.api.client.util.Maps;
 import com.google.gson.annotations.SerializedName;
 import org.joda.time.DateTime;
@@ -112,7 +112,7 @@ public abstract class ReportBase extends Report {
 
     // One Per Click
     @Column(name = "CONVERSIONS")
-	@CsvField(value = "Converted clicks", reportField = "Conversions")
+	@CsvField(value = "Converted clicks", reportField = "ConvertedClicks")
 	@SerializedName("conv")
 	protected Long conversions = 0L;
 

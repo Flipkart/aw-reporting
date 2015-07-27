@@ -1,17 +1,8 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.csv;
 
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.Report;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAccount;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAd;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAdExtension;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAdGroup;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportCampaign;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportCampaignNegativeKeyword;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportKeyword;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
-
+import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.*;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 import junit.framework.Assert;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,9 +46,6 @@ public class CsvReportEntitiesMappingTest {
     this.assertBeanClassisCorrectForType(ReportCampaignNegativeKeyword.class,
         ReportDefinitionReportType.CAMPAIGN_NEGATIVE_KEYWORDS_PERFORMANCE_REPORT);
 
-    this.assertBeanClassisCorrectForType(
-        ReportAdExtension.class, ReportDefinitionReportType.AD_EXTENSIONS_PERFORMANCE_REPORT);
-
   }
 
   /**
@@ -75,9 +63,6 @@ public class CsvReportEntitiesMappingTest {
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT));
     Assert.assertTrue(
         reports.contains(ReportDefinitionReportType.CAMPAIGN_NEGATIVE_KEYWORDS_PERFORMANCE_REPORT));
-    Assert.assertTrue(
-        reports.contains(ReportDefinitionReportType.AD_EXTENSIONS_PERFORMANCE_REPORT));
-
   }
 
   /**
@@ -96,7 +81,7 @@ public class CsvReportEntitiesMappingTest {
     Assert.assertTrue(propertiesToSelect.contains("Cost"));
     Assert.assertTrue(propertiesToSelect.contains("Clicks"));
     Assert.assertTrue(propertiesToSelect.contains("Impressions"));
-    Assert.assertTrue(propertiesToSelect.contains("Conversions"));
+    Assert.assertTrue(propertiesToSelect.contains("ConvertedClicks"));
     Assert.assertTrue(propertiesToSelect.contains("Ctr"));
     Assert.assertTrue(propertiesToSelect.contains("AverageCpm"));
     Assert.assertTrue(propertiesToSelect.contains("AverageCpc"));

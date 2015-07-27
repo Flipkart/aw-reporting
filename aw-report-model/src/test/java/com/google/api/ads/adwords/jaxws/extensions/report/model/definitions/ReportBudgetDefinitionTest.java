@@ -1,7 +1,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.definitions;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportBudget;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -34,7 +34,7 @@ public class ReportBudgetDefinitionTest extends
 		return new String[] {
 				// Inherit from Report
 				"ExternalCustomerId", "Cost", "Clicks", "Impressions",
-				"Conversions", "Ctr", "AverageCpm", "AverageCpc",
+				"ConvertedClicks", "Ctr", "AverageCpm", "AverageCpc",
 				"AveragePosition", "Date", "Device", "ClickType",
 				"AdNetworkType1", "AdNetworkType2", "ConversionsManyPerClick",
 				"ConversionValue", "ViewThroughConversions",

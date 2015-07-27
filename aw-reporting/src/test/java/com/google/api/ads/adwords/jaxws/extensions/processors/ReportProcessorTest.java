@@ -28,9 +28,9 @@ import com.google.api.ads.adwords.jaxws.extensions.report.model.persistence.Auth
 import com.google.api.ads.adwords.jaxws.extensions.report.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.jaxws.extensions.util.DynamicPropertyPlaceholderConfigurer;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 import com.google.api.ads.common.lib.exception.OAuthException;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
@@ -156,11 +156,6 @@ public class ReportProcessorTest {
         if (reportType.equals(ReportDefinitionReportType.ACCOUNT_PERFORMANCE_REPORT)) {
           return getReportFiles(
               "reportDownload-ACCOUNT_PERFORMANCE_REPORT-2602198216-1370030134500.report",
-              numberOfFiles);
-        }
-        if (reportType.equals(ReportDefinitionReportType.AD_EXTENSIONS_PERFORMANCE_REPORT)) {
-          return getReportFiles(
-              "reportDownload-AD_EXTENSIONS_PERFORMANCE_REPORT-2602198216-1370029629538.report",
               numberOfFiles);
         }
         if (reportType.equals(ReportDefinitionReportType.ADGROUP_PERFORMANCE_REPORT)) {

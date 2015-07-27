@@ -71,7 +71,6 @@ public abstract class AbstractServerResource extends ServerResource {
   protected Long adGroupId = null;
   protected Long adId = null;
   protected Long criterionId = null;
-  protected Long adExtensionId = null;
   protected String campaignIdcriterionIdString = null;
   protected Date dateStart = null;
   protected Date dateEnd = null;
@@ -105,7 +104,6 @@ public abstract class AbstractServerResource extends ServerResource {
     String adGroupIdString = (String)getRequestAttributes().get("adGroupId");
     String adIdString = (String)getRequestAttributes().get("adId");
     String criterionIdString = (String)getRequestAttributes().get("criterionId");
-    String adExtensionIdString = (String)getRequestAttributes().get("adExtensionId");
     campaignIdcriterionIdString = (String)getRequestAttributes().get("campaignId-criterionId");
 
     String dateStartString = this.getReference().getQueryAsForm().getFirstValue("dateStart");
@@ -122,7 +120,6 @@ public abstract class AbstractServerResource extends ServerResource {
     adGroupId = adGroupIdString == null ? null : Long.parseLong(adGroupIdString);
     adId = adIdString == null ? null : Long.parseLong(adIdString);
     criterionId = criterionIdString == null ? null : Long.parseLong(criterionIdString);
-    adExtensionId = adExtensionIdString == null ? null : Long.parseLong(adExtensionIdString);
     includeZeroImpressions = (includeZeroImpressionsString != null && includeZeroImpressionsString.equals("true"));
     
     // Setting Dates to Last 30 days for null Dates:

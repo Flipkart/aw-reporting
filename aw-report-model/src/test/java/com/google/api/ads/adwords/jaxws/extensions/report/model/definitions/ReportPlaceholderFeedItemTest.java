@@ -5,7 +5,7 @@ package com.google.api.ads.adwords.jaxws.extensions.report.model.definitions;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 import junit.framework.Assert;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -88,7 +88,7 @@ public class ReportPlaceholderFeedItemTest extends
 	@Override
 	protected String[] retrievePropertiesToBeSelected() {
 		return new String[] { "ExternalCustomerId", "AdGroupId", "AdGroupName",
-				"AdId", "Cost", "Clicks", "Impressions", "Conversions", "Ctr",
+				"AdId", "Cost", "Clicks", "Impressions", "ConvertedClicks", "Ctr",
 				"AverageCpm", "AverageCpc", "AveragePosition",
 				"AccountCurrencyCode", "CampaignId", "CampaignName", "Status",
 				"Date", "AdNetworkType1", "AdNetworkType2", "Device",

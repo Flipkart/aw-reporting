@@ -7,7 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportDestinationUrl;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 
 /**
  * Tests the Ad Performance report definition.
@@ -107,7 +107,7 @@ public class ReportDestinationUrlDefinitionTest extends
 				"CriteriaDestinationUrl", "CriteriaParameters",
 				"EffectiveDestinationUrl", "IsNegative",
 				"ViewThroughConversions", "Date", "Cost", "Clicks",
-				"Impressions", "Conversions", "Ctr", "AverageCpm",
+				"Impressions", "ConvertedClicks", "Ctr", "AverageCpm",
 				"AverageCpc", "AveragePosition", "Device", "ClickType",
 				"AdNetworkType1", "AdNetworkType2" };
 	}

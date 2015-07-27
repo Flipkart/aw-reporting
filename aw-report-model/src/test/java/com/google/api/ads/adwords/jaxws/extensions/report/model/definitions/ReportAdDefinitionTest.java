@@ -1,7 +1,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.definitions;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAd;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -94,9 +94,9 @@ public class ReportAdDefinitionTest extends
 	protected String[] retrievePropertiesToBeSelected() {
 
 		return new String[] { "ExternalCustomerId", "Cost", "Clicks",
-				"Impressions", "Conversions", "Ctr", "AverageCpm",
+				"Impressions", "ConvertedClicks", "Ctr", "AverageCpm",
 				"AverageCpc", "AveragePosition", "CampaignId", "AdGroupId",
-				"Id", "Status", "DisplayUrl", "Url", "Headline",
+				"Id", "Status", "DisplayUrl", "CreativeDestinationUrl", "Headline",
 				"Description1", "Description2", "CreativeApprovalStatus",
 				"Date", "AdNetworkType1", "AdNetworkType2", "Device",
 				"ClickType", "ConversionsManyPerClick", "ConversionValue",

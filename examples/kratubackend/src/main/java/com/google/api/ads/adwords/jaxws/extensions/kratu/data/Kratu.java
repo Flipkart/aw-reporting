@@ -16,7 +16,6 @@ package com.google.api.ads.adwords.jaxws.extensions.kratu.data;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAccount;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAd;
-import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAdExtension;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAdGroup;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportCampaign;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportCampaignNegativeKeyword;
@@ -327,7 +326,6 @@ public class Kratu {
       List<ReportAdGroup> reportAdGroupList = storageHelper.getReportByAccountId(ReportAdGroup.class, accountId, day, day);
       List<ReportAd> reportAdList = storageHelper.getReportByAccountId(ReportAd.class, accountId, day, day);
       List<ReportKeyword> reportKeywordList = storageHelper.getReportByAccountId(ReportKeyword.class, accountId, day, day);
-      List<ReportAdExtension> reportAdExtensionsList = storageHelper.getReportByAccountId(ReportAdExtension.class, accountId, day, day);
 
       List<ReportCampaignNegativeKeyword> reportCampaignNegativeKeywordList =
           storageHelper.getReportCampaignNegativeKeywordByAccountAndEndDateInRange(accountId, day, day);
@@ -468,25 +466,6 @@ public class Kratu {
             RoundingMode.HALF_UP);
       }
       reportKeywordList = null;
-
-      // Process Ad Extensions
-      for (ReportAdExtension reportAdExtension : reportAdExtensionsList) {
-        if (reportAdExtension.getStatus().equals(ACTIVE)) {
-          if (reportAdExtension.getAdExtensionType().equals(LOCATION_EXTENSION)) {
-            kratu.numberOfCampaignsWithLocationExtensionEnabled =
-                kratu.numberOfCampaignsWithLocationExtensionEnabled.add(new BigDecimal(1));
-          }
-          if (reportAdExtension.getAdExtensionType().equals(MOBILE_EXTENSION)) {
-            kratu.numberOfCampaignsWithCallExtensionEnabled =
-                kratu.numberOfCampaignsWithCallExtensionEnabled.add(new BigDecimal(1));
-          }
-          if (reportAdExtension.getAdExtensionType().equals(SITE_LINKS_EXTENSION)) {
-            kratu.numberOfCampaignsWithSiteLinksEnabled =
-                kratu.numberOfCampaignsWithSiteLinksEnabled.add(new BigDecimal(1));
-          }
-        }
-      }
-      reportAdExtensionsList = null;
 
       // Process CampaignNegativeKeywords    
       kratu.numberOfNegativeActiveKeywords = kratu.numberOfNegativeActiveKeywords.add(new BigDecimal(reportCampaignNegativeKeywordList.size()));

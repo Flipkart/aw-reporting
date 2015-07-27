@@ -7,7 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportUrl;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 
 /**
  * Tests the Ad Performance report definition.
@@ -97,9 +97,9 @@ public class ReportUrlDefinitionTest extends
 				"CampaignName", "CampaignStatus", "Ctr", "CriteriaParameters",
 				"CustomerDescriptiveName", "DisplayName", "Domain",
 				"IsAutoOptimized", "IsBidOnPath", "IsPathExcluded",
-				"MonthOfYear", "Url", "ExternalCustomerId", "Date", "Month",
+				"MonthOfYear", "CreativeDestinationUrl", "ExternalCustomerId", "Date", "Month",
 				"AccountDescriptiveName", "Cost", "Clicks", "Impressions",
-				"Conversions", "AverageCpm", "AverageCpc",
+				"ConvertedClicks", "AverageCpm", "AverageCpc",
 				"AccountCurrencyCode", "AdNetworkType1", "AdNetworkType2",
 				"ConversionsManyPerClick", "ConversionValue",
 				"ViewThroughConversions" };

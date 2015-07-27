@@ -1,7 +1,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.definitions;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAccount;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -33,7 +33,7 @@ public class ReportAccountDefinitionTest extends
 	protected String[] retrievePropertiesToBeSelected() {
 
 		return new String[] { "ExternalCustomerId", "AccountDescriptiveName",
-				"Cost", "Clicks", "Impressions", "Conversions", "Ctr",
+				"Cost", "Clicks", "Impressions", "ConvertedClicks", "Ctr",
 				"AverageCpm", "AverageCpc", "AveragePosition",
 				"AccountCurrencyCode", "SearchBudgetLostImpressionShare",
 				"SearchRankLostImpressionShare",
