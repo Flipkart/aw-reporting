@@ -12,4 +12,4 @@ MAILTO='alok.reddy@flipkart.com,vignesh.raghuraman@flipkart.com'
 40 14 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeToys.sh
 50 14 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeBooks.sh
 00 15 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeDisplay.sh
-10 15 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeHomeAndKitchen.sh
+50 17 * * * root sh /usr/share/fk-w3-tg-aw-reporting/bin/fetchAttributeHomeAndKitchen.sh
