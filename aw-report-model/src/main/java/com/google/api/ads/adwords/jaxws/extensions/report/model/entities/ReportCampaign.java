@@ -84,6 +84,10 @@ public class ReportCampaign extends ReportBase {
   @SerializedName("adc")
   private String advertisingChannelType;
 
+  @Column(name = "ADVERTISING_SUB_CHANNEL", length = 32)
+  @CsvField(value = "Advertising Sub Channel", reportField = "AdvertisingChannelSubType")
+  @SerializedName("adsc")
+  private String advertisingChannelSubType;
 
 
   /**
@@ -209,6 +213,14 @@ public class ReportCampaign extends ReportBase {
 
     public void setAdvertisingChannelType(String advertisingChannelType) {
         this.advertisingChannelType = advertisingChannelType;
+    }
+
+    public String getAdvertisingChannelSubType() {
+        return advertisingChannelSubType;
+    }
+
+    public void setAdvertisingChannelSubType(String advertisingChannelSubType) {
+        this.advertisingChannelSubType = advertisingChannelSubType;
     }
 
 }
