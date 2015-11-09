@@ -1,6 +1,6 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation;
 
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

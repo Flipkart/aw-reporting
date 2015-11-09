@@ -22,7 +22,7 @@ import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportM
 import com.google.api.ads.adwords.jaxws.extensions.report.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.CsvParserIterator;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.ModifiedCsvToBean;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
 import com.google.common.collect.Lists;
 
 import org.apache.log4j.Logger;
