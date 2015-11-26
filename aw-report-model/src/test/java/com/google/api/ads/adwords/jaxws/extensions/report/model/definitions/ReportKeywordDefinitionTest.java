@@ -1,7 +1,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.definitions;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportKeyword;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -108,7 +108,7 @@ public class ReportKeywordDefinitionTest extends
 				"Impressions", "ConvertedClicks", "Ctr", "AverageCpm",
 				"AverageCpc", "AveragePosition", "AccountCurrencyCode",
 				"CampaignId", "AdGroupId", "Id", "Status", "QualityScore",
-				"KeywordMatchType", "KeywordText", "CriteriaDestinationUrl",
+				"KeywordMatchType", "Criteria", "CriteriaDestinationUrl",
 				"IsNegative", "Date", "Month", "AdNetworkType1",
 				"AdNetworkType2", "Device", "ClickType",
 				"ConversionsManyPerClick", "ConversionValue",

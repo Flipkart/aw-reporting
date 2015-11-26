@@ -1,7 +1,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.csv;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.*;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,7 +1,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.definitions;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportCampaignNegativeKeyword;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -75,6 +75,6 @@ public class ReportCampaignNegativeKeywordDefinitionTest extends
 	@Override
 	protected String[] retrievePropertiesToBeSelected() {
 		return new String[] { "CampaignId", "Id", "KeywordMatchType",
-				"KeywordText", "IsNegative" };
+				"Criteria", "IsNegative" };
 	}
 }
