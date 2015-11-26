@@ -33,3 +33,5 @@ examples/kratubackend/.classpath
 examples/kratubackend/.project
 
 examples/kratubackend/.settings
+
+*.DS_Store
