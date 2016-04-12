@@ -5,7 +5,7 @@ package com.google.api.ads.adwords.jaxws.extensions.report.model.definitions;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 import junit.framework.Assert;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -93,7 +93,7 @@ public class ReportPlaceholderFeedItemTest extends
 				"AccountCurrencyCode", "CampaignId", "CampaignName", "Status",
 				"Date", "AdNetworkType1", "AdNetworkType2", "Device",
 				"ClickType", "FeedId", "FeedItemId", "PlaceholderType",
-				"ConversionsManyPerClick", "ConversionValue",
+				"ConversionValue",
 				"ViewThroughConversions" };
 	}
 }

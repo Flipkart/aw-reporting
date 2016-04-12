@@ -15,10 +15,10 @@
 package com.google.api.ads.adwords.jaxws.extensions.downloader;
 
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201506.*;
+import com.google.api.ads.adwords.lib.jaxb.v201509.*;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponseException;
 import com.google.api.ads.adwords.lib.utils.ReportException;
-import com.google.api.ads.adwords.lib.utils.v201506.DetailedReportDownloadResponseException;
+import com.google.api.ads.adwords.lib.utils.v201509.DetailedReportDownloadResponseException;
 import com.google.api.ads.common.lib.exception.ValidationException;
 import com.google.common.collect.Lists;
 import org.junit.Before;

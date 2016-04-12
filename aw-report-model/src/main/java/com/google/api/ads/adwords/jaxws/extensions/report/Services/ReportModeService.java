@@ -1,7 +1,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.Services;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportMode;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 /**
  * Created by IntelliJ IDEA.

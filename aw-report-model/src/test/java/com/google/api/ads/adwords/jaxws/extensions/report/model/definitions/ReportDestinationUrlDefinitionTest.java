@@ -7,7 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportDestinationUrl;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 /**
  * Tests the Ad Performance report definition.
@@ -35,7 +35,6 @@ public class ReportDestinationUrlDefinitionTest extends
 
 		Assert.assertEquals(3448007340L, row.getAdGroupId().longValue());
 		Assert.assertEquals(84058260L, row.getCampaignId().longValue());
-		Assert.assertEquals(0L, row.getConversionsManyPerClick().longValue());
 		Assert.assertEquals(null, row.getConversionValue());
 		Assert.assertEquals("", row.getCriteriaDestinationUrl());
 		Assert.assertEquals("+immo +benodet", row.getCriteriaParameters());
@@ -54,7 +53,6 @@ public class ReportDestinationUrlDefinitionTest extends
 
 		Assert.assertEquals(5827855980L, row.getAdGroupId().longValue());
 		Assert.assertEquals(118203540L, row.getCampaignId().longValue());
-		Assert.assertEquals(0L, row.getConversionsManyPerClick().longValue());
 		Assert.assertEquals(null, row.getConversionValue());
 		Assert.assertEquals("", row.getCriteriaDestinationUrl());
 		Assert.assertEquals("Content", row.getCriteriaParameters());
@@ -103,7 +101,7 @@ public class ReportDestinationUrlDefinitionTest extends
 	protected String[] retrievePropertiesToBeSelected() {
 
 		return new String[] { "AdGroupId", "CampaignId",
-				"ConversionsManyPerClick", "ConversionValue",
+				"ConversionValue",
 				"CriteriaDestinationUrl", "CriteriaParameters",
 				"EffectiveDestinationUrl", "IsNegative",
 				"ViewThroughConversions", "Date", "Cost", "Clicks",

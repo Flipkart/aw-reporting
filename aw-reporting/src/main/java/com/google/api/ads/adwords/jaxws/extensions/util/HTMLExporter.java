@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.util;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.Report;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import com.lowagie.text.DocumentException;
 import com.samskivert.mustache.Mustache;

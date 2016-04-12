@@ -19,7 +19,7 @@ import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.C
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.dateRanges.*;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.DateUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
 import com.google.api.client.util.Maps;
 import com.google.gson.annotations.SerializedName;
 import org.joda.time.DateTime;
@@ -115,12 +115,6 @@ public abstract class ReportBase extends Report {
 	@CsvField(value = "Converted clicks", reportField = "ConvertedClicks")
 	@SerializedName("conv")
 	protected Long conversions = 0L;
-
-    // Many Per Click
-	@Column(name = "CONVERSIONSMANYPERCLICK")
-    @CsvField(value = "Conversions", reportField = "ConversionsManyPerClick")
-	@SerializedName("convm")
-	protected Long conversionsManyPerClick = 0L;
 
 	@Column(name = "CONVERSION_VALUE")
 	@CsvField(value = "Total conv. value", reportField = "ConversionValue")
@@ -502,14 +496,6 @@ public abstract class ReportBase extends Report {
 
 	public void setConversionValue(BigDecimal conversionValue) {
 		this.conversionValue = conversionValue;
-	}
-
-	public Long getConversionsManyPerClick() {
-		return conversionsManyPerClick;
-	}
-
-	public void setConversionsManyPerClick(Long conversionsManyPerClick) {
-		this.conversionsManyPerClick = conversionsManyPerClick;
 	}
 
 	public Long getViewThroughConversions() {

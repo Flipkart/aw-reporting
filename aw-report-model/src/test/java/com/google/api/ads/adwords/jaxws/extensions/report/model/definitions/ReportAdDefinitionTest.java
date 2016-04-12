@@ -1,7 +1,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.definitions;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAd;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -99,7 +99,7 @@ public class ReportAdDefinitionTest extends
 				"Id", "Status", "DisplayUrl", "CreativeDestinationUrl", "Headline",
 				"Description1", "Description2", "CreativeApprovalStatus",
 				"Date", "AdNetworkType1", "AdNetworkType2", "Device",
-				"ClickType", "ConversionsManyPerClick", "ConversionValue",
+				"ClickType", "ConversionValue",
 				"ViewThroughConversions" };
 	}
 }

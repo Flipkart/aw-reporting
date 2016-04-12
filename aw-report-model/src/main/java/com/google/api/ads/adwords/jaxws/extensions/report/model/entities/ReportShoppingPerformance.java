@@ -2,7 +2,7 @@ package com.google.api.ads.adwords.jaxws.extensions.report.model.entities;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.csv.annotation.CsvReport;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 import com.google.gson.annotations.SerializedName;
 
 import javax.persistence.Column;

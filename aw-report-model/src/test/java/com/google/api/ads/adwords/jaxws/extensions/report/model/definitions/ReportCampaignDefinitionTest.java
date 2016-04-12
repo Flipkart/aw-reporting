@@ -1,7 +1,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.definitions;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportCampaign;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -96,7 +96,7 @@ public class ReportCampaignDefinitionTest extends
 				"Impressions", "ConvertedClicks", "Ctr", "AverageCpm",
 				"AverageCpc", "AveragePosition", "CampaignId", "CampaignName",
 				"CampaignStatus", "Amount", "Date", "AdNetworkType1", "AdNetworkType2",
-				"Device", "ClickType", "ConversionsManyPerClick",
+				"Device", "ClickType",
 				"ConversionValue", "ViewThroughConversions" };
 	}
 }

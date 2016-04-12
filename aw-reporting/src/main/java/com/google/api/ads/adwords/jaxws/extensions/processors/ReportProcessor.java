@@ -27,10 +27,10 @@ import com.google.api.ads.adwords.jaxws.extensions.report.model.persistence.Enti
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.DateUtil;
 import com.google.api.ads.adwords.jaxws.extensions.report.model.util.ModifiedCsvToBean;
 import com.google.api.ads.adwords.jaxws.extensions.util.GetRefreshToken;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.ApiException;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.ManagedCustomer;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.ManagedCustomer;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201506.*;
+import com.google.api.ads.adwords.lib.jaxb.v201509.*;
 import com.google.api.ads.common.lib.auth.OfflineCredentials;
 import com.google.api.ads.common.lib.auth.OfflineCredentials.Api;
 import com.google.api.ads.common.lib.exception.OAuthException;

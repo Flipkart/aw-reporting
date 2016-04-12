@@ -1,7 +1,7 @@
 package com.google.api.ads.adwords.jaxws.extensions.report.model.definitions;
 
 import com.google.api.ads.adwords.jaxws.extensions.report.model.entities.ReportAccount;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -40,7 +40,7 @@ public class ReportAccountDefinitionTest extends
 				"ContentBudgetLostImpressionShare",
 				"ContentRankLostImpressionShare", "Date", "Month", "Device",
 				"ClickType", "AdNetworkType1", "AdNetworkType2",
-				"ConversionsManyPerClick", "ConversionValue",
+				"ConversionValue",
 				"ViewThroughConversions" };
 	}
 
