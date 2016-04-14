@@ -195,7 +195,7 @@
     <dependency>
       <groupId>commons-configuration</groupId>
       <artifactId>commons-configuration</artifactId>
-      <version>1.7</version>
+      <version>LATEST</version>
     </dependency>
 
     <!-- Ads client library dependencies -->
